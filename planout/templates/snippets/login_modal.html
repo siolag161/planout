@@ -1,0 +1,29 @@
+{% load i18n %}
+{% load crispy_forms_tags %} 
+{% load url from future %}
+<div class="login-wrapper">
+  <div class="modal-dialog registration-modal">
+    <div class="modal-content registration-modal">
+      <div class="modal-header registration-modal-header">
+	<div class="text-container">
+	  <p>Login with <a href="/accounts/facebook/login/?process=login"><span class ="pink">Facebook</span></a> or <a href="/accounts/google/login/?process=login"><span class="pink">Google</span></a></p>
+	</div>
+        <a class="close" data-dismiss="modal" aria-hidden="true"><i class=""></i></a>
+	<div>
+	  <h6 class="registration-modal-sep">or</h6>
+	</div>
+      </div>
+      <div class="modal-body registration-modal-body">
+	<form method="post" accept-charset="utf-8" autocomplete="off" role="form" class="form-horizontal" action="{% url 'account_login' %}">
+	  - {% crispy login_form %}
+
+	</form>	
+      </div> <!-- body -->
+      <div class="modal-footer">
+	<span class="black">Not a member?</span> <a id="signup-button" href="#" class="btn btn-black" data-toggle="modal" data-target="#signup-modal" >Sign Up</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+

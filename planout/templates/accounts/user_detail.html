@@ -1,0 +1,11 @@
+{%extends "base.html" %}
+{%load static %}
+
+{%block title %}User {%endblock %}
+
+{%block content %}
+<div class="container">
+  <img src="{{object.avatar.url}}" alt="" class="img-rounded img-responsive"/>
+  <a class="btn btn-primary" href="{%url 'users:update' %}">My Info</a>
+</div>
+{%endblock content %}
