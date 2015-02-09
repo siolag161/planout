@@ -16,7 +16,7 @@ class UserForm(forms.ModelForm):
         # Set this form to use the User model.
         model = BasicUser
         # Constrain the UserForm to just these fields.
-        fields = ("first_name", "last_name", "avatar")
+        fields = ("first_name", "last_name")
 
 ### SIGNUP FORM
 

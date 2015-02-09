@@ -11,8 +11,9 @@ urlpatterns = [
     url(r'^users/', include("accounts.urls", namespace="users")),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout',
      {'next_page': '/'}),
+    
     url(r'^accounts/', include('allauth.urls')), 
-    # url(r'^avatar/', include('avatar.urls')),
+    url(r'^avatar/', include('avatar.urls', namespace='avatar')),
 
     # Root-level redirects for common browser requests
     url(r'^favicon\.ico$', RedirectView.as_view(url=settings.STATIC_URL + 'img/compressed/favicon.ico'), name='favicon.ico'),

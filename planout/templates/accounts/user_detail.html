@@ -1,11 +1,14 @@
 {%extends "base.html" %}
 {%load static %}
-
+{% load avatar_tags %}
 {%block title %}User {%endblock %}
 
-{%block content %}
+{% block content %}
 <div class="container">
-  <img src="{{object.avatar.url}}" alt="" class="img-rounded img-responsive"/>
+  <!-- <img src="{% avatar object %}" alt="" class="img-rounded img-responsive"/> -->
+  {% avatar object %}
   <a class="btn btn-primary" href="{%url 'users:update' %}">My Info</a>
+  <a class="btn btn-primary" href="{%url 'avatar:avatar_add' %}">Change Ava</a>
+
 </div>
-{%endblock content %}
+{% endblock content %}

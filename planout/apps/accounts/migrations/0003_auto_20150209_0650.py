@@ -7,12 +7,14 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accounts', '0001_initial'),
+        ('accounts', '0002_basicuser_encoded_email'),
     ]
 
     operations = [
-        migrations.RemoveField(
+        migrations.AlterField(
             model_name='basicuser',
-            name='avatar',
+            name='encoded_email',
+            field=models.SlugField(max_length=32, unique=True, null=True),
+            preserve_default=True,
         ),
     ]

@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 # Import the AbstractUser model
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.db import IntegrityError
+
 from django.core.validators import RegexValidator
 from django.utils import timezone
 from django.core.mail import send_mail
 
-from awesome_avatar.fields import AvatarField
 
-
+from avatar.fields import AvatarField
+from avatar.util import (base64_encode_url, base64_decode_url, base64_normalize)
 # Import the basic Django ORM models library
 from django.db import models
 
@@ -17,20 +19,34 @@ class BasicUserManager(BaseUserManager):
     def create_user(self, email, password):
 	if not email:
 	    raise ValueError('Users must have an email')
-	user = self.model(email=self.normalize_email(email))
+	email = self.normalize_email(email)
+	user = self.model()
 	user.is_active = True
-	user.set_password(password)
-	user.save(using=self._db)
+	user.set_password(pasword)
+	user.set_email(email)
+	self.save_automatic_unique_username(user, email, encoded_email=encode_string(email))
 	return user
 
-    def create_superuser(self,  email, password):
-        user = self.create_user(email=email, password=password)
+    def create_superuser(self, email, password):
+        user = self.create_user(password=password)
         user.is_staff = True
         user.is_superuser = True
-        user.save(using=self._db)
+	user.set_email(email)
+	self.save_automatic_unique_username(user, email)
         return user
 
+    def save_automatic_unique_username(self, user, email):
+	try:
+	    user.username = self.generate_username_from_email(email)	    
+	    user.save(using=self._db)
+	except IntegrityError: # unique constraint violation
+	    user.save(using=self._db)
+	    user.username = self.generate_username_from_email(email, user.id)	    
+	    user.save(using=self._db)
 
+    def generate_username_from_email(self, email, unique_id = ""):
+	""" get """
+	return "%s%s" % (email.split("@")[0], unique_id)
 
 # Subclass AbstractUser
 class BasicUser(AbstractBaseUser,PermissionsMixin):
@@ -51,6 +67,7 @@ class BasicUser(AbstractBaseUser,PermissionsMixin):
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
     email = models.EmailField(_('email address'), unique=True,  max_length=100, blank=True)
+    encoded_email = models.SlugField(max_length=32, unique=True, null=True)
     is_staff = models.BooleanField(_('staff status'), default=False,
 				   help_text=_('Designates whether the user can log into this admin '
 					       'site.'))
@@ -59,11 +76,15 @@ class BasicUser(AbstractBaseUser,PermissionsMixin):
 						'active. Unselect this instead of deleting accounts.'))
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
-    avatar = AvatarField(upload_to='avatars', width=100, height=100) 
+    avatar = AvatarField(max_length=1024, blank=True) 
 
     objects = BasicUserManager()
     USERNAME_FIELD = 'email'	# 
 
+    def set_email(self, email):
+	self.email = email
+	self.encode_email = base64_encode_url(email)
+    
     def get_full_name(self):
         """
         Returns the first_name plus the last_name, with a space in between.
@@ -86,7 +107,12 @@ class BasicUser(AbstractBaseUser,PermissionsMixin):
         Sends an email to this User.
         """
         send_mail(subject, message, from_email, [self.email], **kwargs)
-	
+
+
+    def save(self, *args, **kwargs):
+        self.encoded_email = base64_encode_url(self.email)
+        super(BasicUser, self).save(*args, **kwargs)
+    
     def __unicode__(self):
 	if self.username != '':
 	    return self.username

@@ -18,9 +18,10 @@ urlpatterns = patterns('',
     ),
     # URL pattern for the UserDetailView
     url(
-        regex=r'^(?P<email>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/$',
+        #regex=r'^(?P<email>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/$',
+	regex=r'^(?P<encoded_email>[A-Za-z0-9-_]+)$',
         view=views.UserDetailView.as_view(),
-        name='detail'
+        name='detail_email'
     ),
     # URL pattern for the UserUpdateView
     url(

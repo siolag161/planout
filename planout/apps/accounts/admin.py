@@ -49,7 +49,7 @@ class CustomUserChangeForm(UserChangeForm):
 
     class Meta(UserChangeForm.Meta):
 	model = BasicUser
-	fields = ('username', 'email', 'password', 'is_active', 'is_staff', 'is_superuser', 'user_permissions')
+	fields = ('username', 'email', 'password', 'is_active', 'is_staff', 'is_superuser', 'user_permissions', 'avatar')
 
     def clean_password(self):
 	# Regardless of what the user provides, return the initial value.
@@ -66,13 +66,13 @@ class BasicUserAdmin(UserAdmin):
 
     fieldsets = (
         (None, {'fields': ('username', 'email', 'password', 'first_name', 'last_name')}),
-        ('Permissions', {'fields': ('is_active', 'is_superuser', 'is_staff')}),
+        ('Permissions', {'fields': ('is_active', 'is_superuser', 'is_staff', 'encoded_email')}),
     )
 
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username', 'email', 'password1', 'password2', 'is_staff', 'is_superuser')}
+            'fields': ('username', 'email', 'password1', 'password2', 'is_staff', 'is_superuser', 'encoded_email')}
         ),
     )
 

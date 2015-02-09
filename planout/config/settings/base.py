@@ -75,7 +75,7 @@ THIRD_PARTY_APPS = (
     'django_extensions',
     'django_rq',
     'crispy_forms',  # Form layouts    
-    'awesome_avatar',  # for user avatars    
+    
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',
@@ -87,6 +87,7 @@ THIRD_PARTY_APPS = (
 )
 
 PROJECT_APPS = (
+    'avatar',  # for user avatars    
     'accounts',
 )
 
@@ -266,9 +267,7 @@ PIPELINE_JS = {
             'js/build/*.js',
         ),
         'output_filename': 'js/master.js',
-        'extra_context': {
-            'async': True,
-        },
+
     }
 }
 PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.uglifyjs.UglifyJSCompressor'

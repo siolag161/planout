@@ -1,33 +1,38 @@
-// Django Cross Site Request Forgery protection via AJAX
-// https://docs.djangoproject.com/en/dev/ref/contrib/csrf/#ajax
+(function() {
+  var csrfSafeMethod, csrftoken, getCookie;
 
-function getCookie(name) {
-  var cookieValue = null;
-  if (document.cookie && document.cookie !== '') {
-    var cookies = document.cookie.split(';');
-    for (var i = 0; i < cookies.length; i++) {
-      var cookie = jQuery.trim(cookies[i]);
-      // Does this cookie string begin with the name we want?
-      if (cookie.substring(0, name.length + 1) == (name + '=')) {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
+  getCookie = function(name) {
+    var cookie, cookieValue, cookies, i;
+    cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      cookies = document.cookie.split(';');
+      i = 0;
+      while (i < cookies.length) {
+        cookie = jQuery.trim(cookies[i]);
+        if (cookie.substring(0, name.length + 1) === name + '=') {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+        i++;
       }
     }
-  }
-  return cookieValue;
-}
+    return cookieValue;
+  };
 
-var csrftoken = getCookie('csrftoken');
+  csrftoken = getCookie('csrftoken');
 
-function csrfSafeMethod(method) {
-  // These HTTP methods do not require CSRF protection
-  return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-}
+  csrfSafeMethod = function(method) {
+    return /^(GET|HEAD|OPTIONS|TRACE)$/.test(method);
+  };
 
-$.ajaxSetup({
-  beforeSend: function(xhr, settings) {
-    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-      xhr.setRequestHeader("X-CSRFToken", csrftoken);
+  $.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+      if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+        xhr.setRequestHeader('X-CSRFToken', csrftoken);
+      }
     }
-  }
-});
+  });
+
+}).call(this);
+
+//# sourceMappingURL=csrf.js.map

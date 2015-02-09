@@ -2,12 +2,8 @@
   "name": "planout",
   "version": "0.0.1",
   "description": "Using Grunt to automate linting, compiling, and watching frontend code",
-  "author": "Kevin Xu",
+  "author": "pdt",
   "homepage": "https://planout.com/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/imkevinxu/django-kevin"
-  },
   "main": "Gruntfile.coffee",
   "dependencies": {},
   "devDependencies": {
