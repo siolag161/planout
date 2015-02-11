@@ -129,8 +129,26 @@ INSTALLED_APPS += (
 ACCOUNT_FORMS = {'login': 'accounts.forms.UserLoginForm', 'signup': 'accounts.forms.UserSignupForm'}
 ########## END LOGGING CONFIGURATION
 
+
+########## END IMPORT_SETTINGS
+    
+########## START TESTING
+INSTALLED_APPS += (
+    'django_nose',
+
+)
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+NOSE_ARGS = [
+    '--verbosity=1',
+    '--with-coverage',
+    '--cover-html',
+    '--cover-package=accounts',
+]
+########## END TESTING
 ########## START IMPORT_SETTINGS
 try:
     from .local import *
 except ImportError:
-    print 'error importing local settings' 
+    print 'error importing local settings'
+
+    

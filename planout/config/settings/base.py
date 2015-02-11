@@ -73,8 +73,10 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     'django_extensions',
+    'polymorphic', # inherited
+    
     'django_rq',
-    'crispy_forms',  # Form layouts    
+    'crispy_forms',  # Form layouts
     
     'allauth',  # registration
     'allauth.account',  # registration
@@ -87,8 +89,10 @@ THIRD_PARTY_APPS = (
 )
 
 PROJECT_APPS = (
+    'core',
     'avatar',  # for user avatars    
     'accounts',
+    'events',
 )
 
 EXTENSION_APPS = (
@@ -418,15 +422,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 ########## CRISPY-FORMS
 
 ########## AVATARS
-AWESOME_AVATAR = {
-    'width': 100,
-    'height': 100,
 
-    'select_area_width': 400,
-    'select_area_height': 300,
-
-    'save_quality': 90,
-    'save_format': 'png',
-    
-}
 ########## END AVATARS
