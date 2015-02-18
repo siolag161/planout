@@ -1,38 +1,39 @@
 from django.conf import settings
 from PIL import Image
+from appconf import AppConf
 
 
-class AvatarConf(object):
-    AVATAR_DEFAULT_WIDTH = 100
-    AVATAR_DEFAULT_HEIGHT = 100
-    AVATAR_AREA_WIDTH = 400
-    AVATAR_AREA_HEIGHT = 250
-    AVATAR_NO_RESIZE = False
+class AvatarConf(AppConf):
+    DEFAULT_WIDTH = 100
+    DEFAULT_HEIGHT = 100
+    AREA_WIDTH = 400
+    AREA_HEIGHT = 250
+    NO_RESIZE = False
 
-    AVATAR_DEFAULT_SIZE = 80    
-    AVATAR_RESIZE_METHOD = Image.ANTIALIAS
-    AVATAR_STORAGE_DIR = 'avatars'
-    AVATAR_STORAGE_PARAMS = {}
-    AVATAR_GRAVATAR_FIELD = 'email'
-    AVATAR_GRAVATAR_BASE_URL = 'http://www.gravatar.com/avatar/'
-    AVATAR_GRAVATAR_BACKUP = True
-    AVATAR_GRAVATAR_DEFAULT = None
-    AVATAR_DEFAULT_URL = 'avatar/img/default_avatar.jpg'
+    DEFAULT_SIZE = 80    
+    RESIZE_METHOD = Image.ANTIALIAS
+    STORAGE_DIR = 'avatars'
+    STORAGE_PARAMS = {}
+    GRAVATAR_FIELD = 'email'
+    GRAVATAR_BASE_URL = 'http://www.gravatar.com/avatar/'
+    GRAVATAR_BACKUP = True
+    GRAVATAR_DEFAULT = None
+    DEFAULT_URL = 'avatars/default/default_avatar.jpg'
     #MAX_AVATARS_PER_USER = 3
-    AVATAR_MAX_SIZE = 1024 * 1024
-    AVATAR_THUMB_FORMAT = 'JPEG'
-    AVATAR_FORMAT = 'JPEG'
+    MAX_SIZE = 1024 * 1024
+    THUMB_FORMAT = 'JPEG'
+    FORMAT = 'JPEG'
 
-    AVATAR_THUMB_QUALITY = 85
-    AVATAR_USERID_AS_USERDIRNAME = False
-    AVATAR_HASH_FILENAMES = False
-    AVATAR_HASH_USERDIRNAMES = False
-    AVATAR_ALLOWED_FILE_EXTS = None
-    AVATAR_CACHE_TIMEOUT = 60 * 60
-    AVATAR_STORAGE = settings.DEFAULT_FILE_STORAGE
-    AVATAR_CLEANUP_DELETED = False
-    AVATAR_AUTO_GENERATE_SIZES = (AVATAR_DEFAULT_SIZE,)
-    AVATAR_ALLOWED_MIMETYPES = []
+    THUMB_QUALITY = 85
+    USERID_AS_USERDIRNAME = False
+    HASH_FILENAMES = False
+    HASH_USERDIRNAMES = False
+    ALLOWED_FILE_EXTS = None
+    CACHE_TIMEOUT = 60 * 60
+    STORAGE = settings.DEFAULT_FILE_STORAGE
+    CLEANUP_DELETED = False
+    AUTO_GENERATE_SIZES = (DEFAULT_SIZE,)
+    ALLOWED_MIMETYPES = []
 
     def configure_auto_generate_avatar_sizes(self, value):
         return value or getattr(settings, 'AVATAR_AUTO_GENERATE_SIZES',
@@ -50,7 +51,7 @@ class AvatarConf(object):
 settings_config = getattr(settings, 'AVATAR', {})
 
 for key, value in settings_config.items():
-    if key in config.__dict__:
+    if key in AvatarConf.__dict__:
         setattr(AvatarConf, key, value)
     else:
         raise KeyError('Incorect option name of AVATAR in settings.py ({})'.format(key))

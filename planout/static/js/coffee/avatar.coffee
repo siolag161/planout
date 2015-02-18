@@ -22,11 +22,11 @@
     @$avatarWrapper = @$avatarModal.find('.avatar-wrapper')
     @$avatarPreview = @$avatarModal.find('.avatar-preview')
     @init()
-    console.log this
+    # console.log this
     return
 
   'use strict'
-  console = window.console or log: $.noop
+  # console = window.console or log: $.noop
   CropAvatar.prototype =
     constructor: CropAvatar
     support:
@@ -152,6 +152,7 @@
     ajaxUpload: ->
       url = @$avatarForm.attr('action')
       data = new FormData(@$avatarForm[0])
+      console.log data
       _this = this
       $.ajax url,
         type: 'post'
@@ -178,7 +179,7 @@
       @$loading.fadeIn()
       return
     submitDone: (data) ->
-      console.log data
+      # console.log data
       try
         data = $.parseJSON(data)
       catch e

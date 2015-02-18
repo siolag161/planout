@@ -142,7 +142,7 @@ NOSE_ARGS = [
     '--verbosity=1',
     '--with-coverage',
     '--cover-html',
-    '--cover-package=accounts',
+    '--cover-package=accounts,events',
 ]
 ########## END TESTING
 ########## START IMPORT_SETTINGS

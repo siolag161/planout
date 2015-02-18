@@ -1,6 +1,9 @@
 import django
 from .dev import *
 
+INSTALLED_APPS += (
+    'tests.test_core',
+)
 
 DATABASE_ENGINE = 'sqlite3'
 
@@ -26,17 +29,15 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "allauth.socialaccount.context_processors.socialaccount",
     "extensions.allauth.account.context_processors.account",
 
-
 )
 
 SITE_ID = 1
 SECRET_KEY = 'something-something'
 STATIC_URL = '/site_media/static/'
 
-AVATAR = {
-    'AVATAR_ALLOWED_FILE_EXTS' :('.jpg', '.png'),
-    'AVATAR_MAX_SIZE': 1024 * 1024
-}
+
+AVATAR_ALLOWED_FILE_EXTS  = ('.jpg', '.png', '.jpeg')
+AVATAR_MAX_SIZE = 1024 * 1024
 
 
 MEDIA_ROOT = '/tmp/media/'

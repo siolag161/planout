@@ -14,26 +14,16 @@ from braces.views import LoginRequiredMixin
 
 # Import the form from users/forms.py
 from .forms import UserForm
-
+from .models import BasicUser
 # Import the customized User model
-from .models import BasicUser, base64_decode_url, base64_normalize
-
 
 class UserDetailView(LoginRequiredMixin, DetailView):
     model = BasicUser
     # # These next two lines tell the view to index lookups by username
-    slug_field = "encoded_email"
-    slug_url_kwarg = "encoded_email"    
+    slug_field = "uuid"
+    slug_url_kwarg = "uuid"    
     template_name = 'accounts/user_detail.html' 
-
-      
-    # def get_object(self):
-    #     # Only get the User record for the user making the request
-    # 	# encoded_email = base64_normalize()
-    #     # return BasicUser.objects.get( encoded_email = decoded_email )
-    # 	return BasicUser.objects.get(encoded_email=self.request.user.encoded_email)
-
-    
+   
 class UserRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
 	
@@ -54,11 +44,11 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     # send the user back to their own page after a successful update
     def get_success_url(self):
         return reverse("users:detail",
-                       kwargs={"encoded_email": self.request.user.encoded_email})
+                       kwargs={"uuid": self.request.user.uuid})
 
     def get_object(self):
         # Only get the User record for the user making the request
-        return BasicUser.objects.get(encoded_email=self.request.user.encoded_email)
+        return BasicUser.objects.get(uuid=self.request.user.uuid)
 
 
 class UserListView(LoginRequiredMixin, ListView):

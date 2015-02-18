@@ -13,28 +13,22 @@ from django.utils.translation import ugettext as _
 from django.utils import six
 from django.shortcuts import render
 
-from avatar.conf import AvatarConf as config
-from avatar.util import (get_primary_avatar, get_default_avatar_url,
-                         cache_result, get_user_model, get_user, force_bytes)
+from ..conf import settings as config
 
+# from ..util import (get_primary_avatar, get_default_avatar_url,
+#                          cache_result, get_user_model, get_user, force_bytes, get_avatar_url_or_defaul_url)
+
+from ..util import ( get_primary_avatar, get_default_avatar_url,
+                          get_avatar_url_or_defaul_url)
+		    
+from core.utils.common import ( get_user_model, get_user )
+from core.utils.images import (force_bytes)
 register = template.Library()
-
 
 @register.simple_tag
 def avatar_url(user, size = config.AVATAR_DEFAULT_SIZE):
-    avatar = get_primary_avatar(user, size=size)
-    if avatar:
-        return avatar.url
-    # if settings.AVATAR_GRAVATAR_BACKUP: @todo: deal with default gravatar stuff
-    #     params = {'s': str(size)}
-    #     if settings.AVATAR_GRAVATAR_DEFAULT:
-    #         params['d'] = settings.AVATAR_GRAVATAR_DEFAULT
-    #     path = "%s/?%s" % (hashlib.md5(force_bytes(user.email)).hexdigest(),
-    #                        urlencode(params))
-    #     return urljoin(settings.AVATAR_GRAVATAR_BASE_URL, path)
 
-    return get_default_avatar_url()
-
+   return get_avatar_url_or_defaul_url(user,size)
 @register.simple_tag
 def avatar(user, size=config.AVATAR_DEFAULT_SIZE, **kwargs):
     if not isinstance(user, get_user_model()):

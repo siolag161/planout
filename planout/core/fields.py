@@ -2,9 +2,11 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.utils.timezone import now
-
+import slugify
 import copy
+import logging
 
+logger = logging.getLogger('werkzeug')
 """ django-model-utils """
 class Choices(object):
     """
@@ -78,43 +80,41 @@ class Choices(object):
         store = lambda c: self._store(c, triple_collector, double_collector)
 
         for choice in choices:
-            if isinstance(choice, (list, tuple)):
-                if len(choice) == 3:
-                    store(choice)
-                elif len(choice) == 2:
-                    if isinstance(choice[1], (list, tuple)):
-                        # option group
-                        group_name = choice[0]
-                        subchoices = choice[1]
-                        tc = []
-                        triple_collector.append((group_name, tc))
-                        dc = []
-                        double_collector.append((group_name, dc))
-                        self._process(subchoices, tc, dc)
-                    else:
-                        store((choice[0], choice[0], choice[1]))
-                else:
-                    raise ValueError(
-                        "Choices can't take a list of length %s, only 2 or 3"
-                        % len(choice)
-                        )
+	    if isinstance(choice, (list, tuple)):
+		if len(choice) == 3:
+		    store(choice)
+		elif len(choice) == 2:
+		    if isinstance(choice[1], (list, tuple)):
+			# option group
+			group_name = choice[0]
+			subchoices = choice[1]
+			tc = []
+			triple_collector.append((group_name, tc))
+			dc = []
+			double_collector.append((group_name, dc))
+			self._process(subchoices, tc, dc)
+		    else:
+			store((choice[0], choice[0], choice[1]))
+		else:
+		    raise ValueError(
+			"Choices can't take a list of length %s, only 2 or 3"
+			% len(choice)
+		    )
             else:
-                store((choice, choice, choice))
+		store((choice, choice, choice))
 
 
     def __len__(self):
-        return len(self._doubles)
-
+	return len(self._doubles)
 
     def __iter__(self):
-        return iter(self._doubles)
-
+	return iter(self._doubles)
 
     def __getattr__(self, attname):
-        try:
-            return self._identifier_map[attname]
-        except KeyError:
-            raise AttributeError(attname)
+	try:
+	    return self._identifier_map[attname]
+	except KeyError:
+	    raise AttributeError(attname)
 
 
     def __getitem__(self, key):
@@ -171,8 +171,9 @@ class AutoCreatedField(models.DateTimeField):
 	val = now()
 	if add:
 	    setattr(instance, self.attname, val)
-	return val 
-
+	return val
+	
+#===============================================================================
 class AutoLastModifiedField(AutoCreatedField):
     """
     A DateTimeField that updates itself on each save() of the model.
@@ -182,3 +183,169 @@ class AutoLastModifiedField(AutoCreatedField):
         value = now()
         setattr(model_instance, self.attname, value)
         return value
+	
+#===============================================================================
+# def get_attr_value(att, instance):
+#     if hasattr(att, '__call__'):
+#         return att(instance)
+#     else:
+# 	attr_val = getattr(instance, att)
+# 	return attr_val
+
+
+def crop_string(val, max_len):
+    """ always ensures the len of val < max_len"""
+    return val[:max_len]
+    
+class AutoSlugField(models.CharField):
+    
+    def __init__(self, *args, **kwargs):
+	kwargs['max_length'] = kwargs.get('max_length', 250)
+	self.source_from = kwargs.pop('source_from',None)
+	kwargs['unique'] = False # never enforce uniqueness
+	kwargs.setdefault('db_index',True)	
+	super(models.CharField,self).__init__(*args,**kwargs)
+	
+	
+    def pre_save(self, instance, add):
+
+	
+	# if instance.source_from:
+	#     v = get_attr_value(instance.source_from(),instance)
+	# logger.critical("%s" % instance.source_from)
+
+    	val = self.value_from_object(instance)
+	
+    	if not val and instance.source_from:
+	    val = getattr(instance, instance.source_from)
+	    
+	v = val
+	if val:
+	    val = slugify.slugify(val)
+	else:
+	    val = None	    
+	    if not self.blank:
+		val = instance._meta.module_name
+    	    elif not self.null:
+    		val = ''
+    	if val and self.max_length:
+    	   val = crop_string(val, self.max_length)
+
+    	setattr(instance, self.attname, val)
+    	return val	   
+
+
+#=========================================== BEGIN IMAGE FIELD ===========================================
+from .conf import BaseImageFieldConf
+def image_file_path( instance, prefix=None, filename=None, image = None, width=None, height=None, ext=None):
+    logger.critical(instance)
+    config = instance.get_config()
+    tmppath = [config.STORAGE_DIR]
+    # userdirname = user.uuid
+    # if config.AVATAR_USERID_AS_USERDIRNAME:
+    #     userdirname = str(user.id)
+    if config.HASH_DIRNAMES:
+	tmp = hashlib.md5(prefix).hexdigest()
+	tmppath.extend([tmp[0], tmp[1], prefix])
+    else:
+	tmppath.append(prefix)
+    if not filename:
+        # Filename already stored in database
+        filename = image.name
+        if ext and config.HASH_FILENAMES:
+            # An extension was provided, probably because the thumbnail
+            # is in a different format than the file. Use it. Because it's
+            # only enabled if AVATAR_HASH_FILENAMES is true, we can trust
+            # it won't conflict with another filename
+            (root, oldext) = os.path.splitext(filename)
+            filename = root + "." + ext
+    else:
+        # File doesn't exist yet
+        if config.AVATAR_HASH_FILENAMES:
+            (root, ext) = os.path.splitext(filename)
+            filename = hashlib.md5(force_bytes(filename)).hexdigest()
+            filename = filename + ext
+
+    # if size:
+    #     tmppath.extend(['resized', str(size)])
+    tmppath.append(os.path.basename(filename))
+    return os.path.join(*tmppath)
+
+def process_image_data(image_file, **kwargs):
+
+    from PIL import Image
+    from cStringIO import StringIO
+    from django.utils import six
+    from django.core.files.base import ContentFile
+    import math
+    #image_file = kwargs.get('data')
+    image = Image.open(StringIO(image_file.read()))
+
+    if kwargs.get('resized', False):
+	width, height = kwargs.get('width'), kwargs.get('height')
+	image = image.resize( (width, height), Image.ANTIALIAS)
+
+    if kwargs.get('cropped'):
+	left, top = kwargs.get('x'), kwargs.get('y')
+	right, bottom = left + kwargs.get('width'), top + kwargs.get('height')
+	box = (int(left), int(top), int(right), int(bottom))
+	image = image.crop(box)
+	
+    img_data = six.BytesIO()
+    image.save(img_data, kwargs.get('format', 'jpeg'), quality=85)
+    image_file = ContentFile(img_data.getvalue())
+	
+    return image_file
+
+class BaseImageField(models.ImageField):    
+    def __init__(self, *args, **kwargs):
+	from django.core.files.storage import get_storage_class
+	config = self.get_config()
+	# self.width = kwargs.get('width', self.config.)
+	# self.height = kwargs.get('height', config.BASEIMAGE_DEFAULT_SIZE)
+        kwargs['upload_to'] = kwargs.get('upload_to', image_file_path)
+	kwargs['storage'] =  get_storage_class(config.STORAGE)(**config.STORAGE_PARAMS)
+	kwargs['blank'] = True
+        super(BaseImageField, self).__init__(*args, **kwargs)    
+
+    # def formfield(self, **kwargs):
+    #     defaults = {'form_class': forms.AvatarField}
+    #     # defaults['width'] = self.width
+    #     # defaults['height'] = self.height
+    #     defaults.update(kwargs)
+    #     return super(AvatarField, self).formfield(**defaults)
+
+    def image_url(self, size):
+        return self.storage.url(self.image_name(size))
+
+    def get_config(self):
+	from .conf import BaseImageFieldConf
+	return BaseImageFieldConf
+
+    def get_prefix(self):
+	raise NotImplemented("need to provide an prefix here")
+
+    def image_url(self, prefix, width, height):
+        return self.storage.url(self.image_name(prefix, width, height))
+
+    def get_absolute_url(self):
+	prefix = self.get_prefix()
+	#config = self.get_config()
+        return self.image_url(prefix, config.DEFAUT_WIDTH, config.DEFAULT_HEIGHT)
+
+    def image_name(self, prefix, width, height):
+        ext = find_extension(self.get_config().FORMAT)
+        return image_file_path(
+	    prefix = prefix,
+            image=self,
+	    width = width,
+            height=height,	    
+            ext=ext
+        )
+
+    
+	
+    # def get_absolute_url(self):
+    # 	raise NotImplemented("need to provide an URL here")
+    #     # return self.image_url(config.AVATAR_DEFAULT_SIZE)
+

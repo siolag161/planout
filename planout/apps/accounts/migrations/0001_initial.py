@@ -2,10 +2,11 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import django.core.validators
 import django.utils.timezone
 import django.core.files.storage
 import avatar.fields
-import django.core.validators
+import django_extensions.db.fields
 
 
 class Migration(migrations.Migration):
@@ -26,6 +27,7 @@ class Migration(migrations.Migration):
                 ('first_name', models.CharField(max_length=30, verbose_name='first name', blank=True)),
                 ('last_name', models.CharField(max_length=30, verbose_name='last name', blank=True)),
                 ('email', models.EmailField(unique=True, max_length=100, verbose_name='email address', blank=True)),
+                ('uuid', django_extensions.db.fields.ShortUUIDField(max_length=12, editable=False, blank=True)),
                 ('is_staff', models.BooleanField(default=False, help_text='Designates whether the user can log into this admin site.', verbose_name='staff status')),
                 ('is_active', models.BooleanField(default=True, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active')),
                 ('date_joined', models.DateTimeField(default=django.utils.timezone.now, verbose_name='date joined')),

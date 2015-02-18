@@ -11,11 +11,15 @@ from django.utils.translation import ugettext as _
 from django.utils import six
 from django.db.models import signals
 
-from .conf import AvatarConf as config
+#from .conf import AvatarConf as confi
+from .conf import settings as config
 
-from .util import force_bytes, invalidate_cache, get_encoded_email
+# from .util import force_bytes, invalidate_cache, get_encoded_email
+from core.utils.images import  force_bytes, invalidate_cache
+
+from core.fields import BaseImageField
+
 import forms
-
 
 try:
     from cStringIO import StringIO
@@ -33,7 +37,7 @@ avatar_storage = get_storage_class(config.AVATAR_STORAGE)(**config.AVATAR_STORAG
 def avatar_file_path(user=None, filename=None, avatar = None, size=None, ext=None):
 	
     tmppath = [config.AVATAR_STORAGE_DIR]
-    userdirname = get_encoded_email(user)
+    userdirname = user.uuid
     # if config.AVATAR_USERID_AS_USERDIRNAME:
     #     userdirname = str(user.id)
     if config.AVATAR_HASH_USERDIRNAMES:
@@ -62,10 +66,11 @@ def avatar_file_path(user=None, filename=None, avatar = None, size=None, ext=Non
         tmppath.extend(['resized', str(size)])
     tmppath.append(os.path.basename(filename))
     return os.path.join(*tmppath)
-    
-class AvatarField(models.ImageField):
-    def __init__(self, *args, **kwargs):
 
+######################################################
+class AvatarField(BaseImageField):
+    def __init__(self, *args, **kwargs):
+	
         # self.width = kwargs.pop('width', config.DEFAULT_WIDTH))
         # self.height = kwargs.pop('height', config.height)
 	
@@ -82,55 +87,25 @@ class AvatarField(models.ImageField):
     #     defaults.update(kwargs)
     #     return super(AvatarField, self).formfield(**defaults)
 
-    def avatar_url(self, size):
-        return self.storage.url(self.avatar_name(size))
-	
-    def save_form_data(self, instance, data):
-        # if data and self.width and self.height:
-	#print instance
-	import logging
-	log = logging.getLogger('werkzeug')
-	log.warning("ca-vang-vang")
-        file_ = data['file']
-        if file_:
-	    pass 
-            image = Image.open(StringIO(file_.read()))
-            image = image.crop(data['box'])
-            image = image.resize( (self.size, self.size), Image.ANTIALIAS)
+#     def avatar_url(self, size):
+#         return self.storage.url(self.avatar_name(size))
 
-	    
-	    img_data = six.BytesIO()
-	    image.save(img_data, config.AVATAR_THUMB_FORMAT, quality=config.AVATAR_THUMB_QUALITY)
-	    img_file = ContentFile(img_data.getvalue())
-	    img_data = self.storage.save(self.avatar_name(instance,self.size), img_file)
-            super(AvatarField, self).save_form_data(instance, img_data)
-	    
-            # content = StringIO()
-            # image.save(content, config.AVATAR_THUMB_FORMAT, quality=config.AVATAR_THUMB_QUALITY)
-	    #file = ContentFile(thumb.getvalue())
-            # file_name = '{}.{}'.format(os.path.splitext(file_.name)[0], config.save_format)
+#     def get_absolute_url(self):
+#         return self.avatar_url(config.AVATAR_DEFAULT_SIZE)
 
-            # # new_data = SimpleUploadedFile(file.name, content.getvalue(), content_type='image/' + config.save_format)
-            # new_data = InMemoryUploasdedFile(content, None, file_name, 'image/' + config.save_format, len(content.getvalue()), None)
+#     def avatar_name(self, user, size):
+#         ext = find_extension(config.AVATAR_THUMB_FORMAT)
+#         return avatar_file_path(
+# 	    user = user,
+#             avatar=self,
+#             size=size,
+#             ext=ext
+#         )
 
+# def find_extension(format):
+#     format = format.lower()
 
+#     if format == 'jpeg':
+#         format = 'jpg'
 
-    def get_absolute_url(self):
-        return self.avatar_url(config.AVATAR_DEFAULT_SIZE)
-
-    def avatar_name(self, user, size):
-        ext = find_extension(config.AVATAR_THUMB_FORMAT)
-        return avatar_file_path(
-	    user = user,
-            avatar=self,
-            size=size,
-            ext=ext
-        )
-
-def find_extension(format):
-    format = format.lower()
-
-    if format == 'jpeg':
-        format = 'jpg'
-
-    return format
+#     return format

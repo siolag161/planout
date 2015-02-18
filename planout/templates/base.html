@@ -45,7 +45,7 @@
 	    <div class="navbar-collapse collapse">
 	      <ul class="nav navbar-nav navbar-right">
 		{% if request.user.is_authenticated %}         		
-		<li><a id="login-button" href="{% url 'users:detail_email' request.user.encoded_email %}" class="btn" data-toggle="modal" >Profile</a></li>
+		<li><a id="login-button" href="{% url 'users:detail_uuid' request.user.uuid %}" class="btn" data-toggle="modal" >Profile</a></li>
 		<li><a id="login-button" href="{% url 'account_logout' %}" class="btn btn-white" data-toggle="modal" >Logout</a></li>
 
 		{% else %}	 

@@ -2,8 +2,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'planout-dev',
-        'USER': 'pdt',
-        'PASSWORD': 'thnvLHP',
+        'USER': 'dev',
+        'PASSWORD': 'dev',
         'HOST': 'localhost', 
         'PORT': '5432', 
     } 

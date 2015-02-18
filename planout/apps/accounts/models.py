@@ -8,8 +8,10 @@ from django.utils import timezone
 from django.core.mail import send_mail
 
 
+from django_extensions.db.fields import ShortUUIDField  # give the UUID field @todo -> once move to 1.8 use the native PostgreSQL
+
 from avatar.fields import AvatarField
-from avatar.util import (base64_encode_url, base64_decode_url, base64_normalize)
+
 # Import the basic Django ORM models library
 from django.db import models
 
@@ -22,16 +24,16 @@ class BasicUserManager(BaseUserManager):
 	email = self.normalize_email(email)
 	user = self.model()
 	user.is_active = True
-	user.set_password(pasword)
-	user.set_email(email)
-	self.save_automatic_unique_username(user, email, encoded_email=encode_string(email))
+	user.set_password(password)
+	user.email = email # user.set_email(email)
+	self.save_automatic_unique_username(user, email)
 	return user
 
     def create_superuser(self, email, password):
-        user = self.create_user(password=password)
+        user = self.create_user(email = email, password=password)
         user.is_staff = True
         user.is_superuser = True
-	user.set_email(email)
+	# user.set_email(email)
 	self.save_automatic_unique_username(user, email)
         return user
 
@@ -49,8 +51,8 @@ class BasicUserManager(BaseUserManager):
 	return "%s%s" % (email.split("@")[0], unique_id)
 
 # Subclass AbstractUser
+# todo: enforce uniqueness
 class BasicUser(AbstractBaseUser,PermissionsMixin):
-
     #redefine basic data fields
     username = models.CharField(_('username'), max_length=30, unique=True, null=True,
 				help_text=_('Required. 30 characters or fewer. Letters, digits and '
@@ -67,7 +69,9 @@ class BasicUser(AbstractBaseUser,PermissionsMixin):
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
     email = models.EmailField(_('email address'), unique=True,  max_length=100, blank=True)
-    encoded_email = models.SlugField(max_length=32, unique=True, null=True)
+    
+    uuid = ShortUUIDField(version=4)
+
     is_staff = models.BooleanField(_('staff status'), default=False,
 				   help_text=_('Designates whether the user can log into this admin '
 					       'site.'))
@@ -83,7 +87,6 @@ class BasicUser(AbstractBaseUser,PermissionsMixin):
 
     def set_email(self, email):
 	self.email = email
-	self.encode_email = base64_encode_url(email)
     
     def get_full_name(self):
         """
@@ -108,10 +111,6 @@ class BasicUser(AbstractBaseUser,PermissionsMixin):
         """
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
-
-    def save(self, *args, **kwargs):
-        self.encoded_email = base64_encode_url(self.email)
-        super(BasicUser, self).save(*args, **kwargs)
     
     def __unicode__(self):
 	if self.username != '':

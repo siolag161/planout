@@ -1,31 +1,28 @@
 from django.conf import settings
+from PIL import Image
 
-### base app settings for all app
-class AppSettings(object):
+#from appconf import AppConf
+
+class BaseImageFieldConf(object):
+    DEFAULT_SIZE = 80
+    RESIZE_METHOD = Image.ANTIALIAS
+    RESIZED = True
     
-    SETTINGS_MODULE = None
+    WIDTH = 400
+    HEIGH = 600    
+
+    FORMAT = 'jpg'
     
-    #---------------------------------------------------------------------------
-    def __init__(self, base_settings_module, global_override):
-	
-        # update this dict from global settings (but only for ALL_CAPS settings)
-	for setting in dir(base_settings_module):
-	    if setting == setting.upper():
-		setattr(self, setting, getattr(base_settings_module, setting))
+    STORAGE_DIR = 'image'
+    STORAGE_PARAMS = {}
+    DEFAULT_URL = 'image/default/default.jpg'
+    MAX_SIZE = 1024 * 1024
+    HASH_FILENAMES = False
+    HASH_DIRNAMES = False
+    ALLOWED_FILE_EXTS = None
+    STORAGE = settings.DEFAULT_FILE_STORAGE
+    CLEANUP_DELETED = False
 
-        if hasattr(settings, global_override):
-	    self.SETTINGS_MODULE = getattr(settings, global_override)
-	    try:
-		mod = __import__(self.SETTINGS_MODULE, {}, {}, [''])
-	    except ImportError as e:
-		raise ImportError(
-		    "Could not import settings '%s' (Is it on sys.path? Does it have syntax errors?): %s" % (self.SETTINGS_MODULE, e)
-		)
-            
-            for setting in dir(mod):
-		if setting == setting.upper():
-		    setattr(self, setting, getattr(mod, setting))
 
-    #---------------------------------------------------------------------------
-    def get_all_members(self):
-	return dir(self)
+
+    
