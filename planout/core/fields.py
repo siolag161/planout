@@ -4,6 +4,12 @@ from django.db import models
 from django.utils.timezone import now
 import slugify
 import copy
+
+import os
+import hashlib
+#from django.utils import force_bytes
+from django.utils.encoding import force_bytes
+
 import logging
 
 logger = logging.getLogger('werkzeug')
@@ -237,22 +243,19 @@ class AutoSlugField(models.CharField):
 
 #=========================================== BEGIN IMAGE FIELD ===========================================
 from .conf import BaseImageFieldConf
-def image_file_path( instance, prefix=None, filename=None, image = None, width=None, height=None, ext=None):
-    logger.critical(instance)
-    config = instance.get_config()
-    tmppath = [config.STORAGE_DIR]
-    # userdirname = user.uuid
-    # if config.AVATAR_USERID_AS_USERDIRNAME:
-    #     userdirname = str(user.id)
-    if config.HASH_DIRNAMES:
-	tmp = hashlib.md5(prefix).hexdigest()
-	tmppath.extend([tmp[0], tmp[1], prefix])
-    else:
-	tmppath.append(prefix)
+def image_file_path( instance, filename=None, image = None, width=None, height=None, ext=None):
+    tmp_dirs = [getattr(instance, "STORAGE_DIR", BaseImageFieldConf.STORAGE_DIR), instance._meta.app_label, instance._meta.object_name.lower()]
+    tmp_dirs.append(os.path.dirname(filename))
+    filename = os.path.basename(filename)
+
     if not filename:
         # Filename already stored in database
         filename = image.name
-        if ext and config.HASH_FILENAMES:
+        if ext:
+            # An extension was provided, probably because the thumbnail
+            # is in a different format than the file. Use it. Because it's
+            # only enabled if AVATAR_HASH_FILENAMES is true, we can trust
+            # it won't conflict with another filename ext and config.HASH_FILENAMES:
             # An extension was provided, probably because the thumbnail
             # is in a different format than the file. Use it. Because it's
             # only enabled if AVATAR_HASH_FILENAMES is true, we can trust
@@ -261,15 +264,18 @@ def image_file_path( instance, prefix=None, filename=None, image = None, width=N
             filename = root + "." + ext
     else:
         # File doesn't exist yet
-        if config.AVATAR_HASH_FILENAMES:
-            (root, ext) = os.path.splitext(filename)
-            filename = hashlib.md5(force_bytes(filename)).hexdigest()
-            filename = filename + ext
+        #if config.AVATAR_HASH_FILENAMES:
 
-    # if size:
-    #     tmppath.extend(['resized', str(size)])
-    tmppath.append(os.path.basename(filename))
-    return os.path.join(*tmppath)
+	(root, ext) = os.path.splitext(filename)
+
+	filename = hashlib.md5(force_bytes(filename)).hexdigest()
+	filename = filename + ext
+    if width and height:
+	tmp_dirs.extend( [width, height] )
+
+    tmp_dirs.append(os.path.basename(filename))
+
+    return os.path.join(*tmp_dirs)
 
 def process_image_data(image_file, **kwargs):
 
@@ -300,52 +306,13 @@ def process_image_data(image_file, **kwargs):
 class BaseImageField(models.ImageField):    
     def __init__(self, *args, **kwargs):
 	from django.core.files.storage import get_storage_class
-	config = self.get_config()
+	config = self._get_config()
 	# self.width = kwargs.get('width', self.config.)
 	# self.height = kwargs.get('height', config.BASEIMAGE_DEFAULT_SIZE)
         kwargs['upload_to'] = kwargs.get('upload_to', image_file_path)
 	kwargs['storage'] =  get_storage_class(config.STORAGE)(**config.STORAGE_PARAMS)
 	kwargs['blank'] = True
-        super(BaseImageField, self).__init__(*args, **kwargs)    
+        super(BaseImageField, self).__init__(*args, **kwargs)
 
-    # def formfield(self, **kwargs):
-    #     defaults = {'form_class': forms.AvatarField}
-    #     # defaults['width'] = self.width
-    #     # defaults['height'] = self.height
-    #     defaults.update(kwargs)
-    #     return super(AvatarField, self).formfield(**defaults)
-
-    def image_url(self, size):
-        return self.storage.url(self.image_name(size))
-
-    def get_config(self):
-	from .conf import BaseImageFieldConf
+    def _get_config(self):
 	return BaseImageFieldConf
-
-    def get_prefix(self):
-	raise NotImplemented("need to provide an prefix here")
-
-    def image_url(self, prefix, width, height):
-        return self.storage.url(self.image_name(prefix, width, height))
-
-    def get_absolute_url(self):
-	prefix = self.get_prefix()
-	#config = self.get_config()
-        return self.image_url(prefix, config.DEFAUT_WIDTH, config.DEFAULT_HEIGHT)
-
-    def image_name(self, prefix, width, height):
-        ext = find_extension(self.get_config().FORMAT)
-        return image_file_path(
-	    prefix = prefix,
-            image=self,
-	    width = width,
-            height=height,	    
-            ext=ext
-        )
-
-    
-	
-    # def get_absolute_url(self):
-    # 	raise NotImplemented("need to provide an URL here")
-    #     # return self.image_url(config.AVATAR_DEFAULT_SIZE)
-

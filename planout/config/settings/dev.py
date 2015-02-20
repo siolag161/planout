@@ -135,7 +135,7 @@ ACCOUNT_FORMS = {'login': 'accounts.forms.UserLoginForm', 'signup': 'accounts.fo
 ########## START TESTING
 INSTALLED_APPS += (
     'django_nose',
-
+    'bootstrap3_datetime',
 )
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 NOSE_ARGS = [

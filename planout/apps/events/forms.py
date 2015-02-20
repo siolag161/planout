@@ -11,45 +11,65 @@ from crispy_forms.bootstrap import AppendedText, InlineCheckboxes, FormActions
 from .models import Event
 from djgeojson.fields import GeoJSONFormField
 # from leaflet.forms.fields import PointField
-# from leaflet.forms.widgets import LeafletWidget
+# from leaflet.forms.widgets import LeafletWidge
+from django.utils.timezone import now
+from datetime import datetime, timedelta
+from functools import partial
+
+
+from bootstrap3_datetime.widgets import DateTimePicker
+
 
 #=======================================================================
-class EventForm(forms.Form):
-
+class EventCreateForm(forms.ModelForm):
+    class Meta:
+	model = Event
+	fields = ['name', 'start_time', 'end_time', 'logo', 'description',
+		  'url', 'is_online', 'topic', 'category', 'location', ]
+	
     name = forms.CharField(
 	
     )
 
-    start_time = forms.DateTimeField()
-    end_time = forms.DateTimeField()
+    #start_time = forms.DateTimeField(initial =now, input_formats='%Y-%m-%d %H-)
+    #end_time = forms.DateTimeField(initial = now() + timedelta(hours=2),input_formats='%Y-%m-%d %H-%M-%S' )
+    start_time = forms.DateTimeField( required=False,
+				      widget=DateTimePicker(options={"format": "YYYY-MM-DD HH:mm",
+							    "pickSeconds": False}))
+    end_time = forms.DateTimeField( required=False,
+				      widget=DateTimePicker(options={"format": "YYYY-MM-DD HH:mm",
+							    "pickSeconds": False}))
+    logo = forms.ImageField(required=False, )
 
-    logo = forms.ImageField()
+    description = forms.CharField(required=False, widget=forms.Textarea())
+    url = forms.URLField(required=False, )
+    is_online = forms.BooleanField(required=False, )
+    category = forms.ChoiceField(choices = Event.EVENT_CATEGORY, initial = Event.EVENT_CATEGORY.performance, )
 
-    description = forms.CharField(widget=forms.Textarea())
-    url = forms.URLField()
-    is_online = forms.BooleanField()
-    category = forms.ChoiceField(choices = Event.EVENT_CATEGORY)
-    topic = forms.ChoiceField(choices = Event.EVENT_TOPIC)
+    topic = forms.ChoiceField(choices = Event.EVENT_TOPIC, initial = Event.EVENT_TOPIC.business, )
     
-    location = GeoJSONFormField(geom_type="Point", widget=forms.TextInput())
+    location = GeoJSONFormField(geom_type="Point", widget=forms.TextInput(), required=False, )
     
     def __init__(self, *args, **kwargs):
-        super(EventForm, self).__init__(*args, **kwargs)
-	
+        super(EventCreateForm, self).__init__(*args, **kwargs)
 
-        # self.helper = self._form_helper()
+	self.helper = self._form_helper()
+
+    def get_success_url(self):
+        return  "/"
 
     def _form_helper(self):
 	helper = FormHelper()
-	helper.form_show_labels = False
-        helper.layout = Layout(
-	    
-        )
+	helper.form_show_labels = True
+	#helper['peso'].wrap(AppendedText, "kg")
+	helper.add_input(Submit('submit', 'Submit'))
+        # helper.layout = Layout(
+	#     Div(FormActions(
+        #         Submit('submit', 'Sign Me Up', css_class = 'btn btn-pink full-width')
+        #     ), css_class='input-group center-block'),
+        # )
 	return helper
 
-
-	#         fields = ( "name", "start_time", "end_time", "location", "logo",
-# 		   "description", "url", "is_online", "topic", "category")
 
 #=======================================================================
 # class EventForm(forms.ModelForm):

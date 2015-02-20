@@ -38,7 +38,7 @@ class SluggedModel(models.Model):
     """
     An abstract class for class with a slug
     """
-    slug = AutoSlugField(_('Slug'), null=True)
+    slug = AutoSlugField(_('Slug'), blank=True, null=True)
 
     def get_url_kwargs(self, **kwargs):
 	kwargs.update(getattr(self,'url_kwargsw', {'pk': self.pk, 'slug': self.slug}))
@@ -89,7 +89,7 @@ class BaseType(TimeStampedModel, SluggedModel):
     # 					verbose_name=_("alternative name"), blank=True, null=True)
     description = models.TextField(help_text=_("Please enter the description"),
 					verbose_name=_("desciption"), blank=True, null=True)
-    url = models.URLField(blank=True, null=True)    
+    url = models.URLField(verbose_name=_("website"), blank=True, null=True)    
     
     class Meta:
         abstract = True

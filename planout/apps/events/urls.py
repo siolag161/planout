@@ -8,6 +8,6 @@ urlpatterns = patterns('',
     url(
         regex=r'^~create$',
         view=views.EventCreateView.as_view(),
-        name='event_create_form'
+        name='event_create'
     ),
 )

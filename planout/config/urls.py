@@ -3,9 +3,12 @@ from django.conf import settings
 from django.contrib import admin
 
 from django.views.generic.base import RedirectView, TemplateView
+from core.views import home
 
 urlpatterns = [
     # Core URLs
+    #url(r'^$', home, name='home'),
+
     url(r'^', include('core.urls', namespace='core')),
 
     url(r'^users/', include("accounts.urls", namespace="users")),
@@ -28,6 +31,7 @@ urlpatterns = [
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
+
 
 admin.site.site_header = '%s Headquarters' % settings.PROJECT_NAME
 admin.site.index_title = 'Base of Operations'

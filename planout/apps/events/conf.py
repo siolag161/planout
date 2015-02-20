@@ -1,6 +1,7 @@
 from django.conf import settings
 
 from appconf import AppConf
+#from django.apps import AppConf
 import datetime
 
 class EventSettings(AppConf):
@@ -31,7 +32,7 @@ class EventSettings(AppConf):
     
     # Indicate the default length in time for a new occurrence, specifed by using
     # a datetime.timedelta object
-    DEFAULT_OCCURRENCE_DURATION = datetime.timedelta(hours=+1)
+    DEFAULT_OCCURRENCE_DURATION = datetime.timedelta(hours=+2)
     
     # If not None, passed to the calendar module's setfirstweekday function.
     CALENDAR_FIRST_WEEKDAY = 6
@@ -39,6 +40,10 @@ class EventSettings(AppConf):
     #
     AGE_RANGES = [ 0,1,5,10,15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 100, 130] 
     #
+
+    class Meta:
+	prefix = 'event'
+
 
 # settings_config = getattr(settings, 'EVENT_SETTINGS', {})
 

@@ -121,4 +121,6 @@ django-geojson==2.6.0
 # app config
 django-appconf
 
+# dateutil rules for occurences
+python-dateutil==2.4.0
 

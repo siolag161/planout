@@ -1,13 +1,13 @@
 {%extends "base.html" %}
 {%load static %}
 {% load crispy_forms_tags %}
-
 {%block title %}User {%endblock %}
 
 {% block content %}
 
 <div class="container">
-<form class="" action="{% url 'events:event_create_form' %}" method="post">
+
+<form class="" action="{% url 'events:event_create' %}" method="post">
 
   {% crispy form %}
   <!-- Upload image and data  
@@ -20,3 +20,6 @@
 </form>
 </div>
 {% endblock content %}
+{% block extra_js %} 
+{{ form.media }}
+{% endblock extra_js %}

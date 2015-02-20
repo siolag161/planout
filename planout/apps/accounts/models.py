@@ -87,14 +87,19 @@ class BasicUser(AbstractBaseUser,PermissionsMixin):
 
     def set_email(self, email):
 	self.email = email
-    
+
+
+    @property
+    def full_name(self):
+	return self.get_full_name()
+	
     def get_full_name(self):
         """
         Returns the first_name plus the last_name, with a space in between.
         """
         full_name = '%s %s' % (self.first_name, self.last_name)
-        if self.full_name.strip() != '':
-	    return self.full_name.strip()
+        if full_name.strip() != '':
+	    return full_name.strip()
 	else:
 	    return self.email
 

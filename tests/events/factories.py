@@ -2,6 +2,7 @@ import factory # factory
 
 from ..accounts.factories import UserFactory
 from events import models
+from django.utils import timezone
 
 class OrganizationFactory(factory.DjangoModelFactory):
     FACTORY_FOR = models.Organization
@@ -20,6 +21,8 @@ class EventFactory(factory.DjangoModelFactory):
     topic = models.Event.EVENT_TOPIC.business
     category = models.Event.EVENT_CATEGORY.performance
     age_range = (0,99)
+    #start_time = timezone.now()
+    #end_time = timezone.now() 
     location = {'type': 'Point', "coordinates": [
 	10.768107,
 	106.66577
