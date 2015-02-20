@@ -34,7 +34,7 @@ logger = logging.getLogger('werkzeug')
 from django.utils import timezone
 #######################################################################
 def get_tz_aware(dt):
-    return timezone.make_aware(dt, timezone.get_default_timezone())
+    return timezone.make_aware(dt, timezone.get_current_timezone())
 
 #######################################################################
 ### TEST CREATION OF OCCURRENCES ###
@@ -52,13 +52,12 @@ class OccurrenceTestCase(TestCase):
 
 	self.assertTrue(self.event.start_time is not None)
 	self.assertTrue(self.event.end_time is not None)
-	self.assertEqual(self.event.end_time - self.event.start_time, timedelta(hours=2))
 #=============================================================================
 class OccurrenceCreationTests(OccurrenceTestCase):
 
     def test_decade_yearly(self):
 	nbr_years = 10
-	self.event.add_occurrences(get_tz_aware(datetime(2015,1,1)), get_tz_aware(datetime(2015,1,1,1)), freq=rrule.YEARLY, count=nbr_years)
+	self.event.add_occurrences(get_tz_aware(datetime(2015,1,2)), get_tz_aware(datetime(2015,1,2,1)), freq=rrule.YEARLY, count=nbr_years)
 	occs = list(self.event.occurrences.all())
 
         self.assertEqual(len(occs), nbr_years)
@@ -67,9 +66,9 @@ class OccurrenceCreationTests(OccurrenceTestCase):
             self.assertEqual(o.start_time.year, 2015 + i) 
 
     
-    def test_create_20_daily(self):
-	nbr_days = 20
-	self.event.add_occurrences( get_tz_aware(datetime(2015,2,1)), get_tz_aware(datetime(2015,2,1,1)),
+    def test_create_25_daily(self):
+	nbr_days = 25
+	self.event.add_occurrences( get_tz_aware(datetime(2015,2,2)), get_tz_aware(datetime(2015,2,2,1)),
 				    freq=rrule.DAILY, count=nbr_days )
 	occs = list(self.event.occurrences.all())
         self.assertEqual(len(occs), nbr_days)

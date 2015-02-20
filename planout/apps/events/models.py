@@ -15,7 +15,8 @@ import core.models as core_models
 
 from .conf import settings as config
 from .fields import AgeRangeField
-from .querysets import PassThroughOccurrenceManager, OccurrenceQuerySet
+from .querysets import (PassThroughOccurrenceManager, OccurrenceQuerySet,
+			PassThroughEventManager, EventQuerySet)
 
 # user_model_label = getattr(settings, "AUTH_USER_MODEL", "auth.User")
 
@@ -98,6 +99,10 @@ class Event(core_models.TimeFramedModel, core_models.BaseType):
     def source_from(self):
     	return "name"
 
+    # use pass throught for chaining the filtering
+    objects = PassThroughEventManager.for_queryset_class(EventQuerySet)()
+
+
     #---------------------------------------------------------------------------
     def add_occurrences(self, start_time, end_time, **rrule_params):
         '''
@@ -124,6 +129,7 @@ class Event(core_models.TimeFramedModel, core_models.BaseType):
             delta = end_time - start_time
             for ev in rrule.rrule(dtstart=start_time, **rrule_params):
 		occ_end_time = ev + delta
+
                 self.occurrences.create(start_time=ev, end_time = occ_end_time)
 		if not self.end_time or self.end_time < occ_end_time:
 		    self.end_time = occ_end_time
@@ -211,4 +217,5 @@ def event_pre_save_populate_callback(sender, instance, *args, **kwargs):
     
 @receiver(pre_save, sender=Occurrence)
 def occurrence_pre_save_populate_callback(sender, instance, *args, **kwargs):
-    logger.warning("OCCURENCE-PRESAVE: please implement whenever remove occurence, modify occurence...")
+    pass
+    #logger.warning("OCCURENCE-PRESAVE: please implement whenever remove occurence, modify occurence...")

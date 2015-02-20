@@ -159,7 +159,7 @@ FIXTURE_DIRS = (
 
 ########## GENERAL CONFIGURATION
 # https://docs.djangoproject.com/en/dev/ref/settings/#time-zone
-TIME_ZONE = 'America/Los_Angeles'
+TIME_ZONE = 'Europe/Paris'
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#language-code
 LANGUAGE_CODE = 'en-us'
