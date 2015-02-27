@@ -66,31 +66,31 @@ def add(request, extra_context=None, next_override='/',
 				     request.FILES or None,
 				     user=request.user)
 
-    #logger.critical(next_override)
-    #logger.critical(_get_next(request))
     import json
     if request.method == "POST" and 'avatar' in request.FILES:
 	if upload_avatar_form.is_valid():
 	    user=request.user
-	    # avatar = Avatar(user=request.user, primary=True)
+
 	    image_file = request.FILES['avatar']
 	    filename_parts = os.path.splitext(image_file.name)
 	    extension = filename_parts[1]
-	    
             filename = '%s%s' % (uuid.uuid4(), extension)    	    
 
-	    logger.critical(json.loads(request.POST['avatar_data']))
 	    params = json.loads(request.POST['avatar_data'])
 	    params.update({"cropped":True})
+
 	    image_file = process_image_data(image_file, **params)
 
 	    #####
 	    user.avatar.save(filename, image_file)
 	    user.save()
 	    messages.success(request, _("Successfully uploaded a new avatar."))
+	    
 	    #logger.critical(next_override)
 	    #return redirect(next_override or _get_next(request))
-	    
+	#else:	    
+	    #logger.critical('ava form invalid')
+
     context = {
 	'avatar': request.user.avatar,
 	# 'avatars': avatars,

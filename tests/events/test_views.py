@@ -4,8 +4,8 @@ from django.test import TestCase, modify_settings
 from django.core.urlresolvers import reverse
 from django.core.serializers.json import DjangoJSONEncoder
 
-from events.models import Organization, BasicUser, Event
-from .factories import OrganizationFactory, UserFactory, EventFactory
+from events.models import ProfessionalProfile, BasicUser, Event
+from tests.factories import ProProfileFactory, UserFactory, EventFactory
 
 from accounts.models import AvatarField
 from avatar.util import (get_avatar_url_or_defaul_url, get_primary_avatar)
@@ -16,7 +16,7 @@ from django.contrib.auth import get_user_model
 from django.utils.timezone import now
 from datetime import datetime, timedelta, time
 
-from ..test_core.behaviors import OwnedModelTests, SluggedModelTests, AuthentificatedMixin
+from ..test_core.behaviors import AuthenticatedMixin
 from ..test_core.forms import FormTests
 
 from ..util import (get_login_redirect_url)
@@ -68,7 +68,7 @@ class TestNonAuthenticated(TestEventBasic):
 ##############
 
 
-class DefaultCreateAuthenticatedTestCase(FormTests, TestCase, AuthentificatedMixin):
+class DefaultCreateAuthenticatedTestCase(FormTests, TestCase, AuthenticatedMixin):
     form_class = EventCreateForm
     def get_form_data(self):
 	data = {
@@ -85,21 +85,21 @@ class DefaultCreateAuthenticatedTestCase(FormTests, TestCase, AuthentificatedMix
     def setUp(self):
 	#self.settings = local_settings
 	self.testdatapath = os.path.join(os.path.dirname(__file__), "data")
-	self.user = self.create_user()	
-
-    def test_create(self):
-	response = create_helper(self, "default_avatar.jpg", **self.get_form_data())
-        self.assertEqual( response.status_code, 200 )
-	events = Event.objects.all()
-	self.assertEqual(Event.objects.count(), 1)
-
-
+	self.user = self.create_user()
+	
     def test_create_existing_organization(self):
-	orga = OrganizationFactory.create(owner = self.user)
+	orga = ProProfileFactory.create(owner = self.user)
 	response = create_helper(self, "default_avatar.jpg", **self.get_form_data())
         self.assertEqual( response.status_code, 200 )
 	self.assertEqual(Event.objects.count(), 1)
 	event = Event.objects.first()
 	self.assertEqual(orga.id, event.organizer.id)
+
+    def test_poster_equal_request_user(self):
+    	response = create_helper(self, "default_avatar.jpg", **self.get_form_data())
+	self.assertEqual( response.status_code, 200 )
+
+	event = Event.objects.first()
+	self.assertEqual(event.poster.id, self.user.id)
 
     

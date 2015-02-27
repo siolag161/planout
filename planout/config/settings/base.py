@@ -86,16 +86,21 @@ THIRD_PARTY_APPS = (
     'allauth.socialaccount.providers.twitter',
 
     'leaflet',
-    'djgeojson',
 
     'pipeline',
 )
 
 PROJECT_APPS = (
     'core',
+    # 'cities',
     'avatar',  # for user avatars    
     'accounts',
+    'products', # for market-place ecommerce stuff
+
     'events',
+
+    'tickets',    
+    'stocks', # for market-place ecommerce stuff
 )
 
 EXTENSION_APPS = (
@@ -427,3 +432,11 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 ########## AVATARS
 
 ########## END AVATARS
+
+########## MONEY
+DEFAULT_CURRENCY = 'VND'
+########## END MONEY
+
+########## Google API
+GOOGLE_API_KEY = 'AIzaSyCnSdrpDVths5FyWPoe7S7NxjGdczIhQ2A'
+########## END Google API

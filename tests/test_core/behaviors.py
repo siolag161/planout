@@ -9,11 +9,9 @@ class BehaviorTestCaseMixin(object):
     def create_instance(self, **kwargs):
         raise NotImplementedError("Implement me")
 
-
-class AuthentificatedMixin(BehaviorTestCaseMixin):    
+class AuthenticatedMixin(BehaviorTestCaseMixin):    
     def create_user(self, **kwargs):
 	from django.contrib.auth import get_user_model 
-
 	User = get_user_model()
 	username = 'testuser'
 	password = 'testpass'
@@ -24,20 +22,18 @@ class AuthentificatedMixin(BehaviorTestCaseMixin):
 	self.assertTrue(logged_in)
 	#raise NotImplementedError("Implement me")
 	return self.user
-	#===============================================================================
-class OwnedModelTests(BehaviorTestCaseMixin):
+#===============================================================================
+
+#===============================================================================
+class PostedModelTests(BehaviorTestCaseMixin):
     def create_new_user(self, **kwargs):
         raise NotImplementedError("Implement me")
 	
-    def test_owner(self):
-	self.owner = self.create_new_user()
-	obj = self.create_instance(owner = self.owner)
-	self.assertEqual(obj.owner, obj.owner)
-        from django.utils.text import slugify	
-	attr = "owned_%ss" % obj.__class__.__name__.lower()
-	self.assertTrue(hasattr(self,"owner"))
-	self.assertTrue(hasattr(self.owner, attr))	
-	self.assertEqual( getattr(self.owner, attr).count(), 1)
+    def test_posted(self):
+	self.poster = self.create_new_user()
+	obj = self.create_instance(poster = self.poster)
+	self.assertEqual(obj.poster, obj.poster)
+	
 
 
 #===============================================================================

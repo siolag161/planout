@@ -14,7 +14,7 @@ from django.db import IntegrityError
 import logging
 logger = logging.getLogger('werkzeug')
 
-from ..accounts.factories import UserFactory
+from tests.factories import UserFactory
 
 #class ImageConfig(
 

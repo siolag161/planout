@@ -1,0 +1,2 @@
+class InvalidStockAdjustment(Exception):
+    pass

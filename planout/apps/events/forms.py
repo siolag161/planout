@@ -9,7 +9,6 @@ from crispy_forms.bootstrap import AppendedText, InlineCheckboxes, FormActions
 
 #from .models import BasicUser
 from .models import Event
-from djgeojson.fields import GeoJSONFormField
 # from leaflet.forms.fields import PointField
 # from leaflet.forms.widgets import LeafletWidge
 from django.utils.timezone import now
@@ -48,7 +47,7 @@ class EventCreateForm(forms.ModelForm):
 
     topic = forms.ChoiceField(choices = Event.EVENT_TOPIC, initial = Event.EVENT_TOPIC.business, )
     
-    location = GeoJSONFormField(geom_type="Point", widget=forms.TextInput(), required=False, )
+    #location = GeoJSONFormField(geom_type="Point", widget=forms.TextInput(), required=False, )
     
     def __init__(self, *args, **kwargs):
         super(EventCreateForm, self).__init__(*args, **kwargs)

@@ -7,7 +7,7 @@
 
 <div class="container">
 
-<form class="" action="{% url 'events:event_create' %}" method="post">
+<form class="" action="{% url 'events:event_create' %}" enctype="multipart/form-data"  method="post">
 
   {% crispy form %}
   <!-- Upload image and data  

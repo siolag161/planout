@@ -5,13 +5,15 @@ INSTALLED_APPS += (
     'tests.test_core',
 )
 
-DATABASE_ENGINE = 'sqlite3'
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': ':memory:',
-    }
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',	
+        'NAME': 'planout_test',
+        'USER': 'dev',
+        'PASSWORD': 'dev',
+        'HOST': 'localhost', 
+        'PORT': '5432', 
+    } 
 }
 
 TEMPLATE_CONTEXT_PROCESSORS = (

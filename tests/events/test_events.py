@@ -3,17 +3,18 @@ import os.path
 from django.test import TestCase, modify_settings
 from django.core.urlresolvers import reverse
 
-from events.models import Organization, BasicUser, Event
-from .factories import OrganizationFactory, UserFactory, EventFactory
+from events.models import ProfessionalProfile, BasicUser, Event
+from tests.factories import ProProfileFactory, UserFactory, EventFactory
 
 from accounts.models import AvatarField
 from avatar.util import (get_avatar_url_or_defaul_url, get_primary_avatar)
 from avatar.conf import AvatarConf as config
 from django.conf import settings
+
 from django.contrib.auth import get_user_model 
 
 import settings as local_settings
-from ..test_core.behaviors import  OwnedModelTests,SluggedModelTests
+from ..test_core.behaviors import SluggedModelTests, PostedModelTests
  
 from ..util import (get_login_redirect_url)
 
@@ -38,7 +39,7 @@ def nbr_events():
 class TestEventBasic(SluggedModelTests,TestCase):
     def setUp(self):
 	self.user = UserFactory.create(username="bunbun", email="owner@bottofy.com")
-	self.organization = OrganizationFactory.create(owner=self.user)
+	self.organization = ProProfileFactory.create(owner=self.user)
 	
     def create_instance(self, **kwargs):
 	return EventFactory.create(**kwargs)
@@ -51,7 +52,7 @@ class TestEventBasic(SluggedModelTests,TestCase):
 class EventCreate():
     def setUp(self):
 	self.user = UserFactory.create(username="bunbun", email="owner@bottofy.com")
-	self.organization = OrganizationFactory.create(owner=self.user)
+	self.organization = ProProfileFactory.create(owner=self.user)
 	
     def test_create_new(self):
 	event,created = get_or_create(name="event", organizer = self.organization)
@@ -81,7 +82,7 @@ class EventCreate():
 class EventUpdate(SluggedModelTests,TestCase):
     def setUp(self):
 	self.user = UserFactory.create(username="bunbun", email="owner@bottofy.com")
-	self.organization = OrganizationFactory.create(owner=self.user)
+	self.organization = ProProfileFactory.create(owner=self.user)
 	
     def create_instance(self, **kwargs):
 	return EventFactory.create(**kwargs)
@@ -93,7 +94,7 @@ class EventUpdate(SluggedModelTests,TestCase):
 class EventDelete(SluggedModelTests,TestCase):
     def setUp(self):
 	self.user = UserFactory.create(username="bunbun", email="owner@bottofy.com")
-	self.organization = OrganizationFactory.create(owner=self.user)
+	self.organization = ProProfileFactory.create(owner=self.user)
 	
     def create_instance(self, **kwargs):
 	return EventFactory.create(**kwargs)
@@ -105,7 +106,7 @@ class EventDelete(SluggedModelTests,TestCase):
 class EventGet(SluggedModelTests,TestCase):
     def setUp(self):
 	self.user = UserFactory.create(username="bunbun", email="owner@bottofy.com")
-	self.organization = OrganizationFactory.create(owner=self.user)
+	self.organization = ProProfileFactory.create(owner=self.user)
 	
     def create_instance(self, **kwargs):
 	return EventFactory.create(**kwargs)

@@ -20,7 +20,7 @@ TEMPLATE_DEBUG = DEBUG
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',	
         'NAME': '%s-dev' % PROJECT_NAME.lower(),
         'USER': '',
         'PASSWORD': '',
@@ -116,6 +116,13 @@ DEBUG_TOOLBAR_PATCH_SETTINGS = False
 # http://django-debug-toolbar.readthedocs.org/en/latest/installation.html
 INTERNAL_IPS = ('127.0.0.1',)
 ########## END TOOLBAR CONFIGURATION
+
+
+
+########## CITIES DB
+# https://github.com/teddziuba/django-sslserver#getting-started
+CITIES_INCLUDE_COUNTRIES = ['VN', ]
+########## END CITIES DB
 
 
 ########## SSL SERVER CONFIGURATION

@@ -3,58 +3,50 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
-from djgeojson.fields import PointField
+
 import dateutil.rrule as rrule
+from django.utils.encoding import python_2_unicode_compatible
 
 from core.fields import Choices
+from django.contrib.gis.db import models as gismodels
 
-from accounts.models import BasicUser
+from accounts.models import BasicUser, ProfessionalProfile
 
 from core.fields import BaseImageField
 import core.models as core_models
+from core.loading import get_model
 
 from .conf import settings as config
 from .fields import AgeRangeField
 from .querysets import (PassThroughOccurrenceManager, OccurrenceQuerySet,
 			PassThroughEventManager, EventQuerySet)
 
-# user_model_label = getattr(settings, "AUTH_USER_MODEL", "auth.User")
 
-#class Location(object):
-    #pass
 
-import logging
-logger = logging.getLogger('werkzeug')
+user_model_label = getattr(settings, "AUTH_USER_MODEL", "auth.User")
+
+#=========================================================================
+@python_2_unicode_compatible
+class EventProduct(models.Model):
+    """
+    Joining model between products and events. Exists to allow customising.
+    """
+    product = models.ForeignKey('products.Product', verbose_name=_("Product"))
+    event = models.ForeignKey('events.Event',
+                                 verbose_name=_("Event"))
+    class Meta:
+        #abstract = True
+        app_label = 'products'
+        ordering = ['product', 'event']
+        unique_together = ('event','product') 
+        verbose_name = _('Product Event')
+        verbose_name_plural = _('Product Events')
+
+    def __str__(self):
+        return u"<eventproduct for event '%s'>" % self.event
 	
-class Organization(core_models.OwnedModel, core_models.BaseType):
-    '''
-    The organizer of the event
-    '''    
-    # email = models.EmailField(_('email address'), unique=True, max_length=100, blank=True)
-    #location = Location # models.CharField(_('address'), max_length=100, blank=True)
-    logo =  BaseImageField(blank=True, max_length=1024) #AvatarField(max_length=1024, blank=True)
-    email = models.EmailField(max_length=100, blank=True)
-    
-    '''
-    def upcoming_events():
-      pass
-    def pass_events():
-      pass
-    '''    
-
-    @property
-    def url_name(self):
-	return "organization:detail"
-
-    @property
-    def source_from(self):
-	return "name"
-    
-    def __unicode__(self):
-	return self.name
-
 #===============================================================================    
-class Event(core_models.TimeFramedModel, core_models.BaseType):
+class Event(core_models.PostedModel, core_models.TimeFramedModel, core_models.BaseType):
     '''
     Event itself
     '''
@@ -71,8 +63,10 @@ class Event(core_models.TimeFramedModel, core_models.BaseType):
     status = models.CharField(choices=EVENT_STATUS,
 			      default=EVENT_STATUS.scheduled, max_length=20, verbose_name=_("Event Status"))
     #======
-    organizer = models.ForeignKey(Organization, verbose_name=_("Organizer"),
-				  related_name="organized_%(class)ss")
+    organizer = models.ForeignKey(ProfessionalProfile, verbose_name=_("Organizer"),
+				  related_name="organized_%(class)ss") 
+
+    # poster = 
 
     topic =  models.CharField( choices=EVENT_TOPIC, max_length=20,
 			       verbose_name=_("Event Topic"), null=True, blank=True,)
@@ -80,29 +74,41 @@ class Event(core_models.TimeFramedModel, core_models.BaseType):
     category = models.CharField( choices=EVENT_CATEGORY, max_length=20,
 				    verbose_name=_("Event Category"), null=True, blank=True, )
 
+
+    products = models.ManyToManyField(
+	'products.Product', through=EventProduct,
+        verbose_name=_("Products"))
+    
     logo =  BaseImageField(blank=True, max_length=1024) #AvatarField(max_length=1024, blank=True)
     
-    #======
+    #============================================
     age_range = AgeRangeField(blank=True, null=True) #models.CharField(max_length=6, verbose_name=_("Event age range"))
     
-    # start_time = models.DateTimeField(_('start time'))
-    # end_time = models.DateTimeField(_('end time'))
-    location = PointField(blank=True)
-
+    location = models.ForeignKey(core_models.Location, related_name = "events", blank=True, null=True)
     is_online = models.BooleanField(default=False, verbose_name=_("It's an online event"),)
 
     @property
     def url_name(self):
-	return "event:detail"
+	return "event:detail"    
 	
     @property
     def source_from(self):
     	return "name"
 
     # use pass throught for chaining the filtering
-    objects = PassThroughEventManager.for_queryset_class(EventQuerySet)()
+    #objects = #PassThroughEventManager.for_queryset_class(EventQuerySet)()
 
 
+    #---------------------------------------------------------------------------
+    
+    def add_ticket_type(self, title, quantity, price = 0.0, **kwargs):
+	'''
+        Add one ticket type the event 
+	'''
+	Ticket = get_model("tickets", "Ticket")
+	ticket_type = Ticket.objects.add_ticket_type(self, title, quantity, price, **kwargs)
+	return ticket_type
+    
     #---------------------------------------------------------------------------
     def add_occurrences(self, start_time, end_time, **rrule_params):
         '''
@@ -219,3 +225,4 @@ def event_pre_save_populate_callback(sender, instance, *args, **kwargs):
 def occurrence_pre_save_populate_callback(sender, instance, *args, **kwargs):
     pass
     #logger.warning("OCCURENCE-PRESAVE: please implement whenever remove occurence, modify occurence...")
+

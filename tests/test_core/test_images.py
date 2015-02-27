@@ -16,7 +16,7 @@ logger = logging.getLogger('werkzeug')
 from django.db import models
 
 import factory
-from ..accounts.factories import UserFactory
+from tests.factories import UserFactory
 
 # from .models import DummyModel
 

@@ -1,10 +1,15 @@
 from django.db import models
+from django.contrib.gis.db import models as gis_models
 from django.db.models.query import QuerySet
 from model_utils.managers import PassThroughManagerMixin
 
 from django.utils import timezone
 from datetime import timedelta
 from dateutil.relativedelta import relativedelta
+from django.contrib.gis.db.models.query import GeoQuerySet
+
+
+from prices import Price
 
 import logging
 logger = logging.getLogger('werkzeug')
@@ -13,15 +18,12 @@ logger = logging.getLogger('werkzeug')
 
 
 class TimeFramedQuerySet(QuerySet):
-
     '''
     '''
     def from_datetime(self, from_dt = None):
 	if not from_dt:
 	    ''' we offset back 1 hour  '''
 	    from_dt = timezone.now() - timedelta(hours = 1)
-	    # min( dt.replace(hour=0, minute=0, second=0, microsecond=0),
-	    # 		   from_dt - timedelta(hours = 1) )
 	qs = self.filter( 
             models.Q(
                 start_time__gte = from_dt,
@@ -111,10 +113,44 @@ class TimeFramedQuerySet(QuerySet):
     # 	pass
 	
 #==================================================================================================
-class EventQuerySet(TimeFramedQuerySet):
-    pass
 
-class EventManager(models.Manager):
+class EventGeoQuerySet(GeoQuerySet):
+    def within_bound(self, bound_geom):
+	qs = self.filter(location__coordinates__within=bound_geom)
+	return qs
+
+    def within_bbox(self, bbox):
+	from django.contrib.gis.geos import Polygon
+	bound_geom = Polygon.from_bbox(bbox)
+	
+	return self.within_bound(bound_geom)
+	
+class EventQuerySet(TimeFramedQuerySet, EventGeoQuerySet):
+    #### filter by price =======
+    """
+    todo: remove currency here, find a new currency
+    """
+    def within_price_range(self, min_val, max_val, currency = None):
+	if not currency:
+	    currency = settings.DEFAULT_CURRENCY
+	min_price = Price(min_val, currency=currency)
+	max_price = Price(max_val, currency=currency)
+	qs = self.prefetch_related('tickets').filter(tickets__price__range = (min_price, max_price)).distinct()
+	return qs
+
+    def is_free(self, currency = None):
+	if not currency:
+	    currency = settings.DEFAULT_CURRENCY
+	return self.within_price_range(0, 0, currency)
+
+    def is_available(self):
+	qs = self.prefetch_related().filter(tickets__stock__gt=0).distinct()
+	return qs
+
+	raise NotImplementedError("implement event avai please")
+
+###============================
+class EventManager(gis_models.GeoManager):
     pass
 
 class PassThroughEventManager(PassThroughManagerMixin, EventManager):
@@ -141,9 +177,6 @@ class OccurrenceQuerySet(QuerySet):
 	from django.utils import timezone
 	from datetime import datetime
 	
-        # dt = dt or timezone.now()
-        # start = datetime(dt.year, dt.month, dt.day)
-        # end = start.replace(hour=23, minute=59, second=59)
 	dt = dt or timezone.now()	
         start = dt.replace(hour=0, minute=0, second = 0)
         end = dt.replace(hour=23, minute=59, second=59)

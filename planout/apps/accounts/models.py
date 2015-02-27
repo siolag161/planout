@@ -7,15 +7,22 @@ from django.core.validators import RegexValidator
 from django.utils import timezone
 from django.core.mail import send_mail
 
+from django.db import models
+import core.models as core_models
+from core.fields import BaseImageField
 
 from django_extensions.db.fields import ShortUUIDField  # give the UUID field @todo -> once move to 1.8 use the native PostgreSQL
 
 from avatar.fields import AvatarField
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Import the basic Django ORM models library
 from django.db import models
 
 from django.utils.translation import ugettext_lazy as _
+
+from django.conf import settings
+user_model_label = getattr(settings, "AUTH_USER_MODEL", "auth.User")
 
 class BasicUserManager(BaseUserManager):
     def create_user(self, email, password):
@@ -122,3 +129,35 @@ class BasicUser(AbstractBaseUser,PermissionsMixin):
 	    return self.username
 	else:
 	    return self.email
+
+
+
+#================================================================================
+class ProfessionalProfile(core_models.BaseType):
+    owner = models.ForeignKey(user_model_label, verbose_name=_("Owner"), related_name="pro_profiles")
+    '''
+    The organizer of the event
+    '''    
+    logo =  BaseImageField(blank=True, max_length=1024)
+
+    '''
+    contact fields
+    '''
+    email = models.EmailField(max_length=100, blank=True)
+    phone_number = PhoneNumberField(blank=True, null=True)
+    fax_number = PhoneNumberField(blank=True, null=True)
+
+    @property
+    def url_name(self):
+	return "pro:detail"
+
+    @property
+    def source_from(self):
+	return "name"
+    
+    def __unicode__(self):
+	return self.name
+
+    def __eq__(self, other):
+        return (isinstance(other, self.__class__)
+            and (self.owner == other.owner and self.name == other.name))	    

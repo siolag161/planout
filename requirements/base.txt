@@ -115,7 +115,7 @@ django-leaflet==0.15.2
 
 # For the use of the lightweight geojson
 # 
-django-geojson==2.6.0
+
 
 
 # app config
@@ -123,4 +123,19 @@ django-appconf
 
 # dateutil rules for occurences
 python-dateutil==2.4.0
+
+# for money/currency
+
+
+# dealing with phone validators
+django-phonenumber-field==0.7.1
+
+#
+django-prices==0.3.4
+
+# satchless
+satchless==1.1.3
+
+# Google MAP/Place API wrapper
+python-google-places
 
