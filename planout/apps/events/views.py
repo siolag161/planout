@@ -26,7 +26,7 @@ from .forms import EventCreateForm
 #=======================================================================
 class EventFormView(object):
     def get_adapter(self):
-	return EventAdapter
+	return EventAdapter()
 
 #=======================================================================
 import logging
@@ -54,7 +54,12 @@ class EventCreateView(LoginRequiredMixin, EventFormView, AjaxableFormViewMixin, 
 	self.object = form.save(commit=False)
 	logger.warning("form_valid-event: should update the form to take into acc the organization id - then if not existing - create one. also the darm location & the heck fucking crop stuff")
 	logger.critical(len(form.files))
-	logo_file = form.files["logo"]
+
+	logo_file = None
+	if form.files and forms.files[0]:
+	    logo_file = form.files["logo"]
+	
+	
 	if self.request.user.is_authenticated():
 	    user = self.request.user
 	    profile = user.pro_profiles.first()

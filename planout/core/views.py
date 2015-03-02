@@ -26,6 +26,7 @@ def _ajax_response(request, response, adapter, form=None):
 					  response,
 					  form=form,
 					  redirect_to=redirect_to)
+
     return response
     
 #==========================================================================================

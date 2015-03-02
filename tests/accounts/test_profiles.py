@@ -8,8 +8,6 @@ from django.core.urlresolvers import reverse
 
 from tests.factories import *
 
-from avatar.util import (get_avatar_url_or_defaul_url, get_primary_avatar)
-from avatar.conf import settings as config
 from django.conf import settings
 from django.contrib.auth import get_user_model
 

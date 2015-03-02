@@ -7,9 +7,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from events.models import ProfessionalProfile, BasicUser, Event, Occurrence
 from tests.factories import ProProfileFactory, UserFactory, EventFactory
 
-from accounts.models import AvatarField
-from avatar.util import (get_avatar_url_or_defaul_url, get_primary_avatar)
-from avatar.conf import AvatarConf as config
+
 from django.conf import settings
 from django.contrib.auth import get_user_model
 
@@ -109,8 +107,6 @@ class OccurrenceCreationTests(OccurrenceTestCase):
 				    freq=rrule.WEEKLY, byweekday=(rrule.TU, rrule.TH),
 				    until=get_tz_aware(one_week_later))
 
-	#occs = list(self.event.occurrences.all())
-	logger.critical(datetime.today().weekday())
 	if abs(datetime.today().weekday() - 2) == 1:
 	    self.assertEqual(self.event.occurrences.count(), 3)
 	else:

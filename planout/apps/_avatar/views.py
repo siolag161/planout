@@ -99,4 +99,4 @@ def add(request, extra_context=None, next_override='/',
     }
     context.update(extra_context)
 
-    return render(request, 'avatar/avatar_form.html', context)
+    return render(request, 'accounts/avatars/avatar_form.html', context)

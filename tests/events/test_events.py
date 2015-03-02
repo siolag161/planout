@@ -5,10 +5,6 @@ from django.core.urlresolvers import reverse
 
 from events.models import ProfessionalProfile, BasicUser, Event
 from tests.factories import ProProfileFactory, UserFactory, EventFactory
-
-from accounts.models import AvatarField
-from avatar.util import (get_avatar_url_or_defaul_url, get_primary_avatar)
-from avatar.conf import AvatarConf as config
 from django.conf import settings
 
 from django.contrib.auth import get_user_model 

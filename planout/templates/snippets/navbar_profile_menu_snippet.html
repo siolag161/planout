@@ -1,0 +1,77 @@
+<ul class="nav navbar-nav">
+  <li class="dropdown">
+    <a href="{% url 'events:event_create' %}" class="btn btn-create-event">Create Event</a>
+  </li>
+  {% if request.user.is_authenticated %}         	
+
+  <!-- Messages: style can be found in dropdown.less-->
+
+  <li class="dropdown user profile-menu">
+    {% include "snippets/user_menu_snippet.html" %}
+  </li> <!-- End User Account -->
+  <li class="dropdown messages-menu">
+    {% include "snippets/user_messages_menu_snippet.html" %}
+  </li>
+  <!-- Notifications: style can be found in dropdown.less -->
+  <li class="dropdown notifications-menu">
+    {% include "snippets/user_notification_menu_snippet.html" %}
+  </li>  <!-- Notifications: style can be found in dropdown.less -->
+
+  {% else %}
+  <li><a id="signup-button" href="#" class="btn btn-aqua" data-toggle="modal" data-target="#signup-modal" >Sign-Up</a></li>
+  <li><a id="login-button" href="#" class="btn btn-white" data-toggle="modal" data-target="#login-modal" >Log-In</a></li>  
+  {% endif %}
+</ul>
+
+<div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog registration-modal">
+    <div class="modal-content registration-modal">
+      <div class="modal-header registration-modal-header">
+	<div class="text-container"> <h4 class="black">Welcome!</h4></div>
+        <a class="close" data-dismiss="modal" aria-hidden="true"><i class=""></i></a>
+      </div>
+      <div class="modal-body registration-modal-body">
+	<div class="social-buttons">
+	  <div class="center-block registration-block btn-holder btn-facebook">
+	    <a href="/accounts/facebook/login/?process=login" class="btn display-block" data-populate_uri="" data-redirect_uri="">
+	      <span class="icon-container">
+		<i class="icon fa fa-facebook white"></i>
+	      </span>
+	      <span class="text-container white">
+		Sign up with Facebook
+	      </span>
+	    </a>	      
+	  </div>
+	  <div class="center-block registration-block btn-holder btn-google btn-block">
+	    <a href="/accounts/google/login/?process=login" class="btn display-block google-icon" data-populate_uri="" data-redirect_uri="">
+	      <span class="icon-container">
+		<i class="icon fa fa-google-plus google-red"></i>
+	      </span>
+	      <span class="text-container black">
+		Sign up with Google
+	      </span>
+	    </a>
+	  </div>	      
+	</div> <!-- social buttons  -->
+	<div>
+	  <h6 class="registration-modal-sep">or</h6>
+	</div>
+	<div class="center-block ">
+	  <a href="#" class="btn signup-with-btn">
+	    <i class="text-container fa fa-envelope aqua"></i>
+	    <span class="bold-txt aqua  registration-email-signup-button" data-toggle="modal" data-target="#signup-with-email-modal" >Sign up with Email</span>
+	  </a>
+	</div>
+      </div> <!-- body -->
+      <div class="modal-footer">
+        <span class="black">Already a member?</span> <a id="modal-login-button" href="#" class="btn btn-black" data-toggle="modal" data-target="#login-modal" >Log-In</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="signup-with-email-modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  {% include "snippets/signup_modal.html" %}
+</div> 
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  {% include "snippets/login_modal.html" %}
+</div> 

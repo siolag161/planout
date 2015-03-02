@@ -11,12 +11,11 @@ urlpatterns = [
 
     url(r'^', include('core.urls', namespace='core')),
 
-    url(r'^users/', include("accounts.urls", namespace="users")),
+    url(r'^users/', include("accounts.urls", namespace="profiles")),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout',
      {'next_page': '/'}),
     
     url(r'^accounts/', include('allauth.urls')), 
-    url(r'^avatar/', include('avatar.urls', namespace='avatar')),
 
     url(r'^events/', include('events.urls', namespace='events')),
 

@@ -265,7 +265,6 @@ def image_file_path( instance, filename=None, image = None, width=None, height=N
             filename = root + "." + ext
     else:
         # File doesn't exist yet
-        #if config.AVATAR_HASH_FILENAMES:
 
 	(root, ext) = os.path.splitext(filename)
 

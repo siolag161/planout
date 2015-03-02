@@ -7,9 +7,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from events.models import ProfessionalProfile, BasicUser, Event, Occurrence
 from tests.factories import ProProfileFactory, UserFactory, EventFactory
 
-from accounts.models import AvatarField
-from avatar.util import (get_avatar_url_or_defaul_url, get_primary_avatar)
-from avatar.conf import AvatarConf as config
+
 from django.conf import settings
 from django.contrib.auth import get_user_model
 
@@ -212,9 +210,6 @@ class LocationBasedFiltering(TestCase):
 	    pt = fromstr('POINT(%s %s)' % (50+5,100+i))
 	    e.location.coordinates = pt
 	    e.location.save()
-	    
-	for e in Event.objects.all():
-	    logger.info("location of event: (%s,%s)" %(e.location.coordinates.x, e.location.coordinates.y))
 
     def test_count(self):		
 	self.assertEqual(Event.objects.count(), 10)

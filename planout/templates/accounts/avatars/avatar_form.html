@@ -8,7 +8,7 @@
   <!-- Current avatar -->
   <div class="avatar-view" title="Change the avatar" data-toggle="modal" data-target="#avatar-modal" 
        width:{{size}}px;height:{{size}}px>
-    <img src="" alt="Avatar">
+    <img src="{{avatar_url}}" alt="Avatar">
   </div>
 
   <!-- Cropping modal -->
@@ -21,14 +21,8 @@
           </div>
           <div class="modal-body">
             <div class="avatar-body">
-              <form class="avatar-form" action="{% url 'avatar:avatar_add' %}"  enctype="multipart/form-data" method="post">
-               {% crispy upload_avatar_form %}
-              <!-- Upload image and data  
-		<div class="avatar-upload">
-                  <input class="avatar-src" name="avatar_src" type="hidden">
-		  
-		  <input class="avatar-input" id="avatarInput" name="avatar" type="file">
-		</div>	-->
+              <form class="avatar-form" action="{% url 'profiles:avatar_add' %}"  enctype="multipart/form-data" method="post">
+               {% crispy form %}
 	      </form>
               <!-- Crop and preview -->
               <div class="row">

@@ -85,15 +85,14 @@ THIRD_PARTY_APPS = (
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.twitter',
 
-    'leaflet',
-
     'pipeline',
+    'leaflet',
 )
 
 PROJECT_APPS = (
     'core',
     # 'cities',
-    'avatar',  # for user avatars    
+    # 'avatar',  # for user avatars    
     'accounts',
     'products', # for market-place ecommerce stuff
 

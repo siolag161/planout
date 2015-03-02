@@ -1,0 +1,49 @@
+{%extends "base.html" %}
+{%load static %}
+{% load profile_tags %}
+
+
+
+{% block sidebar %}
+<!-- Sidebar user panel -->
+<div class="user-panel">
+  <div class="pull-left image">
+    <img src="https://a2.muscache.com/ic/users/27306913/profile_pic/1423226806/original.jpg?interpolation=lanczos-none&amp;crop=w:w;*,*&amp;crop=h:h;*,*&amp;resize=50:*&amp;output-format=jpg&amp;output-quality=70" class="img-circle" alt="User Image" />
+  </div>
+  <div class="pull-left info">
+    <p class="username">pdt</p>
+  </div>
+</div>
+
+<!-- sidebar menu: : style can be found in sidebar.less -->
+<ul class="sidebar-menu">
+  <li class="header">MAIN NAVIGATION</li>
+  <li><a href="#"><i class="fa fa-book"></i> Dashboard</a></li>
+
+  <li class="treeview">
+    <a href="#">
+      <i class="fa fa-user"></i>
+      <span>Profile</span>
+    </a>
+    <ul class="treeview-menu">
+      <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Edit Profile</a></li>
+      <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Reviews</a></li>
+      <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Preferences</a></li>
+    </ul>
+  </li> <!-- end account -->
+  <li class="treeview">
+    <a href="#">
+      <i class="fa fa-pie-chart"></i>
+      <span>Settings</span>
+      <i class="fa fa-angle-left pull-right"></i>
+    </a>
+    <ul class="treeview-menu">
+      <li><a href="#"><i class="fa fa-circle-o"></i>Stuff</a></li>
+    </ul>
+  </li>  <!-- end settings -->
+  <li><a href="#"><i class="fa fa-book"></i> Documentation</a></li>
+</ul>
+{% endblock sidebar %}
+
+{% block content %}
+{% endblock content %}

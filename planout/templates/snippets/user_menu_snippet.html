@@ -1,0 +1,18 @@
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+  <img src="https://a2.muscache.com/ic/users/27306913/profile_pic/1423226806/original.jpg?interpolation=lanczos-none&amp;crop=w:w;*,*&amp;crop=h:h;*,*&amp;resize=50:*&amp;output-format=jpg&amp;output-quality=70" class="user-avatar" alt="User Image"/>
+  <span class="hidden-xs username">{{request.user.display_name}}</span>
+</a>
+
+<ul class="dropdown-menu">
+  <li class="header">
+    <span class="username">{{request.user.full_name}}</span>
+  </li>
+  <li>
+    <ul class="menu">
+      <li><a href="#">Dashboard</a></li>
+      <li><a href="{% url 'profiles:edit_profile_uuid' request.user.uuid %} ">Edit Profile</a></li>
+    </ul>
+  </li>
+  <li class="divider"></li>
+  <li><a href="{% url 'account_logout' %}">Log Out</a></li>
+</ul>

@@ -3,21 +3,23 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{% block title %}{{ project_name }}{% endblock title %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PlanOut HomePage">
-    <meta name="author" content="PlanOut,Inc">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}Events, activities, nearby - PlanOut{% endblock title %}</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="{% url 'favicon.ico' %}" />
 
     {% stylesheet 'master' %}
     {% block extra_css %}{% endblock extra_css %}
-
+    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" 
+          rel="stylesheet" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>       
-    <link rel="stylesheet" href="{{ STATIC_URL }}imgareaselect/css/imgareaselect-animated.css" type="text/css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}avatar/avatar.css" type="text/css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -25,113 +27,72 @@
     <![endif]-->
   </head>
   <body id='{{id}}'>
+    <div class="wrapper">      
+      <header class="main-header">
+        <!-- Logo -->
+        <a href="/" class="logo app-name">PlanOut</a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+          <!-- Navbar Right Menu -->
+          <div class="navbar-profile-menu">
+	    {% include "snippets/navbar_profile_menu_snippet.html" %}
+          </div>
+        </nav>
+      </header>
 
-    <div id="header-wrapper">
-      <div id="header" class="po-header"> 
-	<div class="navbar navbar-default navbar-fixed-top planout-navbar" role="navigation"> 
-	  <div class="container">
-	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-		<span class="sr-only">Toggle navigation</span>
-		<span class="icon-bar"></span>
-		<span class="icon-bar"></span>
-		<span class="icon-bar"></span>
-	      </button>
-	      <a class="navbar-brand app-name" href="/">PlanOut</a>
-	      <div id="navbar-search" class=""> 
-		{% include "snippets/search_bar.html" %}
-	      </div>
-	    </div>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+	  {% block sidebar %}
 
-	    <div class="navbar-collapse collapse">
-	      <ul class="nav navbar-nav navbar-right">
-		{% if request.user.is_authenticated %}         		
-		<li><a id="login-button" href="{% url 'users:detail_uuid' request.user.uuid %}" class="btn" data-toggle="modal" >Profile</a></li>
-		<li><a id="login-button" href="{% url 'account_logout' %}" class="btn btn-white" data-toggle="modal" >Logout</a></li>
+	  {% endblock sidebar %}
+        </section>
+        <!-- /.sidebar -->
+      </aside> <!--  end sidebar  -->
 
-		{% else %}	 
-		<li><a id="signup-button" href="#" class="btn btn-aqua" data-toggle="modal" data-target="#signup-modal" >Sign-Up</a></li>
-		<li><a id="login-button" href="#" class="btn btn-white" data-toggle="modal" data-target="#login-modal" >Log-In</a></li>	 
-		{% endif %}
-	      </ul>
-	      <div id="mobile-sidebar"></div>
-	    </div>
-	  </div> 
-	</div>	
-      </div>
-    </div><!-- header wrapper -->  
-   
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+	  {% block content-header %}
+	  <h1>
+            Something witty here!
+            <small>pdt</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">2b implemented (breadcrumb)</li>
+          </ol>
+	  {% endblock content-header %}
+        </section>
 
-    <!-- <div class="container"> -->
-      {% block messages %}
-      {% include 'includes/messages.html' %}
-      {% endblock messages %}
-    <section id="content">
-      {% block content %}
-      {% endblock content %}
-    </section>
-    <!-- </div> -->
-    
+        <!-- Main content -->
+        <section class="content">
+	  {% block content %}
+	  {% endblock content %}
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+
+      <footer class="main-footer">
+      </footer>
+
+    </div><!-- ./wrapper -->
     <section class="modals" id="authentification-modals">
       {% if request.user.is_authenticated %}         		
 
       {% else %}
 
-      <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-      <div class="modal-dialog registration-modal">
-        <div class="modal-content registration-modal">
-      	  <div class="modal-header registration-modal-header">
-	    <div class="text-container"> <h4 class="black">Welcome!</h4></div>
-            <a class="close" data-dismiss="modal" aria-hidden="true"><i class=""></i></a>
-      	  </div>
-          <div class="modal-body registration-modal-body">
-	    <div class="social-buttons">
-	      <div class="center-block registration-block btn-holder btn-facebook">
-		<a href="/accounts/facebook/login/?process=login" class="btn display-block" data-populate_uri="" data-redirect_uri="">
-		  <span class="icon-container">
-		    <i class="icon fa fa-facebook white"></i>
-		  </span>
-		  <span class="text-container white">
-		    Sign up with Facebook
-		  </span>
-		</a>	      
-	      </div>
-	      <div class="center-block registration-block btn-holder btn-google btn-block">
-		<a href="/accounts/google/login/?process=login" class="btn display-block google-icon" data-populate_uri="" data-redirect_uri="">
-		  <span class="icon-container">
-		    <i class="icon fa fa-google-plus google-red"></i>
-		  </span>
-		  <span class="text-container black ">
-		    Sign up with Google
-		  </span>
-		</a>
-	      </div>	      
-	    </div> <!-- social buttons  -->
-	    <div>
-	      <h6 class="registration-modal-sep">or</h6>
-	    </div>
-	    <div class="center-block ">
-	      <a href="#" class="btn signup-with-btn">
-		<i class="text-container fa fa-envelope aqua"></i>
-		<span class="bold-txt aqua"  data-toggle="modal" data-target="#signup-with-email-modal" >Sign up with Email</span>
-	      </a>
-	    </div>
-          </div> <!-- body -->
-          <div class="modal-footer">
-            <span class="black">Already a member?</span> <a id="login-button" href="#" class="btn btn-black" data-toggle="modal" data-target="#login-modal" >Log-In</a>
-          </div>
-	</div>
-      </div>
-    </div>
-      <div class="modal fade" id="signup-with-email-modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-        {% include "snippets/signup_modal.html" %}
-      </div> 
-      <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-	{% include "snippets/login_modal.html" %}
-      </div> 
       {% endif %}
 
     </section>
+
+
+
     {% javascript 'master' %}
     {% block extra_js %}{% endblock extra_js %}
   </body>

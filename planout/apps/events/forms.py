@@ -16,28 +16,20 @@ from datetime import datetime, timedelta
 from functools import partial
 
 
-from bootstrap3_datetime.widgets import DateTimePicker
+from core.widgets import DateTimeWidget
 
 
 #=======================================================================
 class EventCreateForm(forms.ModelForm):
-    class Meta:
-	model = Event
-	fields = ['name', 'start_time', 'end_time', 'logo', 'description',
-		  'url', 'is_online', 'topic', 'category', 'location', ]
 	
     name = forms.CharField(
-	
+	    
     )
 
-    #start_time = forms.DateTimeField(initial =now, input_formats='%Y-%m-%d %H-)
-    #end_time = forms.DateTimeField(initial = now() + timedelta(hours=2),input_formats='%Y-%m-%d %H-%M-%S' )
-    start_time = forms.DateTimeField( required=False,
-				      widget=DateTimePicker(options={"format": "YYYY-MM-DD HH:mm",
-							    "pickSeconds": False}))
-    end_time = forms.DateTimeField( required=False,
-				      widget=DateTimePicker(options={"format": "YYYY-MM-DD HH:mm",
-							    "pickSeconds": False}))
+    start_time = forms.DateTimeField( required=True,
+    				      widget=DateTimeWidget(options={'format': 'dd/mm/yyyy hh:ii'} ))
+    end_time = forms.DateTimeField( required=True,
+    				    widget=DateTimeWidget(options={'format': 'dd/mm/yyyy hh:ii'} ))
     logo = forms.ImageField(required=False, )
 
     description = forms.CharField(required=False, widget=forms.Textarea())
@@ -48,6 +40,12 @@ class EventCreateForm(forms.ModelForm):
     topic = forms.ChoiceField(choices = Event.EVENT_TOPIC, initial = Event.EVENT_TOPIC.business, )
     
     #location = GeoJSONFormField(geom_type="Point", widget=forms.TextInput(), required=False, )
+
+    
+    class Meta:
+	model = Event
+	fields = ['name', 'start_time', 'end_time', 'logo', 'description',
+		  'url', 'is_online', 'topic', 'category', 'location', ]
     
     def __init__(self, *args, **kwargs):
         super(EventCreateForm, self).__init__(*args, **kwargs)

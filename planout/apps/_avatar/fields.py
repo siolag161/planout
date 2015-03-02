@@ -11,10 +11,8 @@ from django.utils.translation import ugettext as _
 from django.utils import six
 from django.db.models import signals
 
-#from .conf import AvatarConf as confi
 from .conf import settings as config
 
-# from .util import force_bytes, invalidate_cache, get_encoded_email
 from core.utils.images import  force_bytes, invalidate_cache
 
 from core.fields import BaseImageField

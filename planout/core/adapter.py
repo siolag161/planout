@@ -1,5 +1,6 @@
 
 from django.http import HttpResponse
+import json
 
 import logging
 logger = logging.getLogger('werkzeug')
@@ -10,6 +11,7 @@ class BasicAdapter(object):
         if redirect_to:
             status = 200
             data['location'] = redirect_to
+	    
         if form:
             if form.is_valid():
                 status = 200
