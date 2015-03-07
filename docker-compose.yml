@@ -14,7 +14,7 @@ db:
 
 web:
   build:  /opt/planout/
-  command: nf start -e .env -j Profile 
+  command: foreman start
   ports:
     - "8001:8000"
   links:

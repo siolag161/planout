@@ -9,6 +9,7 @@ RUN mkdir -p /opt/planout.vn
 
 ADD ./requirements/ /opt/planout.vn/requirements/
 RUN pip install -r /opt/planout.vn/requirements/stage.txt # install prod requirements
+RUN gem install foreman
 
 ADD . /opt/planout.vn
 RUN chown -R planout:planout /opt/planout.vn
