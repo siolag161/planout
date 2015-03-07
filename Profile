@@ -1,5 +1,0 @@
-web: django-admin.py runserver_plus
-#worker: django-admin.py rqworker high default low
-grunt: grunt --base ./assets --gruntfile ./assets/Gruntfile.coffee dev
-#scheduler: rqscheduler
-

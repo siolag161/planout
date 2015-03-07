@@ -8,6 +8,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
+
+
 from os.path import abspath, basename, dirname, join, normpath
 from sys import path
 

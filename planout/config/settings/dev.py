@@ -6,7 +6,6 @@ from .base import *
 
 import os
 
-
 ########## DEBUG CONFIGURATION
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = True
@@ -15,19 +14,10 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 ########## END DEBUG CONFIGURATION
 
+import dj_database_url
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config()
 
-########## DATABASE CONFIGURATION 
-# https://docs.djangoproject.com/en/dev/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',	
-        'NAME': '%s-dev' % PROJECT_NAME.lower(),
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
 ########## END DATABASE CONFIGURATION
 
 
@@ -121,7 +111,7 @@ INTERNAL_IPS = ('127.0.0.1',)
 
 ########## CITIES DB
 # https://github.com/teddziuba/django-sslserver#getting-started
-CITIES_INCLUDE_COUNTRIES = ['VN', ]
+CITIES_INCLUDE_COUNTRIES = ['VN', ] 
 ########## END CITIES DB
 
 

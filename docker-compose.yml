@@ -4,6 +4,9 @@ planoutdata:
     - /var/lib/postgresql/data
     - /data
 
+redis:
+  image: dockerfile/redis
+
 db:
   image: planout/postgis
   volumes_from:
@@ -14,8 +17,8 @@ web:
   command: nf start -e .env -j Profile 
   ports:
     - "8001:8000"
-
   links:
     - db:db
+    - redis:redis
   volumes:
-    - .: /opt/planout/
+    - /opt/planout.vn:/code

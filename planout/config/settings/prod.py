@@ -6,6 +6,9 @@ from .base import *
 
 import os
 DEBUG = os.environ.get('WEB_ENV_DEBUG', False)
+
+
+
 ########## HOST CONFIGURATION
 # https://docs.djangoproject.com/en/1.5/releases/1.5/#allowed-hosts-required-in-production
 # ALLOWED_HOSTS = [PROJECT_DOMAIN, '*', '127.0.0.1']

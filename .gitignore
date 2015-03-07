@@ -1,7 +1,8 @@
 # Project-specific #
 ####################
 *.env*
-.foreman
+*Procfile*
+#.foreman
 
 assets
 tmp

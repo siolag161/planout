@@ -1,6 +1,5 @@
 # Project-specific #
 ####################
-*.env*
 .foreman
 
 .gitignore
