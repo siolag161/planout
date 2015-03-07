@@ -5,13 +5,13 @@ planoutdata:
     - /data
 
 db:
-  image: tutum.co/planout/postgit-ini
+  image: planout/postgis
   volumes_from:
     - planoutdata
 
 web:
   build: .
-  command: nf -e envs/.env -j Profile 
+  command: nf start -e envs/.env -j Profile 
   ports:
     - "8001:8000"
 
