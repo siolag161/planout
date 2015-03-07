@@ -1,0 +1,144 @@
+# See more documentation in /docs/libraries.md
+
+# Current framework
+# https://docs.djangoproject.com/en/1.7/
+Django==1.7.5
+
+# Advanced python interpreter/REPL
+# http://docs.bpython-interpreter.org/
+bpython==0.13.2
+
+# Secure XML parser protected against XML bombs
+# https://bitbucket.org/tiran/defusedxml
+defusedxml==0.4.1
+
+# Serve production static files with Django
+# https://github.com/kennethreitz/dj-static
+dj-static==0.0.6
+
+# Lots of custom mixins
+# http://django-braces.readthedocs.org/en/v1.4.0/
+django-braces==1.4.0
+
+# Useful command line extensions (`shell_plus`, `create_command`, `export_emails`)
+# http://django-extensions.readthedocs.org/en/latest/
+shortuuid==0.4.2
+django-extensions==1.4.9
+
+# Control of output of form rendering
+# http://django-crispy-forms.readthedocs.org/en/latest/
+django-crispy-forms==1.4.0
+
+# Useful model mixins and utilities such as `TimeStampedModel` and `Choices`
+# https://django-model-utils.readthedocs.org/en/latest/
+django-model-utils==2.2
+
+# CSS and JS compressor and compiler. Also minifies HTML
+# http://django-pipeline.readthedocs.org/en/latest/
+django-pipeline==1.4.3
+
+# Enables redis cacheing
+# https://django-redis.readthedocs.org/en/latest/
+django-redis==3.8.2
+
+# Django integration for RQ
+# https://github.com/ui/django-rq
+django-rq==0.7.0
+
+# Python task execution in `tasks.py`
+# http://docs.pyinvoke.org/en/latest/
+invoke==0.9.0
+
+# Nifty handlers for the Python standard library’s logging package
+# https://pythonhosted.org/logutils/
+logutils==0.3.3
+
+# Helpers for Python projects like ReadableSqlFilter
+# https://github.com/crccheck/project_runpy
+project-runpy==0.3.1
+
+# Library to identify uploaded file's headers
+# https://github.com/ahupp/python-magic
+python-magic==0.4.6
+
+# World timezone definitions
+# http://pytz.sourceforge.net/
+pytz==2014.10
+
+# HTTP request API
+# http://docs.python-requests.org/en/latest/
+requests==2.4.3
+urltools==0.3.2
+
+# Job scheduling capabilities to RQ
+# https://github.com/ui/rq-scheduler
+rq-scheduler==0.5.0
+
+# Python 2 and 3 compatibility utilities
+# http://pythonhosted.org/six/
+six==1.9.0
+
+# Serves static and dynamic content
+# https://github.com/lukearno/static
+static==1.1.1
+
+# A slugifier that works in unicode
+# https://github.com/mozilla/unicode-slugify
+unicode-slugify==0.1.3
+
+# Allows using inherited models in Django projects
+# https://github.com/mozilla/unicode-slugify
+django-polymorphic==0.6.1
+
+############ ################
+# Python image library
+# https://github.com/python-pillow/Pillow
+Pillow==2.7.0
+
+# avatar
+# https://github.com/jezdez/django-avata
+# django-avatar==2.0
+# django-awesome-avatar==1.1.3
+
+# For user registration, either via email or social
+# https://github.com/pennersr/django-allauth
+django-allauth==0.19.0
+
+# For the use of GeoLoc database (Python adapter)
+# https://github.com/psycopg/psycopg2
+psycopg2==2.6
+
+
+# For the use of the lightweight geojson
+# 
+
+
+# For the use of the lightweight geojson
+# 
+django-leaflet==0.15.2
+
+django-datetime-widget
+
+# app config
+django-appconf
+
+# dateutil rules for occurences
+python-dateutil==2.4.0
+
+# for money/currency
+
+# dealing with locale
+-e  git://github.com/siolag161/django-phonenumber-field.git@609180a21f134431d43eb1ea10ace64c16cfc344#egg=django-phonenumber-field
+
+# dealing with phone validators
+
+
+#
+django-prices==0.3.4
+
+# satchless
+satchless==1.1.3
+
+# Google MAP/Place API wrapper
+python-google-places
+

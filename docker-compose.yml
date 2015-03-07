@@ -1,0 +1,21 @@
+planoutdata:
+  image: busybox
+  volumes:
+    - /var/lib/postgresql/data
+    - /data
+
+db:
+  image: tutum.co/planout/postgit-ini
+  volumes_from:
+    - planoutdata
+
+web:
+  build: .
+  command: nf -e envs/.env -j Profile 
+  ports:
+    - "8001:8000"
+
+  links:
+    - db:db
+  volumes:
+    - .:/opt/planout.vn

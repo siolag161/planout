@@ -1,0 +1,18 @@
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+  <img src="{{request.user.avatar_url}}" class="user-avatar" alt="User Image"/>
+  <span class="hidden-xs username">{{request.user.display_name}}</span>
+</a>
+
+<ul class="dropdown-menu">
+  <li class="header">
+    <span class="username">{{request.user.full_name}}</span>
+  </li>
+  <li>
+    <ul class="menu">
+      <li><a href="#">Dashboard</a></li>
+      <li><a href="{% url 'profiles:edit_profile_uuid' request.user.uuid %} ">Edit Profile</a></li>
+    </ul>
+  </li>
+  <li class="divider"></li>
+  <li><a href="{% url 'account_logout' %}">Log Out</a></li>
+</ul>
