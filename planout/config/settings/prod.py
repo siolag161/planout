@@ -177,7 +177,7 @@ if 'AWS_ACCESS_KEY_ID' in os.environ:
     from storages.backends.s3boto import S3BotoStorage
 
     class S3PipelineCachedStorage(PipelineMixin, CachedFilesMixin, S3BotoStorage):
-        pass
+        pass5432
 
     StaticRootS3BotoStorage = lambda: S3PipelineCachedStorage(bucket=AWS_STATIC_STORAGE_BUCKET_NAME)
     STATICFILES_STORAGE = 'config.settings.prod.StaticRootS3BotoStorage'
@@ -203,6 +203,10 @@ DATABASES = {
         'PORT': os.environ.get('DB_PORT_5432_TCP_PORT', ''),
     },
 }
+
+DATABASES['default'] = dj_database_url.config(
+    env="DB_ENV_URL",
+)
  
 ########## END DB CONFIGURATION
 

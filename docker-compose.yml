@@ -11,7 +11,7 @@ db:
 
 web:
   build:  /opt/planout/
-  command: nf start -e envs/.env -j Profile 
+  command: nf start -e .env -j Profile 
   ports:
     - "8001:8000"
 

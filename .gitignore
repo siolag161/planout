@@ -2,7 +2,6 @@
 ####################
 *.env*
 .foreman
-envs*
 
 assets
 tmp
