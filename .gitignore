@@ -13,8 +13,6 @@ _SpecRunner.html
 
 # generated asset #
 ####################
-*lib*.css
-*css/build/*.css
 
 
 
@@ -22,7 +20,7 @@ _SpecRunner.html
 #####################
 staticfiles
 public
-build
+#build
 compressed
 *.py[co]
 *.egg*
