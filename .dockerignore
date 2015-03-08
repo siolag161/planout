@@ -4,10 +4,10 @@
 
 .gitignore
 
-assets
+#assets
 tmp
-*media*
-*static*
+#*media*
+#*static*
 
 ####################
 _SpecRunner.html

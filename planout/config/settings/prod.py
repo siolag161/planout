@@ -111,6 +111,17 @@ LOGGING['loggers'].update(LOGGERS)
 ########## END SECURITY CONFIGURATION
 
 
+########## LOCAL STATIC / MEDIA
+
+DEFAULT_STATIC_ROOT = normpath(join(PROJECT_ROOT, 'public'))
+DEFAULT_MEDIA_ROOT = normpath(join(PROJECT_ROOT, 'media'))
+
+STATIC_ROOT = os.getenv('STATIC_ROOT_URL', DEFAULT_STATIC_ROOT)
+MEDIA_ROOT = os.getenv('MEDIA_ROOT_URL', DEFAULT_MEDIA_ROOT)
+
+########## END LOCAL STATIC
+
+
 ########## CACHE/QUEUE CONFIGURATION
 # https://docs.djangoproject.com/en/dev/ref/settings/#caches
 RQ_QUEUES = {}

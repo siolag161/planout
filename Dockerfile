@@ -18,4 +18,4 @@ WORKDIR /opt/planout.vn
 
 EXPOSE 80
 
-CMD ["true"]
+CMD ["foreman start"]

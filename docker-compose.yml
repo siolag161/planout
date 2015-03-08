@@ -21,4 +21,5 @@ web:
     - db:db
     - redis:redis
   volumes:
-    - /opt/planout.vn:/code
+    - /var/www/planout/media:/var/www/planout/media
+    - /var/www/planout/public:/var/www/planout/public
