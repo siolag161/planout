@@ -8,7 +8,7 @@ redis:
   image: dockerfile/redis
 
 db:
-  image: planout/postgis
+  image: planout/postgis_init
   volumes_from:
     - planoutdata
 
