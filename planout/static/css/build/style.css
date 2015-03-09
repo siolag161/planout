@@ -16,53 +16,53 @@
 /* .gray-line {
    @include gray-line($white)
    } */
-/* line 64, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 64, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .white {
   color: #FFFFFF; }
 
-/* line 68, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 68, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .aqua {
   color: #2ba6cb; }
 
-/* line 72, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 72, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .pink {
   color: #f85b8f; }
 
-/* line 76, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 76, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .google-pink {
   color: #DD4B39; }
 
-/* line 80, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 80, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .black {
   color: #171717; }
 
-/* line 84, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 84, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .bold-txt, .app-name {
   font-weight: bold; }
 
-/* line 88, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 88, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .center-txt {
   text-align: center; }
 
-/* line 92, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 92, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .app-name {
   font-size: 1.6em;
   vertical-align: middle;
   font-family: Pacifico, serif; }
 
-/* line 99, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 99, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .no-border {
   border: none !important;
   border-radius: 0; }
 
-/* line 104, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 104, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .center-block {
   text-align: center;
   line-height: 2em;
   max-width: 95%; }
 
 /***********************************************************/
-/* line 117, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 118, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .clearfix:after {
   content: " ";
   /* Older browser do not support empty content */
@@ -71,15 +71,15 @@
   height: 0;
   clear: both; }
 
-/* line 126, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 127, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 html, body {
   min-height: 100%; }
 
-/* line 130, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 131, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .layout-boxed html, .layout-boxed body {
   height: 100%; }
 
-/* line 133, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 134, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -89,16 +89,16 @@ body {
   overflow-y: auto; }
 
 /* Layout */
-/* line 142, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 143, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .wrapper {
   min-height: 100%;
   position: static;
   overflow: hidden; }
-  /* line 146, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 147, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .wrapper:before, .wrapper.sep:after, .wrapper.registration-modal-sep:after, .wrapper:after {
     content: " ";
     display: table; }
-  /* line 151, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 152, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .wrapper:after {
     clear: both; }
 
@@ -106,7 +106,7 @@ body {
  * Content Wrapper - contins main content
  * ```.right-side has been deprecated as of v2.0.0 in favor of .content-wrapper  ```
  */
-/* line 162, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 163, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .content-wrapper, .right-side, .main-footer {
   -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
   transition: transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
@@ -115,37 +115,37 @@ body {
   margin-left: 230px;
   z-index: 820; }
 
-/* line 176, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 177, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .layout-top-nav .content-wrapper, .layout-top-nav .right-side, .layout-top-nav .main-footer {
   margin-left: 0; }
 
 @media (max-width: 768px) {
-  /* line 182, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 183, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .content-wrapper, .right-side, .main-footer {
     margin-left: 0; }
  }
 
 @media (min-width: 768px) {
-  /* line 189, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 190, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .sidebar-collapse .content-wrapper, .sidebar-collapse .right-side, .sidebar-collapse .main-footer {
     margin-left: 0; }
  }
 
 @media (max-width: 768px) {
-  /* line 196, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 197, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .sidebar-open .content-wrapper, .sidebar-open .right-side, .sidebar-open .main-footer {
     -webkit-transform: translate(230px, 0);
     -ms-transform: translate(230px, 0);
     transform: translate(230px, 0); }
  }
 
-/* line 204, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 205, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .content-wrapper, .right-side {
   min-height: 100%;
   background-color: #ecf0f5;
   z-index: 800; }
 
-/* line 209, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 210, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .main-footer {
   background: #fff;
   padding: 15px;
@@ -153,32 +153,32 @@ body {
   border-top: 1px solid #eee; }
 
 /* Fixed layout */
-/* line 220, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 221, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .fixed .main-header, .fixed .main-sidebar, .fixed .left-side {
   position: fixed; }
 
-/* line 223, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 224, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .fixed .main-header {
   top: 0;
   right: 0;
   left: 0; }
 
-/* line 229, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 230, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .fixed .content-wrapper, .fixed .right-side {
   padding-top: 50px; }
 
 @media (max-width: 768px) {
-  /* line 234, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 235, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .fixed .content-wrapper, .fixed .right-side {
     padding-top: 100px; }
  }
 
-/* line 238, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 239, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .fixed.layout-boxed .wrapper {
   max-width: 100%; }
 
 /* Content */
-/* line 244, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 245, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .content {
   min-height: 250px;
   padding: 15px;
@@ -188,28 +188,28 @@ body {
   padding-right: 15px; }
 
 /* H1 - H6 font */
-/* line 264, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 265, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: 'Source Sans Pro', sans-serif; }
 
 /* General Links */
-/* line 268, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 269, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 a {
   color: #3c8dbc; }
 
-/* line 273, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 274, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 a:hover, a:active, a:focus {
   outline: none;
   text-decoration: none;
   color: #72afd2; }
 
 /* Page Header */
-/* line 279, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 280, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .page-header {
   margin: 10px 0 20px 0;
   font-size: 22px; }
 
-/* line 283, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 284, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .page-header > small {
   color: #666;
   display: block;
@@ -217,15 +217,15 @@ a:hover, a:active, a:focus {
 
 /* Don't display when printing */
 @media print {
-  /* line 290, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 291, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .no-print {
     display: none; }
 
-  /* line 296, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 297, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .main-sidebar, .left-side, .main-header, .content-header {
     display: none; }
 
-  /* line 300, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 301, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .content-wrapper, .right-side {
     margin: 0 !important; }
  }
@@ -234,12 +234,12 @@ a:hover, a:active, a:focus {
  * Component: Main Header
  * ----------------------
  */
-/* line 308, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 309, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .main-header {
   position: relative;
   max-height: 100px;
   z-index: 1030; }
-  /* line 313, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 314, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .main-header .logo {
     display: block;
     float: left;
@@ -250,7 +250,7 @@ a:hover, a:active, a:focus {
     width: 230px;
     padding: 0 15px; }
 
-/* line 325, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 326, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .main-header > .navbar {
   margin-bottom: 0;
   margin-left: 230px;
@@ -258,61 +258,61 @@ a:hover, a:active, a:focus {
   min-height: 50px;
   border-radius: 0; }
 
-/* line 333, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 334, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .layout-top-nav .main-header > .navbar {
   margin-left: 0 !important; }
 
-/* line 338, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 339, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .main-header .navbar-profile-menu, .main-header .navbar-right {
   margin-right: 5px;
   float: right; }
 
 @media (max-width: 991px) {
-  /* line 344, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 345, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .main-header .navbar-profile-menu a, .main-header .navbar-right a {
     color: inherit;
     background: transparent; }
  }
 
 @media (max-width: 767px) {
-  /* line 351, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 352, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .main-header .navbar-right {
     float: none; }
 
-  /* line 354, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 355, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .navbar-collapse .main-header .navbar-right {
     margin: 7.5px -15px; }
 
-  /* line 357, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 358, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .main-header .navbar-right > li {
     color: inherit;
     border: 0; }
  }
 
 /** sidebar **/
-/* line 365, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 366, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .main-header .sidebar-toggle {
   float: left;
   background-color: transparent;
   background-image: none;
   padding: 15px 15px;
   font-family: fontAwesome; }
-  /* line 372, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 373, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .main-header .sidebar-toggle:before, .main-header .sidebar-toggle.sep:after, .main-header .sidebar-toggle.registration-modal-sep:after {
     content: "\f0c9"; }
-  /* line 375, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 376, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .main-header .sidebar-toggle:hover {
     color: #fff; }
-  /* line 379, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 380, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .main-header .sidebar-toggle .icon-bar {
     display: none; }
 
 /** **/
-/* line 388, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 389, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .main-header .navbar .nav > li.user > a > .fa, .main-header .navbar .nav > li.user > a > .glyphicon, .main-header .navbar .nav > li.user > a > .ion {
   margin-right: 5px; }
 
-/* line 391, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 392, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .main-header .navbar .nav > li > a > .label {
   position: absolute;
   top: 9px;
@@ -323,24 +323,24 @@ a:hover, a:active, a:focus {
   line-height: 0.9; }
 
 /*** **/
-/* line 403, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 404, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .content-header {
   position: relative;
   padding: 15px 15px 0 15px; }
 
-/* line 407, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 408, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .content-header > h1 {
   margin: 0;
   font-size: 24px; }
 
-/* line 411, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 412, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .content-header > h1 > small {
   font-size: 15px;
   display: inline-block;
   padding-left: 4px;
   font-weight: 300; }
 
-/* line 417, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 418, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .content-header > .breadcrumb {
   float: right;
   background: transparent;
@@ -353,22 +353,22 @@ a:hover, a:active, a:focus {
   right: 10px;
   border-radius: 2px; }
 
-/* line 429, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 430, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .content-header > .breadcrumb > li > a {
   color: #444;
   text-decoration: none;
   display: inline-block; }
 
-/* line 436, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 437, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .content-header > .breadcrumb > li > a > .fa, .content-header > .breadcrumb > li > a > .glyphicon, .content-header > .breadcrumb > li > a > .ion {
   margin-right: 5px; }
 
-/* line 439, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 440, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .content-header > .breadcrumb > li + li:before, .content-header > .breadcrumb > li + li.sep:after, .content-header > .breadcrumb > li + li.registration-modal-sep:after {
   content: '>\00a0'; }
 
 @media (max-width: 991px) {
-  /* line 443, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 444, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .content-header > .breadcrumb {
     position: relative;
     margin-top: 5px;
@@ -378,12 +378,12 @@ a:hover, a:active, a:focus {
     background: #d2d6de;
     padding-left: 10px; }
 
-  /* line 452, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 453, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .content-header > .breadcrumb li:before, .content-header > .breadcrumb li.sep:after, .content-header > .breadcrumb li.registration-modal-sep:after {
     color: #97a0b3; }
  }
 
-/* line 456, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 457, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-toggle {
   color: #fff;
   border: 0;
@@ -391,16 +391,16 @@ a:hover, a:active, a:focus {
   padding: 15px 15px; }
 
 @media (max-width: 991px) {
-  /* line 463, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 464, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .navbar-profile-menu .navbar-nav > li {
     float: left; }
 
-  /* line 466, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 467, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .navbar-profile-menu .navbar-nav {
     margin: 0;
     float: left; }
 
-  /* line 470, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 471, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .navbar-profile-menu .navbar-nav > li > a {
     padding-top: 15px;
     padding-bottom: 15px;
@@ -408,25 +408,25 @@ a:hover, a:active, a:focus {
  }
 
 @media (max-width: 767px) {
-  /* line 477, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 478, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .main-header {
     position: relative; }
 
-  /* line 481, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 482, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .main-header .logo, .main-header .navbar {
     width: 100%;
     float: none;
     position: relative !important; }
 
-  /* line 486, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 487, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .main-header .navbar {
     margin: 0; }
 
-  /* line 489, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 490, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .main-header .navbar-profile-menu {
     float: right; }
 
-  /* line 493, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 494, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .main-sidebar, .left-side {
     padding-top: 100px !important; }
  }
@@ -435,7 +435,7 @@ a:hover, a:active, a:focus {
  * Component: Sidebar
  * ------------------
  */
-/* line 502, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 503, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .main-sidebar, .left-side {
   position: absolute;
   top: 0;
@@ -448,7 +448,7 @@ a:hover, a:active, a:focus {
   transition: transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15); }
 
 @media (max-width: 767px) {
-  /* line 517, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 518, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .main-sidebar, .left-side {
     -webkit-transform: translate(-230px, 0);
     -ms-transform: translate(-230px, 0);
@@ -456,7 +456,7 @@ a:hover, a:active, a:focus {
  }
 
 @media (min-width: 768px) {
-  /* line 526, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 527, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .sidebar-collapse .main-sidebar, .sidebar-collapse .left-side {
     -webkit-transform: translate(-230px, 0);
     -ms-transform: translate(-230px, 0);
@@ -464,57 +464,57 @@ a:hover, a:active, a:focus {
  }
 
 @media (max-width: 768px) {
-  /* line 535, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 536, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .sidebar-open .main-sidebar, .sidebar-open .left-side {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
     transform: translate(0, 0); }
  }
 
-/* line 542, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 543, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .sidebar {
   padding-bottom: 10px; }
 
-/* line 545, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 546, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .fixed .sidebar {
   overflow: auto;
   height: 100%; }
 
-/* line 549, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 550, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .sidebar-form input:focus {
   border-color: transparent !important; }
 
 /** userpanel **/
-/* line 554, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 555, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .user-panel {
   padding: 10px; }
 
-/* line 558, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 559, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .user-panel:before, .user-panel.sep:after, .user-panel.registration-modal-sep:after, .user-panel:after {
   content: " ";
   display: table; }
 
-/* line 562, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 563, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .user-panel:after {
   clear: both; }
 
-/* line 565, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 566, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .user-panel > .image > img {
   width: 45px;
   height: 45px; }
 
-/* line 569, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 570, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .user-panel > .info {
   font-weight: 600;
   padding: 5px 5px 5px 15px;
   font-size: 14px;
   line-height: 1; }
 
-/* line 575, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 576, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .user-panel > .info > p {
   margin-bottom: 9px; }
 
-/* line 578, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 579, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .user-panel > .info > a {
   text-decoration: none;
   padding-right: 5px;
@@ -522,43 +522,43 @@ a:hover, a:active, a:focus {
   font-size: 11px;
   font-weight: normal; }
 
-/* line 587, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 588, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .user-panel > .info > a > .fa, .user-panel > .info > a > .ion, .user-panel > .info > a > .glyphicon {
   margin-right: 3px; }
 
 /** userpanel ends **/
-/* line 595, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 596, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .sidebar-menu {
   list-style: none;
   margin: 0;
   padding: 0; }
 
-/* line 600, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 601, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .sidebar-menu > li {
   position: relative;
   margin: 0;
   padding: 0; }
 
-/* line 605, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 606, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .sidebar-menu > li > a {
   padding: 12px 5px 12px 15px;
   display: block; }
 
-/* line 611, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 612, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .sidebar-menu > li > a > .fa, .sidebar-menu > li > a > .glyphicon, .sidebar-menu > li > a > .ion {
   width: 20px; }
 
-/* line 615, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 616, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .sidebar-menu > li .label, .sidebar-menu > li .badge {
   margin-top: 3px;
   margin-right: 5px; }
 
-/* line 619, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 620, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .sidebar-menu li.header {
   padding: 10px 25px 10px 15px;
   font-size: 12px; }
 
-/* line 623, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 624, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .sidebar-menu li > a > .fa-angle-left {
   width: auto;
   height: auto;
@@ -566,17 +566,17 @@ a:hover, a:active, a:focus {
   margin-right: 10px;
   margin-top: 3px; }
 
-/* line 630, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 631, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .sidebar-menu li.active > a > .fa-angle-left {
   -webkit-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg); }
 
-/* line 636, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 637, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .sidebar-menu li.active > .treeview-menu {
   display: block; }
 
-/* line 639, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 640, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .sidebar-menu .treeview-menu {
   display: none;
   list-style: none;
@@ -584,25 +584,25 @@ a:hover, a:active, a:focus {
   margin: 0;
   padding-left: 5px; }
 
-/* line 646, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 647, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .sidebar-menu .treeview-menu .treeview-menu {
   padding-left: 20px; }
 
-/* line 649, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 650, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .sidebar-menu .treeview-menu > li {
   margin: 0; }
 
-/* line 652, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 653, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .sidebar-menu .treeview-menu > li > a {
   padding: 5px 5px 5px 15px;
   display: block;
   font-size: 14px; }
 
-/* line 659, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 660, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .sidebar-menu .treeview-menu > li > a > .fa, .sidebar-menu .treeview-menu > li > a > .glyphicon, .sidebar-menu .treeview-menu > li > a > .ion {
   width: 20px; }
 
-/* line 663, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 664, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .sidebar-menu .treeview-menu > li > a > .fa-angle-left, .sidebar-menu .treeview-menu > li > a > .fa-angle-down {
   width: auto; }
 
@@ -611,25 +611,25 @@ a:hover, a:active, a:focus {
  * -------------------------
  */
 /*Dropdowns in general*/
-/* line 671, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 672, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .dropdown-menu {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   border-color: #eee; }
 
-/* line 675, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 676, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .dropdown-menu > li > a {
   color: #777; }
 
-/* line 680, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 681, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .dropdown-menu > li > a > .glyphicon, .dropdown-menu > li > a > .fa, .dropdown-menu > li > a > .ion {
   margin-right: 10px; }
 
-/* line 683, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 684, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .dropdown-menu > li > a:hover {
   background-color: #e1e3e9;
   color: #333; }
 
-/* line 687, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 688, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .dropdown-menu > .divider {
   background-color: #eee; }
 
@@ -637,10 +637,10 @@ a:hover, a:active, a:focus {
     Navbar custom dropdown menu
 ------------------------------------
 */
-/* line 696, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 697, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-nav > .notifications-menu, .navbar-nav > .messages-menu, .navbar-nav > .profile-menu {
   position: relative; }
-  /* line 699, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 700, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .navbar-nav > .notifications-menu > .dropdown-menu > li.header, .navbar-nav > .messages-menu > .dropdown-menu > li.header, .navbar-nav > .profile-menu > .dropdown-menu > li.header {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
@@ -653,24 +653,24 @@ a:hover, a:active, a:focus {
     color: #444444;
     font-size: 14px;
     text-align: center; }
-  /* line 712, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 713, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .navbar-nav > .notifications-menu > .dropdown-menu > li > a, .navbar-nav > .messages-menu > .dropdown-menu > li > a, .navbar-nav > .profile-menu > .dropdown-menu > li > a {
     color: #444444;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap; }
-    /* line 717, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+    /* line 718, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
     .navbar-nav > .notifications-menu > .dropdown-menu > li > a:hover, .navbar-nav > .messages-menu > .dropdown-menu > li > a:hover, .navbar-nav > .profile-menu > .dropdown-menu > li > a:hover {
       background: #f4f4f4;
       text-decoration: none; }
-  /* line 723, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 724, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .navbar-nav > .notifications-menu > .dropdown-menu > li .menu, .navbar-nav > .messages-menu > .dropdown-menu > li .menu, .navbar-nav > .profile-menu > .dropdown-menu > li .menu {
     padding: 0;
     max-height: 200px;
     margin: 0;
     list-style: none;
     overflow-x: hidden; }
-    /* line 730, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+    /* line 731, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
     .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a, .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a, .navbar-nav > .profile-menu > .dropdown-menu > li .menu > li > a {
       display: block;
       white-space: nowrap;
@@ -679,24 +679,24 @@ a:hover, a:active, a:focus {
       text-overflow: ellipsis;
       white-space: nowrap;
       padding: 10px 20px; }
-      /* line 738, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+      /* line 739, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
       .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a:hover, .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a:hover, .navbar-nav > .profile-menu > .dropdown-menu > li .menu > li > a:hover {
         background: #f4f4f4;
         text-decoration: none; }
 
 /** **/
-/* line 752, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 753, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-nav > .notifications-menu > .dropdown-menu, .navbar-nav > .messages-menu > .dropdown-menu {
   width: 280px;
   padding: 0 0 0 0 !important;
   margin: 0 !important;
   top: 100%; }
 
-/* line 759, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 760, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-nav > .notifications-menu > .dropdown-menu > li, .navbar-nav > .messages-menu > .dropdown-menu > li {
   position: relative; }
 
-/* line 763, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 764, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-nav > .notifications-menu > .dropdown-menu > li.header, .navbar-nav > .messages-menu > .dropdown-menu > li.header {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
@@ -708,7 +708,7 @@ a:hover, a:active, a:focus {
   color: #444444;
   font-size: 14px; }
 
-/* line 775, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 776, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-nav > .notifications-menu > .dropdown-menu > li.footer > a, .navbar-nav > .messages-menu > .dropdown-menu > li.footer > a {
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
@@ -722,18 +722,18 @@ a:hover, a:active, a:focus {
   text-align: center; }
 
 @media (max-width: 991px) {
-  /* line 789, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 790, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .navbar-nav > .notifications-menu > .dropdown-menu > li.footer > a, .navbar-nav > .messages-menu > .dropdown-menu > li.footer > a {
     background: #fff !important;
     color: #444 !important; }
  }
 
-/* line 795, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 796, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-nav > .notifications-menu > .dropdown-menu > li.footer > a:hover, .navbar-nav > .messages-menu > .dropdown-menu > li.footer > a:hover {
   text-decoration: none;
   font-weight: normal; }
 
-/* line 800, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 801, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu, .navbar-nav > .messages-menu > .dropdown-menu > li .menu {
   max-height: 200px;
   margin: 0;
@@ -741,19 +741,19 @@ a:hover, a:active, a:focus {
   list-style: none;
   overflow-x: hidden; }
 
-/* line 808, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 809, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a, .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a {
   display: block;
   white-space: nowrap;
   /* Prevent text from breaking */
   border-bottom: 1px solid #f4f4f4; }
 
-/* line 815, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 816, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a:hover, .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a:hover {
   background: #f4f4f4;
   text-decoration: none; }
 
-/* line 819, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 820, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a {
   color: #444444;
   overflow: hidden;
@@ -761,22 +761,22 @@ a:hover, a:active, a:focus {
   white-space: nowrap;
   padding: 10px; }
 
-/* line 828, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 829, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .glyphicon, .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .fa, .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .ion {
   width: 20px; }
 
-/* line 831, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 832, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a {
   margin: 0px;
   padding: 10px 10px; }
 
-/* line 835, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 836, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > div > img {
   margin: auto 10px auto auto;
   width: 40px;
   height: 40px; }
 
-/* line 840, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 841, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > h4 {
   padding: 0;
   margin: 0 0 0 45px;
@@ -784,7 +784,7 @@ a:hover, a:active, a:focus {
   font-size: 15px;
   position: relative; }
 
-/* line 847, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 848, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > h4 > small {
   color: #999999;
   font-size: 10px;
@@ -792,23 +792,23 @@ a:hover, a:active, a:focus {
   top: 0px;
   right: 0px; }
 
-/* line 854, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 855, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > p {
   margin: 0 0 0 45px;
   font-size: 12px;
   color: #888888; }
 
-/* line 860, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 861, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a:before, .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a.sep:after, .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a.registration-modal-sep:after, .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a:after {
   content: " ";
   display: table; }
 
-/* line 864, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 865, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a:after {
   clear: both; }
 
 /** user menu **/
-/* line 869, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 870, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-nav > .profile-menu > .dropdown-menu {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
@@ -818,7 +818,7 @@ a:hover, a:active, a:focus {
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px; }
 
-/* line 879, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 880, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-nav > .profile-menu .user-avatar {
   float: left;
   width: 25px;
@@ -828,7 +828,7 @@ a:hover, a:active, a:focus {
   margin-top: -2px; }
 
 @media (max-width: 767px) {
-  /* line 888, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 889, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .navbar-nav > .profile-menu .user-avatar {
     float: none;
     margin-right: 0;
@@ -838,7 +838,7 @@ a:hover, a:active, a:focus {
 
 /* Add fade animation to dropdown menus by appending
  the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)*/
-/* line 899, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 900, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .open:not(.dropup) > .animated-dropdown-menu {
   -webkit-backface-visibility: visible !important;
           backface-visibility: visible !important;
@@ -846,7 +846,7 @@ a:hover, a:active, a:focus {
   animation: flipInX 0.7s both; }
 
 @keyframes flipInX {
-  /* line 906, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 907, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   0% {
     -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
             transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
@@ -854,31 +854,31 @@ a:hover, a:active, a:focus {
             transition-timing-function: ease-in;
     opacity: 0; }
 
-  /* line 911, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 912, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   40% {
     -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
             transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
     -webkit-transition-timing-function: ease-in;
             transition-timing-function: ease-in; }
 
-  /* line 915, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 916, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   60% {
     -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
             transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
     opacity: 1; }
 
-  /* line 919, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 920, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   80% {
     -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
             transform: perspective(400px) rotate3d(1, 0, 0, -5deg); }
 
-  /* line 922, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 923, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   100% {
     -webkit-transform: perspective(400px);
             transform: perspective(400px); } }
 
 @-webkit-keyframes flipInX {
-  /* line 927, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 928, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   0% {
     -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
             transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
@@ -886,56 +886,56 @@ a:hover, a:active, a:focus {
             transition-timing-function: ease-in;
     opacity: 0; }
 
-  /* line 932, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 933, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   40% {
     -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
             transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
     -webkit-transition-timing-function: ease-in;
             transition-timing-function: ease-in; }
 
-  /* line 936, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 937, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   60% {
     -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
             transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
     opacity: 1; }
 
-  /* line 940, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 941, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   80% {
     -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
             transform: perspective(400px) rotate3d(1, 0, 0, -5deg); }
 
-  /* line 943, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 944, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   100% {
     -webkit-transform: perspective(400px);
             transform: perspective(400px); } }
 
 /* Fix dropdown menu in navbars */
-/* line 948, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 949, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-profile-menu > .navbar-nav > li {
   position: relative; }
-  /* line 951, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 952, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .navbar-profile-menu > .navbar-nav > li .btn.btn-create-event, .navbar-profile-menu > .navbar-nav > li .btn-create-event.btn-black {
     border: solid;
     line-height: 0px;
     height: 10px;
     margin-top: 10px; }
 
-/* line 958, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 959, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .navbar-profile-menu > .navbar-nav > li > .dropdown-menu {
   position: absolute;
   right: 0;
   left: auto; }
 
 @media (max-width: 991px) {
-  /* line 965, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 966, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .navbar-profile-menu > .navbar-nav {
     float: right; }
 
-  /* line 968, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 969, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .navbar-profile-menu > .navbar-nav > li {
     position: static; }
 
-  /* line 971, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 972, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .navbar-profile-menu > .navbar-nav > li > .dropdown-menu {
     position: absolute;
     right: 5%;
@@ -945,14 +945,14 @@ a:hover, a:active, a:focus {
  }
 
 /* customize */
-/* line 981, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 982, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .app-name {
   font-size: 1.6em;
   vertical-align: middle;
   font-family: Pacifico, serif; }
 
 /** styling the login-sign-up modal **/
-/* line 990, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 991, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .sep, .registration-modal-sep {
   color: #cacaca;
   width: 70%;
@@ -960,7 +960,7 @@ a:hover, a:active, a:focus {
   overflow: hidden;
   text-align: center;
   line-height: 1.2em; }
-  /* line 998, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 999, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .sep:before, .sep:after, .registration-modal-sep:after, .registration-modal-sep:before {
     content: "";
     vertical-align: top;
@@ -969,17 +969,17 @@ a:hover, a:active, a:focus {
     height: 0.65em;
     border-bottom: 1px solid #e3e3e3;
     margin: 0 2% 0 -55%; }
-  /* line 1008, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 1009, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .sep:after, .registration-modal-sep:after {
     margin: 0 -55% 0 2%; }
 
-/* line 1014, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1015, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .registration-modal {
   margin-top: 80px; }
   @media (min-width: 768px) {
     .registration-modal {
       width: 315px !important; } }
-  /* line 1021, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 1022, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .registration-modal > .modal-footer {
     padding: 10px;
     text-align: center; }
@@ -988,19 +988,19 @@ a:hover, a:active, a:focus {
       padding-left: 10px;
       padding-right: 10px; } }
 
-/* line 1035, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1036, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .registration-modal-body a.btn, .registration-modal-body a.btn-black {
   padding: 10px 10px; }
 
-/* line 1040, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1041, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .registration-modal-header {
   height: 40px;
   padding: 5px;
   position: relative; }
-  /* line 1044, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 1045, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .registration-modal-header h3 {
     margin: 0 auto; }
-  /* line 1047, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 1048, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .registration-modal-header a.close {
     background: transparent url('/static/img/fancy_close.png') no-repeat;
     position: absolute;
@@ -1014,7 +1014,7 @@ a:hover, a:active, a:focus {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px; }
 
-/* line 1061, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1062, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .registration-modal-sep {
   background: none;
   height: 15px;
@@ -1023,111 +1023,111 @@ a:hover, a:active, a:focus {
   padding: 0px;
   margin: 10px auto; }
 
-/* line 1072, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1073, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 a.btn.display-block, a.display-block.btn-black {
   line-height: 10px; }
-/* line 1076, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1077, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 a.signup-with-btn {
   margin: 0px;
   border: 10px; }
 
-/* line 1082, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1083, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .btn-block {
   margin-top: 8px; }
 
-/* line 1086, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1087, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .modal-body {
   padding-left: 0;
   padding-right: 0; }
 
-/* line 1091, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1092, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .display-block {
   display: block; }
 
-/* line 1094, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1095, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .registration-block {
   border: solid 1px #171717; }
-  /* line 1096, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 1097, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .registration-block span {
     display: block; }
 
-/* line 1100, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1101, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .icon-container {
   position: relative; }
-  /* line 1102, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 1103, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .icon-container .icon-item {
     background-color: #FFFFFF; }
 
-/* line 1106, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1107, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .text-container {
   text-align: center;
   font-style: normal; }
 
-/* line 1111, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1112, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .text-body, .text-body-mid {
   color: #7f8c8d; }
 
-/* line 1115, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1116, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .text-mid {
   font-size: 20px;
   font-weight: 400;
   line-height: 30px; }
 
-/* line 1121, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1122, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .text-body-mid {
   font-size: 15px;
   line-height: 20px;
   font-weight: 400; }
 
-/* line 1128, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1129, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .text-regular {
   font-style: normal; }
 
-/* line 1133, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1134, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .text-normal-line-height {
   line-height: normal; }
 
-/* line 1137, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1138, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .text-trunc {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   display: block; }
 
-/* line 1145, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1146, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .icon {
   position: absolute;
   font-size: 24px;
   top: -5px;
   left: 0px; }
 
-/* line 1152, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1153, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .btn-holder {
   border-radius: 4px; }
 
-/* line 1156, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1157, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .btn-facebook {
   border-color: #3B5998;
   border-bottom-color: #263a63;
   background-color: #3B5998;
   color: #fff; }
 
-/* line 1163, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1164, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .btn-google {
   border-color: #cccccc; }
 
-/* line 1167, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1168, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .text-has-icon-left {
   padding-left: 5px; }
 
 /** fixing the modal bug **/
-/* line 1173, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1174, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 body.modal-open, .modal-open .navbar-fixed-top, .modal-open .navbar-fixed-bottom {
   padding-right: 0px !important;
   overflow: auto; }
 
 /****** end modal bug ***/
-/* line 1178, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1179, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 input[type="radio"], input[type="checkbox"] {
   position: relative;
   /* -webkit-appearance: none; */
@@ -1137,7 +1137,7 @@ input[type="radio"], input[type="checkbox"] {
   margin-right: 5px;
   vertical-align: top; }
 
-/* line 1188, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1189, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 input[type="checkbox"] {
   /* &:before {
      content: "\2713";
@@ -1148,97 +1148,97 @@ input[type="checkbox"] {
      width: 1.25em;
      } */ }
 
-/* line 1200, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1201, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .login-wrapper .modal-header, .signup-wrapper .modal-header {
   border-bottom: none;
   margin-bottom: 10px; }
-  /* line 1203, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 1204, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .login-wrapper .modal-header p, .signup-wrapper .modal-header p {
     margin-top: 10px; }
-/* line 1208, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1209, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .login-wrapper .modal-body, .signup-wrapper .modal-body {
   padding-left: 15px;
   padding-right: 15px; }
-/* line 1214, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1215, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .login-wrapper form, .signup-wrapper form {
   /* padding: 10px; */
   margin-left: 20px;
   margin-right: 20px; }
-/* line 1219, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1220, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .login-wrapper input#submit-id-submit, .signup-wrapper input#submit-id-submit {
   margin: 0; }
-/* line 1223, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1224, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .login-wrapper .center-block, .signup-wrapper .center-block {
   max-width: 100%; }
-/* line 1227, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1228, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .login-wrapper #submit-id-submit, .signup-wrapper #submit-id-submit {
   border-color: transparent; }
 
-/* line 1232, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1233, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .remember-forgot-wrapper {
   position: relative; }
-  /* line 1234, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 1235, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .remember-forgot-wrapper .form-group {
     float: left; }
-  /* line 1237, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 1238, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .remember-forgot-wrapper a {
     position: absolute;
     display: block;
     right: 0; }
-  /* line 1242, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 1243, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .remember-forgot-wrapper .checkbox {
     padding-top: 0px; }
 
-/* line 1247, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1248, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .full-width {
   width: 100% !important;
   padding-left: 0px;
   padding-right: 0px; }
 
 /***************************************************/
-/* line 1255, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1256, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .btn-black {
   background: #171717;
   color: #FFFFFF; }
-  /* line 1257, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 1258, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .btn-black:hover {
     background: #242424;
     color: #e6e6e6; }
-  /* line 1261, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 1262, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .btn-black:active {
     box-shadow: inset 0 3px 5px rgba(255, 255, 255, 0.2); }
 
 /***************************************************/
-/* line 1266, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1267, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .profile-edit-form-wrapper {
   padding: 2em 1em; }
-  /* line 1270, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 1271, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .profile-edit-form-wrapper #div_id_birthdate .selectdatewidget {
     width: 30%;
     display: inline-block;
     margin-left: 0%;
     margin-right: 5%; }
-    /* line 1275, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+    /* line 1276, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
     .profile-edit-form-wrapper #div_id_birthdate .selectdatewidget:last-child {
       margin-right: 0; }
-  /* line 1283, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 1284, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .profile-edit-form-wrapper #div_id_phone_number .form-control {
     display: inline-block; }
-  /* line 1286, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 1287, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .profile-edit-form-wrapper #div_id_phone_number .phone_prefix {
     width: 35%;
     margin-right: 3%; }
-  /* line 1291, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 1292, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .profile-edit-form-wrapper #div_id_phone_number .phone_number {
     width: 62%; }
-  /* line 1296, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 1297, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .profile-edit-form-wrapper .submit_group {
     float: right; }
     @media (min-width: 1200px) {
       .profile-edit-form-wrapper .submit_group {
         margin-right: 16.67%; } }
 
-/* line 1305, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1306, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .btn-upload-file {
   position: relative;
   overflow: hidden;
@@ -1253,7 +1253,7 @@ input[type="checkbox"] {
   line-height: 50px;
   float: left;
   margin: 5px 10px; }
-  /* line 1320, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+  /* line 1321, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
   .btn-upload-file input[type=file] {
     position: absolute;
     top: 0;
@@ -1270,7 +1270,7 @@ input[type="checkbox"] {
     display: block; }
 
 /*** datetime widget **/
-/* line 1338, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
+/* line 1339, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .datetimewidget {
   border-right: none; }
 
@@ -1285,4 +1285,23 @@ input[type="checkbox"] {
    #div_id_end_time {
    float: right;
    } */
+/* line 1356, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
+.hidden {
+  /* display: none !important; */ }
+
+/* line 1359, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
+.map_canvas {
+  /* width: 100x; */
+  /* width: 300px;
+     height: 300px; */
+  /* padding: 10px 20px 10px 0; */
+  width: 100%;
+  height: 300px;
+  /* padding: 10px */
+  margin: 10px 20px 10px 0;
+  /* float: right; */ }
+
+/* line 1371, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
+.row.fluid {
+  margin: 0; }
 /*# sourceMappingURL=style.css.map */

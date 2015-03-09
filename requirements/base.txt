@@ -142,3 +142,7 @@ satchless==1.1.3
 # Google MAP/Place API wrapper
 python-google-places
 
+
+# Allows Django to use database URLs for Heroku
+# https://github.com/kennethreitz/dj-database-url
+dj-database-url==0.3.0

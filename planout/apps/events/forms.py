@@ -32,13 +32,23 @@ class EventCreateForm(forms.Form):
     location = forms.CharField(required=True)
 
     location_place_name = forms.Field(required=False)
-    location_address_1 = forms.Field(required=False)
-    location_address_2 = forms.Field(required=False)
-    location_city = forms.Field(required=False)
+    location_address = forms.CharField(required=False)
+    location_district = forms.CharField(required=False)
+    
+    location_city = forms.CharField(required=False)
+    
     location_state = forms.Field(required=False)
     location_province = forms.Field(required=False)
+    
     location_country = forms.CharField(required=False)
     
+    location_longitude = forms.Field(required=False)
+    location_latitude = forms.Field(required=False)
+    location_place_id = forms.Field(required=False)
+    location_url = forms.Field(required=False)
+    location_website = forms.CharField(required=False)
+    location_formatted_address = forms.Field(required=False)
+
     logo = forms.ImageField(required=False, )    
 
     description = forms.CharField(required=False, widget=forms.Textarea())
@@ -64,28 +74,47 @@ class EventCreateForm(forms.Form):
     def _form_helper(self):
 	helper = FormHelper()
 	helper.form_show_labels = True
-	helper.form_class = 'form-horizontal'
-	helper.label_class = 'col-lg-3'
-	helper.field_class = 'col-lg-8'
-
+	# helper.form_class = 'form-horizontal'
+	# helper.label_class = 'col-lg-3'
+	# helper.field_class = 'col-lg-8'
+	
         helper.layout = Layout(
-
 	    Field('name', css_class=''),
 	    Field('start_time', css_class=''),
 	    Field('end_time', css_class=''),
-	    Div( 
-		Field('location', css_class=''),
-		Field('location_place_name', type='hidden', data_geo='street_number', css_class=""),
-		Field('location_address_1' , type='hidden', css_class=""),
-		Field('location_address_2', type='hidden', css_class=""),
-		Field('location_city', type='hidden', css_class=""),
-		Field('location_state', type='hidden', css_class=""),
-		Field('location_province' , type='hidden', css_class=""),
-		Field('location_country' , type='hidden', css_class=""),
-		
-		css_id = 'superlocation',
+	    Field('location', css_class='superlocation'),
+	    Div(
+		Div(
+		    Div( Field('location_place_name',  data_geo='name'), css_class="toggle-field hidden"),
+		    Div( Field('location_address' , data_geo='street_number'), css_class="toggle-field hidden"),	
+		    Div( Field('location_district', data_geo='sublocality'), css_class="toggle-field hidden"),	
+		    Div( Field('location_city',  data_geo='locality'), css_class="toggle-field hidden"),
+		    # Div( Field('location_province' , data_geo='administrative_area_level_2'),
+		    # 	 css_class="toggle-field hidden"),
+		    
+		    css_class = 'superlocation col-xs-6',	    
+		),
+		Div(
+		    Div(
+			css_class = 'map_canvas',    			
+		    ),
+		    css_id = "google_map_canvas_wrapper",
+		    css_class = 'col-xs-6 toggle-field hidden',    
+
+		),
+		css_class = 'row fluid',	    		
 	    ),
-	    Field('description', rows="3", css_class='input-xlarge'),
+	    Div(		
+	    Field('location_country',  data_geo='country', type="hidden"),		
+		Field('location_place_id', data_geo='place_id', type="hidden"),
+		Field('location_url',  data_geo='url', type="hidden"), 
+		Field('location_website', data_geo='website', type="hidden"),
+		Field('location_formatted_address', data_geo='formatted_address', type="hidden"),
+		Field('location_latitude',  data_geo='lat', type="hidden", css_class="toggle-field hidden"),
+		Field('location_longitude', data_geo='lng', type="hidden", css_class="toggle-field hidden"),
+		Field('description', rows="3", css_class='input-xlarge'),
+		css_class = 'superlocation',	    
+	    ),	
 
 	    Field('logo', css_class=''),
 	    # # Field('url', css_class=''),

@@ -7,6 +7,12 @@ EventPush = ($element) ->
   @$locationPreview = $('#location-map-preview')
   @$formSubmit = $('#event-form-submit')
   @$locationInput = $('#id_location')
+
+  @$event_form = @$container.find('form')
+  @$event_toggle_elems = @$event_form.find(".toggle-field")
+
+  @$map = undefined
+    
   @init()
   return
 
@@ -16,23 +22,23 @@ EventPush.prototype =
     @addListener()
     return
   addListener: ->
-    # @$locationInput.on 'change', $.proxy(@locationChange, this)
     @$locationInput.geocomplete(
-      details: '#superlocation'
+      map: ".map_canvas"
+      details: '.superlocation'
       detailsAttribute: "data-geo"
+      types: ["geocode", "establishment"]
+      componentRestrictions: country: 'vn'
     ).on 'geocode:result',
       $.proxy(@locationChange, this)
-
-    # ).bind('geocode:error', (event, status) ->
-    #   console.log 'ERROR: ' + status
-    #   return
-    # ).bind 'geocode:multiple', (event, results) ->
-    #   console.log 'Multiple: ' + results.length + ' results found'
-    #   return
     return
   submit: ->
     return
   locationChange: (event, result)->
+    @$event_toggle_elems.removeClass('hidden')
+
+    if not @$map
+      @$map = @$locationInput.geocomplete("map")
+    google.maps.event.trigger @$map, 'resize'
     return
   ensureTime: ->
     return
