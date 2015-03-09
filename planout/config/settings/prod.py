@@ -6,12 +6,14 @@ from .base import *
 
 import os
 DEBUG = os.environ.get('WEB_ENV_DEBUG', False)
-
+DEBUG = False
 
 
 ########## HOST CONFIGURATION
 # https://docs.djangoproject.com/en/1.5/releases/1.5/#allowed-hosts-required-in-production
 # ALLOWED_HOSTS = [PROJECT_DOMAIN, '*', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
+
 ########## END HOST CONFIGURATION
 
 
@@ -48,10 +50,7 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
 ########## DATABASE CONFIGURATION
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config(
-    env="PLANOUT_POSTGRESQL_URL",
-)
+
 ########## END DATABASE CONFIGURATION
 
 
@@ -217,10 +216,9 @@ DATABASES = {
         'PORT': os.environ.get('DB_PORT_5432_TCP_PORT', ''),
     },
 }
-
-DATABASES['default'] = dj_database_url.config(
-    env="DB_ENV_URL",
-)
  
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config()
+
 ########## END DB CONFIGURATION
 

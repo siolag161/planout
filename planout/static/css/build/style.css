@@ -1002,7 +1002,7 @@ a:hover, a:active, a:focus {
     margin: 0 auto; }
   /* line 1047, /home/pdt/jolly/project/new_planout/planout/static/css/scss/style.scss */
   .registration-modal-header a.close {
-    background: transparent url('/static/img/fancybox.png') -40px 0px no-repeat;
+    background: transparent url('/static/img/fancy_close.png') no-repeat;
     position: absolute;
     top: -15px;
     right: -15px;
