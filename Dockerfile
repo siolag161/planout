@@ -12,6 +12,7 @@ RUN pip install -r /opt/planout.vn/requirements/prod.txt # install prod requirem
 
 RUN gem install foreman
 RUN npm install uglify-js -g
+RUN npm install yuglify -g
 
 ADD . /opt/planout.vn
 RUN chown -R planout:planout /opt/planout.vn
