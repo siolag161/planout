@@ -8,7 +8,7 @@ RUN cd && cp -R /root/.bashrc  /root/.gitconfig /root/.scripts /root/.profile /h
 RUN mkdir -p /opt/planout.vn
 
 ADD ./requirements/ /opt/planout.vn/requirements/
-RUN pip install -r /opt/planout.vn/requirements/stage.txt # install prod requirements
+RUN pip install -r /opt/planout.vn/requirements/prod.txt # install prod requirements
 RUN gem install foreman
 
 ADD . /opt/planout.vn
