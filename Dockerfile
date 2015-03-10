@@ -9,7 +9,9 @@ RUN mkdir -p /opt/planout.vn
 
 ADD ./requirements/ /opt/planout.vn/requirements/
 RUN pip install -r /opt/planout.vn/requirements/prod.txt # install prod requirements
+
 RUN gem install foreman
+RUN npm install uglify-js -g
 
 ADD . /opt/planout.vn
 RUN chown -R planout:planout /opt/planout.vn
