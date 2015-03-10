@@ -1,4 +1,4 @@
-FROM planout/base_django:2.7
+FROM planout/base-django:2.7wn
 MAINTAINER pdt <pdthanh06@gmail.com>
 
 # create unprivileged user
