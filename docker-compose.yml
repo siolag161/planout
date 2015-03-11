@@ -1,7 +1,6 @@
 planoutdata:
   image: busybox
   volumes:
-    - /var/lib/postgresql/data
     - /data
 
 redis:

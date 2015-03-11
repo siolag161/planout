@@ -19,7 +19,7 @@ urlpatterns = patterns('',
     url(
         #regex=r'^(?P<email>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/$',
 #	regex=r'^(?P<encoded_email>[A-Za-z0-9-_]+)$',
-	regex=r'^edit/(?P<uuid>[2-9A-HJ-NPQ-Za-km-z]{22})$',
+	regex=r'^edit/(?P<uuid>[0-9AZa-z]{22})$',
 
         view=views.UserEditView.as_view(),
         name='edit_profile_uuid'

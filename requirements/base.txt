@@ -102,7 +102,7 @@ Pillow==2.7.0
 
 # For user registration, either via email or social
 # https://github.com/pennersr/django-allauth
-django-allauth==0.19.0
+django-allauth==0.20.0
 
 # For the use of GeoLoc database (Python adapter)
 # https://github.com/psycopg/psycopg2
