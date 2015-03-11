@@ -1,15 +1,17 @@
-planoutdata:
-  image: busybox
-  volumes:
-    - /data
+#planoutdata:
+#  image: busybox
+#  volumes:
+#    - /data:/
 
 redis:
   image: dockerfile/redis
 
 db:
   image: planout/postgis_init
-  volumes_from:
-    - planoutdata
+#  volumes_from:
+#    - planoutdata
+   volumes:
+     - /data:/var/lib/postgresql
 
 web:
   build:  /opt/planout/
