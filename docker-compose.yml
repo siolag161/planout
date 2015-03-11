@@ -7,7 +7,7 @@ redis:
   image: dockerfile/redis
 
 db:
-  image: planout/postgis_init
+  image: planout/postgis
   volumes:
     - /data:/var/lib/postgresql
 
