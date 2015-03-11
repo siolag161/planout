@@ -8,10 +8,8 @@ redis:
 
 db:
   image: planout/postgis_init
-#  volumes_from:
-#    - planoutdata
-   volumes:
-     - /data:/var/lib/postgresql
+  volumes:
+    - /data:/var/lib/postgresql
 
 web:
   build:  /opt/planout/
