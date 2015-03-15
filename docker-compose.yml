@@ -1,18 +1,20 @@
-#planoutdata:
-#  image: busybox
-#  volumes:
-#    - /data:/
+planoutdata:
+  image: busybox
+  volumes:
+    - /data:/var/lib/postgresql
+  expose:
+    - 5432
 
 redis:
   image: dockerfile/redis
 
 db:
   image: planout/postgis
-  volumes:
-    - /data:/var/lib/postgresql
+  volumes_from:
+    - planoutdata
 
 web:
-  build:  /opt/planout/
+  build: /opt/planout/
   command: foreman start
   ports:
     - "8001:8000"
