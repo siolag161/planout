@@ -21,4 +21,5 @@ WORKDIR /opt/planout.vn
 
 EXPOSE 80
 
+# commands
 CMD ["foreman start"]
