@@ -441,3 +441,25 @@ DEFAULT_CURRENCY = 'VND'
 ########## Google API
 GOOGLE_API_KEY = 'AIzaSyCnSdrpDVths5FyWPoe7S7NxjGdczIhQ2A'
 ########## END Google API
+# CACHES = {
+#     'redis': {
+#         'BACKEND': 'redis_cache.cache.RedisCache',
+#         'LOCATION': 'localhost:6379:0',
+#     }
+# }
+
+# CACHE_ENGINES = {
+#     'redis': {
+#         'BACKEND': 'redis_cache.cache.RedisCache',
+#         'LOCATION': 'localhost:6379:0',
+#     },
+#     'dummy': {
+#         'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+#     }
+# }
+
+# import os
+
+# CACHES['default'] = CACHE_ENGINES[os.getenv('CACHE', 'dummy')]
+
+# SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'

@@ -8,7 +8,10 @@ import os
 
 ########## DEBUG CONFIGURATION
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
-DEBUG = True
+DEBUG = False
+PIPELINE_ENABLED = False
+#DEBUG = False
+ALLOWED_HOSTS = ['*']
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
 TEMPLATE_DEBUG = DEBUG
