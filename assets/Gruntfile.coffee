@@ -1,15 +1,18 @@
 module.exports = (grunt) ->
 
-  # Initial variable configuration
+  # Initial variable configuration 
   pkg = grunt.file.readJSON 'package.json'
   name = pkg.name.toLowerCase()
+  path = "../" + name
   paths =
-    templates: name + '/templates'
-    css: name + '/static/css'
-    fonts: name + '/static/fonts'
-    img: name + '/static/img'
-    js: name + '/static/js'
-    config: name + '/config'
+    templates: path + '/templates'
+    css: path + '/static/css'
+    scss: path + '/static/css/scss'
+    fonts: path + '/static/fonts'
+    img: path + '/static/img'
+    js: path + '/static/js'
+    coffee: path + '/static/js/coffee'
+    config: path + '/config'
     tests: 'tests'
     vendors: './bower_components'
 

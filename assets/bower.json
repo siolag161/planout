@@ -1,5 +1,5 @@
 {
-  "name": "kikoha",
+  "name": "planout",
   "version": "0.0.1",
   "dependencies": {
     "bootstrap": "~3.3.0",
@@ -8,8 +8,9 @@
     "jasmine-ajax": "2.0.1",
     "jasmine-jquery": "1.7.0",
     "font-awesome": "~4.2.0",
+    "cropper": "~0.8.0",
+    "geocomplete": "~1.6.4",
     "smalot-bootstrap-datetimepicker": "~2.3.0"
-
   },
   "private": true
 }

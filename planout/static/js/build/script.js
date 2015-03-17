@@ -8,7 +8,7 @@
     return $(".input-group.date").datetimepicker({
       format: 'dd/mm/yyyy hh:ii',
       autoclose: true,
-      pickerPosition: 'top-left',
+      pickerPosition: 'bottom-left',
       startDate: '+0d',
       showMeridian: true
     });

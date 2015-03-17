@@ -11,12 +11,6 @@ Collectfast==0.2.1
 # https://boto.readthedocs.org/en/latest/
 boto==2.34.0
 
-<<<<<<< HEAD
-=======
-# Allows Django to use database URLs for Heroku
-# https://github.com/kennethreitz/dj-database-url
-dj-database-url==0.3.0
->>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 
 # Django security best practices
 # http://django-secure.readthedocs.org/en/v0.1.2/

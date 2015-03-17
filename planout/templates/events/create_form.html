@@ -1,40 +1,13 @@
 {%extends "base.html" %}
 {%load static %}
 {% load crispy_forms_tags %}
-<<<<<<< HEAD
-=======
-{%block title %}User {%endblock %}
->>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
-
 {% block content %}
-
 <div class="container">
-<<<<<<< HEAD
-  <div id="event_form_wrapper">
-    <form class="" action="{% url 'events:event_create' %}" enctype="multipart/form-data"  method="post">
-      {% crispy form %}
-    </form>
-  </div>
-=======
-
 <form class="" action="{% url 'events:event_create' %}" enctype="multipart/form-data"  method="post">
-
   {% crispy form %}
-  <!-- Upload image and data  
-  <div class="avatar-upload">
-  <input class="avatar-src" name="avatar_src" type="hidden">
-  
-  <input class="avatar-input" id="avatarInput" name="avatar" type="file">
-  </div>	-->
-
 </form>
->>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 </div>
 {% endblock content %}
 {% block extra_js %} 
-{{ form.media }}
-<<<<<<< HEAD
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
-=======
->>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 {% endblock extra_js %}

@@ -10346,7 +10346,7 @@ return jQuery;
 }));
 
 /*!
- * Bootstrap v3.3.2 (http://getbootstrap.com)
+ * Bootstrap v3.3.4 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
@@ -10364,7 +10364,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: transition.js v3.3.2
+ * Bootstrap: transition.js v3.3.4
  * http://getbootstrap.com/javascript/#transitions
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -10424,7 +10424,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: alert.js v3.3.2
+ * Bootstrap: alert.js v3.3.4
  * http://getbootstrap.com/javascript/#alerts
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -10443,7 +10443,7 @@ if (typeof jQuery === 'undefined') {
     $(el).on('click', dismiss, this.close)
   }
 
-  Alert.VERSION = '3.3.2'
+  Alert.VERSION = '3.3.4'
 
   Alert.TRANSITION_DURATION = 150
 
@@ -10519,7 +10519,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: button.js v3.3.2
+ * Bootstrap: button.js v3.3.4
  * http://getbootstrap.com/javascript/#buttons
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -10539,7 +10539,7 @@ if (typeof jQuery === 'undefined') {
     this.isLoading = false
   }
 
-  Button.VERSION  = '3.3.2'
+  Button.VERSION  = '3.3.4'
 
   Button.DEFAULTS = {
     loadingText: 'loading...'
@@ -10636,7 +10636,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: carousel.js v3.3.2
+ * Bootstrap: carousel.js v3.3.4
  * http://getbootstrap.com/javascript/#carousel
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -10654,10 +10654,10 @@ if (typeof jQuery === 'undefined') {
     this.$element    = $(element)
     this.$indicators = this.$element.find('.carousel-indicators')
     this.options     = options
-    this.paused      =
-    this.sliding     =
-    this.interval    =
-    this.$active     =
+    this.paused      = null
+    this.sliding     = null
+    this.interval    = null
+    this.$active     = null
     this.$items      = null
 
     this.options.keyboard && this.$element.on('keydown.bs.carousel', $.proxy(this.keydown, this))
@@ -10667,7 +10667,7 @@ if (typeof jQuery === 'undefined') {
       .on('mouseleave.bs.carousel', $.proxy(this.cycle, this))
   }
 
-  Carousel.VERSION  = '3.3.2'
+  Carousel.VERSION  = '3.3.4'
 
   Carousel.TRANSITION_DURATION = 600
 
@@ -10874,7 +10874,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: collapse.js v3.3.2
+ * Bootstrap: collapse.js v3.3.4
  * http://getbootstrap.com/javascript/#collapse
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -10891,7 +10891,8 @@ if (typeof jQuery === 'undefined') {
   var Collapse = function (element, options) {
     this.$element      = $(element)
     this.options       = $.extend({}, Collapse.DEFAULTS, options)
-    this.$trigger      = $(this.options.trigger).filter('[href="#' + element.id + '"], [data-target="#' + element.id + '"]')
+    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
     this.transitioning = null
 
     if (this.options.parent) {
@@ -10903,13 +10904,12 @@ if (typeof jQuery === 'undefined') {
     if (this.options.toggle) this.toggle()
   }
 
-  Collapse.VERSION  = '3.3.2'
+  Collapse.VERSION  = '3.3.4'
 
   Collapse.TRANSITION_DURATION = 350
 
   Collapse.DEFAULTS = {
-    toggle: true,
-    trigger: '[data-toggle="collapse"]'
+    toggle: true
   }
 
   Collapse.prototype.dimension = function () {
@@ -11047,7 +11047,7 @@ if (typeof jQuery === 'undefined') {
       var data    = $this.data('bs.collapse')
       var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
 
-      if (!data && options.toggle && option == 'show') options.toggle = false
+      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
       if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
       if (typeof option == 'string') data[option]()
     })
@@ -11078,7 +11078,7 @@ if (typeof jQuery === 'undefined') {
 
     var $target = getTargetFromTrigger($this)
     var data    = $target.data('bs.collapse')
-    var option  = data ? 'toggle' : $.extend({}, $this.data(), { trigger: this })
+    var option  = data ? 'toggle' : $this.data()
 
     Plugin.call($target, option)
   })
@@ -11086,7 +11086,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: dropdown.js v3.3.2
+ * Bootstrap: dropdown.js v3.3.4
  * http://getbootstrap.com/javascript/#dropdowns
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -11106,7 +11106,7 @@ if (typeof jQuery === 'undefined') {
     $(element).on('click.bs.dropdown', this.toggle)
   }
 
-  Dropdown.VERSION = '3.3.2'
+  Dropdown.VERSION = '3.3.4'
 
   Dropdown.prototype.toggle = function (e) {
     var $this = $(this)
@@ -11159,7 +11159,7 @@ if (typeof jQuery === 'undefined') {
       return $this.trigger('click')
     }
 
-    var desc = ' li:not(.divider):visible a'
+    var desc = ' li:not(.disabled):visible a'
     var $items = $parent.find('[role="menu"]' + desc + ', [role="listbox"]' + desc)
 
     if (!$items.length) return
@@ -11248,7 +11248,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: modal.js v3.3.2
+ * Bootstrap: modal.js v3.3.4
  * http://getbootstrap.com/javascript/#modals
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -11263,12 +11263,15 @@ if (typeof jQuery === 'undefined') {
   // ======================
 
   var Modal = function (element, options) {
-    this.options        = options
-    this.$body          = $(document.body)
-    this.$element       = $(element)
-    this.$backdrop      =
-    this.isShown        = null
-    this.scrollbarWidth = 0
+    this.options             = options
+    this.$body               = $(document.body)
+    this.$element            = $(element)
+    this.$dialog             = this.$element.find('.modal-dialog')
+    this.$backdrop           = null
+    this.isShown             = null
+    this.originalBodyPad     = null
+    this.scrollbarWidth      = 0
+    this.ignoreBackdropClick = false
 
     if (this.options.remote) {
       this.$element
@@ -11279,7 +11282,7 @@ if (typeof jQuery === 'undefined') {
     }
   }
 
-  Modal.VERSION  = '3.3.2'
+  Modal.VERSION  = '3.3.4'
 
   Modal.TRANSITION_DURATION = 300
   Modal.BACKDROP_TRANSITION_DURATION = 150
@@ -11313,6 +11316,12 @@ if (typeof jQuery === 'undefined') {
 
     this.$element.on('click.dismiss.bs.modal', '[data-dismiss="modal"]', $.proxy(this.hide, this))
 
+    this.$dialog.on('mousedown.dismiss.bs.modal', function () {
+      that.$element.one('mouseup.dismiss.bs.modal', function (e) {
+        if ($(e.target).is(that.$element)) that.ignoreBackdropClick = true
+      })
+    })
+
     this.backdrop(function () {
       var transition = $.support.transition && that.$element.hasClass('fade')
 
@@ -11324,7 +11333,6 @@ if (typeof jQuery === 'undefined') {
         .show()
         .scrollTop(0)
 
-      if (that.options.backdrop) that.adjustBackdrop()
       that.adjustDialog()
 
       if (transition) {
@@ -11340,7 +11348,7 @@ if (typeof jQuery === 'undefined') {
       var e = $.Event('shown.bs.modal', { relatedTarget: _relatedTarget })
 
       transition ?
-        that.$element.find('.modal-dialog') // wait for modal to slide in
+        that.$dialog // wait for modal to slide in
           .one('bsTransitionEnd', function () {
             that.$element.trigger('focus').trigger(e)
           })
@@ -11369,6 +11377,9 @@ if (typeof jQuery === 'undefined') {
       .removeClass('in')
       .attr('aria-hidden', true)
       .off('click.dismiss.bs.modal')
+      .off('mouseup.dismiss.bs.modal')
+
+    this.$dialog.off('mousedown.dismiss.bs.modal')
 
     $.support.transition && this.$element.hasClass('fade') ?
       this.$element
@@ -11429,13 +11440,18 @@ if (typeof jQuery === 'undefined') {
       var doAnimate = $.support.transition && animate
 
       this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
-        .prependTo(this.$element)
-        .on('click.dismiss.bs.modal', $.proxy(function (e) {
-          if (e.target !== e.currentTarget) return
-          this.options.backdrop == 'static'
-            ? this.$element[0].focus.call(this.$element[0])
-            : this.hide.call(this)
-        }, this))
+        .appendTo(this.$body)
+
+      this.$element.on('click.dismiss.bs.modal', $.proxy(function (e) {
+        if (this.ignoreBackdropClick) {
+          this.ignoreBackdropClick = false
+          return
+        }
+        if (e.target !== e.currentTarget) return
+        this.options.backdrop == 'static'
+          ? this.$element[0].focus()
+          : this.hide()
+      }, this))
 
       if (doAnimate) this.$backdrop[0].offsetWidth // force reflow
 
@@ -11470,14 +11486,7 @@ if (typeof jQuery === 'undefined') {
   // these following methods are used to handle overflowing modals
 
   Modal.prototype.handleUpdate = function () {
-    if (this.options.backdrop) this.adjustBackdrop()
     this.adjustDialog()
-  }
-
-  Modal.prototype.adjustBackdrop = function () {
-    this.$backdrop
-      .css('height', 0)
-      .css('height', this.$element[0].scrollHeight)
   }
 
   Modal.prototype.adjustDialog = function () {
@@ -11497,17 +11506,23 @@ if (typeof jQuery === 'undefined') {
   }
 
   Modal.prototype.checkScrollbar = function () {
-    this.bodyIsOverflowing = document.body.scrollHeight > document.documentElement.clientHeight
+    var fullWindowWidth = window.innerWidth
+    if (!fullWindowWidth) { // workaround for missing window.innerWidth in IE8
+      var documentElementRect = document.documentElement.getBoundingClientRect()
+      fullWindowWidth = documentElementRect.right - Math.abs(documentElementRect.left)
+    }
+    this.bodyIsOverflowing = document.body.clientWidth < fullWindowWidth
     this.scrollbarWidth = this.measureScrollbar()
   }
 
   Modal.prototype.setScrollbar = function () {
     var bodyPad = parseInt((this.$body.css('padding-right') || 0), 10)
+    this.originalBodyPad = document.body.style.paddingRight || ''
     if (this.bodyIsOverflowing) this.$body.css('padding-right', bodyPad + this.scrollbarWidth)
   }
 
   Modal.prototype.resetScrollbar = function () {
-    this.$body.css('padding-right', '')
+    this.$body.css('padding-right', this.originalBodyPad)
   }
 
   Modal.prototype.measureScrollbar = function () { // thx walsh
@@ -11573,7 +11588,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: tooltip.js v3.3.2
+ * Bootstrap: tooltip.js v3.3.4
  * http://getbootstrap.com/javascript/#tooltip
  * Inspired by the original jQuery.tipsy by Jason Frame
  * ========================================================================
@@ -11589,17 +11604,17 @@ if (typeof jQuery === 'undefined') {
   // ===============================
 
   var Tooltip = function (element, options) {
-    this.type       =
-    this.options    =
-    this.enabled    =
-    this.timeout    =
-    this.hoverState =
+    this.type       = null
+    this.options    = null
+    this.enabled    = null
+    this.timeout    = null
+    this.hoverState = null
     this.$element   = null
 
     this.init('tooltip', element, options)
   }
 
-  Tooltip.VERSION  = '3.3.2'
+  Tooltip.VERSION  = '3.3.4'
 
   Tooltip.TRANSITION_DURATION = 150
 
@@ -11625,6 +11640,10 @@ if (typeof jQuery === 'undefined') {
     this.$element  = $(element)
     this.options   = this.getOptions(options)
     this.$viewport = this.options.viewport && $(this.options.viewport.selector || this.options.viewport)
+
+    if (this.$element[0] instanceof document.constructor && !this.options.selector) {
+      throw new Error('`selector` option must be specified when initializing ' + this.type + ' on the window.document object!')
+    }
 
     var triggers = this.options.trigger.split(' ')
 
@@ -11846,10 +11865,10 @@ if (typeof jQuery === 'undefined') {
     this.replaceArrow(arrowDelta, $tip[0][arrowOffsetPosition], isVertical)
   }
 
-  Tooltip.prototype.replaceArrow = function (delta, dimension, isHorizontal) {
+  Tooltip.prototype.replaceArrow = function (delta, dimension, isVertical) {
     this.arrow()
-      .css(isHorizontal ? 'left' : 'top', 50 * (1 - delta / dimension) + '%')
-      .css(isHorizontal ? 'top' : 'left', '')
+      .css(isVertical ? 'left' : 'top', 50 * (1 - delta / dimension) + '%')
+      .css(isVertical ? 'top' : 'left', '')
   }
 
   Tooltip.prototype.setContent = function () {
@@ -11862,7 +11881,7 @@ if (typeof jQuery === 'undefined') {
 
   Tooltip.prototype.hide = function (callback) {
     var that = this
-    var $tip = this.tip()
+    var $tip = $(this.$tip)
     var e    = $.Event('hide.bs.' + this.type)
 
     function complete() {
@@ -11879,7 +11898,7 @@ if (typeof jQuery === 'undefined') {
 
     $tip.removeClass('in')
 
-    $.support.transition && this.$tip.hasClass('fade') ?
+    $.support.transition && $tip.hasClass('fade') ?
       $tip
         .one('bsTransitionEnd', complete)
         .emulateTransitionEnd(Tooltip.TRANSITION_DURATION) :
@@ -12023,7 +12042,7 @@ if (typeof jQuery === 'undefined') {
       var data    = $this.data('bs.tooltip')
       var options = typeof option == 'object' && option
 
-      if (!data && option == 'destroy') return
+      if (!data && /destroy|hide/.test(option)) return
       if (!data) $this.data('bs.tooltip', (data = new Tooltip(this, options)))
       if (typeof option == 'string') data[option]()
     })
@@ -12046,7 +12065,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: popover.js v3.3.2
+ * Bootstrap: popover.js v3.3.4
  * http://getbootstrap.com/javascript/#popovers
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -12066,7 +12085,7 @@ if (typeof jQuery === 'undefined') {
 
   if (!$.fn.tooltip) throw new Error('Popover requires tooltip.js')
 
-  Popover.VERSION  = '3.3.2'
+  Popover.VERSION  = '3.3.4'
 
   Popover.DEFAULTS = $.extend({}, $.fn.tooltip.Constructor.DEFAULTS, {
     placement: 'right',
@@ -12122,11 +12141,6 @@ if (typeof jQuery === 'undefined') {
     return (this.$arrow = this.$arrow || this.tip().find('.arrow'))
   }
 
-  Popover.prototype.tip = function () {
-    if (!this.$tip) this.$tip = $(this.options.template)
-    return this.$tip
-  }
-
 
   // POPOVER PLUGIN DEFINITION
   // =========================
@@ -12137,7 +12151,7 @@ if (typeof jQuery === 'undefined') {
       var data    = $this.data('bs.popover')
       var options = typeof option == 'object' && option
 
-      if (!data && option == 'destroy') return
+      if (!data && /destroy|hide/.test(option)) return
       if (!data) $this.data('bs.popover', (data = new Popover(this, options)))
       if (typeof option == 'string') data[option]()
     })
@@ -12160,7 +12174,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: scrollspy.js v3.3.2
+ * Bootstrap: scrollspy.js v3.3.4
  * http://getbootstrap.com/javascript/#scrollspy
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -12175,10 +12189,8 @@ if (typeof jQuery === 'undefined') {
   // ==========================
 
   function ScrollSpy(element, options) {
-    var process  = $.proxy(this.process, this)
-
-    this.$body          = $('body')
-    this.$scrollElement = $(element).is('body') ? $(window) : $(element)
+    this.$body          = $(document.body)
+    this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
     this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
     this.selector       = (this.options.target || '') + ' .nav li > a'
     this.offsets        = []
@@ -12186,12 +12198,12 @@ if (typeof jQuery === 'undefined') {
     this.activeTarget   = null
     this.scrollHeight   = 0
 
-    this.$scrollElement.on('scroll.bs.scrollspy', process)
+    this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
     this.refresh()
     this.process()
   }
 
-  ScrollSpy.VERSION  = '3.3.2'
+  ScrollSpy.VERSION  = '3.3.4'
 
   ScrollSpy.DEFAULTS = {
     offset: 10
@@ -12202,19 +12214,18 @@ if (typeof jQuery === 'undefined') {
   }
 
   ScrollSpy.prototype.refresh = function () {
-    var offsetMethod = 'offset'
-    var offsetBase   = 0
+    var that          = this
+    var offsetMethod  = 'offset'
+    var offsetBase    = 0
+
+    this.offsets      = []
+    this.targets      = []
+    this.scrollHeight = this.getScrollHeight()
 
     if (!$.isWindow(this.$scrollElement[0])) {
       offsetMethod = 'position'
       offsetBase   = this.$scrollElement.scrollTop()
     }
-
-    this.offsets = []
-    this.targets = []
-    this.scrollHeight = this.getScrollHeight()
-
-    var self     = this
 
     this.$body
       .find(this.selector)
@@ -12230,8 +12241,8 @@ if (typeof jQuery === 'undefined') {
       })
       .sort(function (a, b) { return a[0] - b[0] })
       .each(function () {
-        self.offsets.push(this[0])
-        self.targets.push(this[1])
+        that.offsets.push(this[0])
+        that.targets.push(this[1])
       })
   }
 
@@ -12260,7 +12271,7 @@ if (typeof jQuery === 'undefined') {
     for (i = offsets.length; i--;) {
       activeTarget != targets[i]
         && scrollTop >= offsets[i]
-        && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
+        && (offsets[i + 1] === undefined || scrollTop < offsets[i + 1])
         && this.activate(targets[i])
     }
   }
@@ -12271,8 +12282,8 @@ if (typeof jQuery === 'undefined') {
     this.clear()
 
     var selector = this.selector +
-        '[data-target="' + target + '"],' +
-        this.selector + '[href="' + target + '"]'
+      '[data-target="' + target + '"],' +
+      this.selector + '[href="' + target + '"]'
 
     var active = $(selector)
       .parents('li')
@@ -12336,7 +12347,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: tab.js v3.3.2
+ * Bootstrap: tab.js v3.3.4
  * http://getbootstrap.com/javascript/#tabs
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -12354,7 +12365,7 @@ if (typeof jQuery === 'undefined') {
     this.element = $(element)
   }
 
-  Tab.VERSION = '3.3.2'
+  Tab.VERSION = '3.3.4'
 
   Tab.TRANSITION_DURATION = 150
 
@@ -12425,7 +12436,7 @@ if (typeof jQuery === 'undefined') {
         element.removeClass('fade')
       }
 
-      if (element.parent('.dropdown-menu')) {
+      if (element.parent('.dropdown-menu').length) {
         element
           .closest('li.dropdown')
             .addClass('active')
@@ -12490,7 +12501,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: affix.js v3.3.2
+ * Bootstrap: affix.js v3.3.4
  * http://getbootstrap.com/javascript/#affix
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -12512,14 +12523,14 @@ if (typeof jQuery === 'undefined') {
       .on('click.bs.affix.data-api',  $.proxy(this.checkPositionWithEventLoop, this))
 
     this.$element     = $(element)
-    this.affixed      =
-    this.unpin        =
+    this.affixed      = null
+    this.unpin        = null
     this.pinnedOffset = null
 
     this.checkPosition()
   }
 
-  Affix.VERSION  = '3.3.2'
+  Affix.VERSION  = '3.3.4'
 
   Affix.RESET    = 'affix affix-top affix-bottom'
 
@@ -12569,7 +12580,7 @@ if (typeof jQuery === 'undefined') {
     var offset       = this.options.offset
     var offsetTop    = offset.top
     var offsetBottom = offset.bottom
-    var scrollHeight = $('body').height()
+    var scrollHeight = $(document.body).height()
 
     if (typeof offset != 'object')         offsetBottom = offsetTop = offset
     if (typeof offsetTop == 'function')    offsetTop    = offset.top(this.$element)
@@ -14069,9 +14080,8 @@ if (typeof jQuery === 'undefined') {
 }.call(this));
 
 !function(c){function f(){return new Date(Date.UTC.apply(Date,arguments))}function a(){var g=new Date();return f(g.getUTCFullYear(),g.getUTCMonth(),g.getUTCDate(),g.getUTCHours(),g.getUTCMinutes(),g.getUTCSeconds(),0)}var e=function(h,g){var i=this;this.element=c(h);this.container=g.container||"body";this.language=g.language||this.element.data("date-language")||"en";this.language=this.language in d?this.language:"en";this.isRTL=d[this.language].rtl||false;this.formatType=g.formatType||this.element.data("format-type")||"standard";this.format=b.parseFormat(g.format||this.element.data("date-format")||d[this.language].format||b.getDefaultFormat(this.formatType,"input"),this.formatType);this.isInline=false;this.isVisible=false;this.isInput=this.element.is("input");this.bootcssVer=this.isInput?(this.element.is(".form-control")?3:2):(this.bootcssVer=this.element.is(".input-group")?3:2);this.component=this.element.is(".date")?(this.bootcssVer==3?this.element.find(".input-group-addon .glyphicon-th, .input-group-addon .glyphicon-time, .input-group-addon .glyphicon-calendar").parent():this.element.find(".add-on .icon-th, .add-on .icon-time, .add-on .icon-calendar").parent()):false;this.componentReset=this.element.is(".date")?(this.bootcssVer==3?this.element.find(".input-group-addon .glyphicon-remove").parent():this.element.find(".add-on .icon-remove").parent()):false;this.hasInput=this.component&&this.element.find("input").length;if(this.component&&this.component.length===0){this.component=false}this.linkField=g.linkField||this.element.data("link-field")||false;this.linkFormat=b.parseFormat(g.linkFormat||this.element.data("link-format")||b.getDefaultFormat(this.formatType,"link"),this.formatType);this.minuteStep=g.minuteStep||this.element.data("minute-step")||5;this.pickerPosition=g.pickerPosition||this.element.data("picker-position")||"bottom-right";this.showMeridian=g.showMeridian||this.element.data("show-meridian")||false;this.initialDate=g.initialDate||new Date();this._attachEvents();this.formatViewType="datetime";if("formatViewType" in g){this.formatViewType=g.formatViewType}else{if("formatViewType" in this.element.data()){this.formatViewType=this.element.data("formatViewType")}}this.minView=0;if("minView" in g){this.minView=g.minView}else{if("minView" in this.element.data()){this.minView=this.element.data("min-view")}}this.minView=b.convertViewMode(this.minView);this.maxView=b.modes.length-1;if("maxView" in g){this.maxView=g.maxView}else{if("maxView" in this.element.data()){this.maxView=this.element.data("max-view")}}this.maxView=b.convertViewMode(this.maxView);this.wheelViewModeNavigation=false;if("wheelViewModeNavigation" in g){this.wheelViewModeNavigation=g.wheelViewModeNavigation}else{if("wheelViewModeNavigation" in this.element.data()){this.wheelViewModeNavigation=this.element.data("view-mode-wheel-navigation")}}this.wheelViewModeNavigationInverseDirection=false;if("wheelViewModeNavigationInverseDirection" in g){this.wheelViewModeNavigationInverseDirection=g.wheelViewModeNavigationInverseDirection}else{if("wheelViewModeNavigationInverseDirection" in this.element.data()){this.wheelViewModeNavigationInverseDirection=this.element.data("view-mode-wheel-navigation-inverse-dir")}}this.wheelViewModeNavigationDelay=100;if("wheelViewModeNavigationDelay" in g){this.wheelViewModeNavigationDelay=g.wheelViewModeNavigationDelay}else{if("wheelViewModeNavigationDelay" in this.element.data()){this.wheelViewModeNavigationDelay=this.element.data("view-mode-wheel-navigation-delay")}}this.startViewMode=2;if("startView" in g){this.startViewMode=g.startView}else{if("startView" in this.element.data()){this.startViewMode=this.element.data("start-view")}}this.startViewMode=b.convertViewMode(this.startViewMode);this.viewMode=this.startViewMode;this.viewSelect=this.minView;if("viewSelect" in g){this.viewSelect=g.viewSelect}else{if("viewSelect" in this.element.data()){this.viewSelect=this.element.data("view-select")}}this.viewSelect=b.convertViewMode(this.viewSelect);this.forceParse=true;if("forceParse" in g){this.forceParse=g.forceParse}else{if("dateForceParse" in this.element.data()){this.forceParse=this.element.data("date-force-parse")}}this.picker=c((this.bootcssVer==3)?b.templateV3:b.template).appendTo(this.isInline?this.element:this.container).on({click:c.proxy(this.click,this),mousedown:c.proxy(this.mousedown,this)});if(this.wheelViewModeNavigation){if(c.fn.mousewheel){this.picker.on({mousewheel:c.proxy(this.mousewheel,this)})}else{console.log("Mouse Wheel event is not supported. Please include the jQuery Mouse Wheel plugin before enabling this option")}}if(this.isInline){this.picker.addClass("datetimepicker-inline")}else{this.picker.addClass("datetimepicker-dropdown-"+this.pickerPosition+" dropdown-menu")}if(this.isRTL){this.picker.addClass("datetimepicker-rtl");if(this.bootcssVer==3){this.picker.find(".prev span, .next span").toggleClass("glyphicon-arrow-left glyphicon-arrow-right")}else{this.picker.find(".prev i, .next i").toggleClass("icon-arrow-left icon-arrow-right")}}c(document).on("mousedown",function(j){if(c(j.target).closest(".datetimepicker").length===0){i.hide()}});this.autoclose=false;if("autoclose" in g){this.autoclose=g.autoclose}else{if("dateAutoclose" in this.element.data()){this.autoclose=this.element.data("date-autoclose")}}this.keyboardNavigation=true;if("keyboardNavigation" in g){this.keyboardNavigation=g.keyboardNavigation}else{if("dateKeyboardNavigation" in this.element.data()){this.keyboardNavigation=this.element.data("date-keyboard-navigation")}}this.todayBtn=(g.todayBtn||this.element.data("date-today-btn")||false);this.todayHighlight=(g.todayHighlight||this.element.data("date-today-highlight")||false);this.weekStart=((g.weekStart||this.element.data("date-weekstart")||d[this.language].weekStart||0)%7);this.weekEnd=((this.weekStart+6)%7);this.startDate=-Infinity;this.endDate=Infinity;this.daysOfWeekDisabled=[];this.setStartDate(g.startDate||this.element.data("date-startdate"));this.setEndDate(g.endDate||this.element.data("date-enddate"));this.setDaysOfWeekDisabled(g.daysOfWeekDisabled||this.element.data("date-days-of-week-disabled"));this.fillDow();this.fillMonths();this.update();this.showMode();if(this.isInline){this.show()}};e.prototype={constructor:e,_events:[],_attachEvents:function(){this._detachEvents();if(this.isInput){this._events=[[this.element,{focus:c.proxy(this.show,this),keyup:c.proxy(this.update,this),keydown:c.proxy(this.keydown,this)}]]}else{if(this.component&&this.hasInput){this._events=[[this.element.find("input"),{focus:c.proxy(this.show,this),keyup:c.proxy(this.update,this),keydown:c.proxy(this.keydown,this)}],[this.component,{click:c.proxy(this.show,this)}]];if(this.componentReset){this._events.push([this.componentReset,{click:c.proxy(this.reset,this)}])}}else{if(this.element.is("div")){this.isInline=true}else{this._events=[[this.element,{click:c.proxy(this.show,this)}]]}}}for(var g=0,h,j;g<this._events.length;g++){h=this._events[g][0];j=this._events[g][1];h.on(j)}},_detachEvents:function(){for(var g=0,h,j;g<this._events.length;g++){h=this._events[g][0];j=this._events[g][1];h.off(j)}this._events=[]},show:function(g){this.picker.show();this.height=this.component?this.component.outerHeight():this.element.outerHeight();if(this.forceParse){this.update()}this.place();c(window).on("resize",c.proxy(this.place,this));if(g){g.stopPropagation();g.preventDefault()}this.isVisible=true;this.element.trigger({type:"show",date:this.date})},hide:function(g){if(!this.isVisible){return}if(this.isInline){return}this.picker.hide();c(window).off("resize",this.place);this.viewMode=this.startViewMode;this.showMode();if(!this.isInput){c(document).off("mousedown",this.hide)}if(this.forceParse&&(this.isInput&&this.element.val()||this.hasInput&&this.element.find("input").val())){this.setValue()}this.isVisible=false;this.element.trigger({type:"hide",date:this.date})},remove:function(){this._detachEvents();this.picker.remove();delete this.picker;delete this.element.data().datetimepicker},getDate:function(){var g=this.getUTCDate();return new Date(g.getTime()+(g.getTimezoneOffset()*60000))},getUTCDate:function(){return this.date},setDate:function(g){this.setUTCDate(new Date(g.getTime()-(g.getTimezoneOffset()*60000)))},setUTCDate:function(g){if(g>=this.startDate&&g<=this.endDate){this.date=g;this.setValue();this.viewDate=this.date;this.fill()}else{this.element.trigger({type:"outOfRange",date:g,startDate:this.startDate,endDate:this.endDate})}},setFormat:function(h){this.format=b.parseFormat(h,this.formatType);var g;if(this.isInput){g=this.element}else{if(this.component){g=this.element.find("input")}}if(g&&g.val()){this.setValue()}},setValue:function(){var g=this.getFormattedDate();if(!this.isInput){if(this.component){this.element.find("input").val(g)}this.element.data("date",g)}else{this.element.val(g)}if(this.linkField){c("#"+this.linkField).val(this.getFormattedDate(this.linkFormat))}},getFormattedDate:function(g){if(g==undefined){g=this.format}return b.formatDate(this.date,g,this.language,this.formatType)},setStartDate:function(g){this.startDate=g||-Infinity;if(this.startDate!==-Infinity){this.startDate=b.parseDate(this.startDate,this.format,this.language,this.formatType)}this.update();this.updateNavArrows()},setEndDate:function(g){this.endDate=g||Infinity;if(this.endDate!==Infinity){this.endDate=b.parseDate(this.endDate,this.format,this.language,this.formatType)}this.update();this.updateNavArrows()},setDaysOfWeekDisabled:function(g){this.daysOfWeekDisabled=g||[];if(!c.isArray(this.daysOfWeekDisabled)){this.daysOfWeekDisabled=this.daysOfWeekDisabled.split(/,\s*/)}this.daysOfWeekDisabled=c.map(this.daysOfWeekDisabled,function(h){return parseInt(h,10)});this.update();this.updateNavArrows()},place:function(){if(this.isInline){return}var g=0;c("div").each(function(){var m=parseInt(c(this).css("zIndex"),10);if(m>g){g=m}});var l=g+10;var k,j,i,h;if(this.container instanceof c){h=this.container.offset()}else{h=c(this.container).offset()}if(this.component){k=this.component.offset();i=k.left;if(this.pickerPosition=="bottom-left"||this.pickerPosition=="top-left"){i+=this.component.outerWidth()-this.picker.outerWidth()}}else{k=this.element.offset();i=k.left}if(i+220>document.body.clientWidth){i=document.body.clientWidth-220}if(this.pickerPosition=="top-left"||this.pickerPosition=="top-right"){j=k.top-this.picker.outerHeight()}else{j=k.top+this.height}j=j-h.top;i=i-h.left;this.picker.css({top:j,left:i,zIndex:l})},update:function(){var g,h=false;if(arguments&&arguments.length&&(typeof arguments[0]==="string"||arguments[0] instanceof Date)){g=arguments[0];h=true}else{g=(this.isInput?this.element.val():this.element.find("input").val())||this.element.data("date")||this.initialDate;if(typeof g=="string"||g instanceof String){g=g.replace(/^\s+|\s+$/g,"")}}if(!g){g=new Date();h=false}this.date=b.parseDate(g,this.format,this.language,this.formatType);if(h){this.setValue()}if(this.date<this.startDate){this.viewDate=new Date(this.startDate)}else{if(this.date>this.endDate){this.viewDate=new Date(this.endDate)}else{this.viewDate=new Date(this.date)}}this.fill()},fillDow:function(){var g=this.weekStart,h="<tr>";while(g<this.weekStart+7){h+='<th class="dow">'+d[this.language].daysMin[(g++)%7]+"</th>"}h+="</tr>";this.picker.find(".datetimepicker-days thead").append(h)},fillMonths:function(){var h="",g=0;while(g<12){h+='<span class="month">'+d[this.language].monthsShort[g++]+"</span>"}this.picker.find(".datetimepicker-months td").html(h)},fill:function(){if(this.date==null||this.viewDate==null){return}var E=new Date(this.viewDate),q=E.getUTCFullYear(),F=E.getUTCMonth(),j=E.getUTCDate(),z=E.getUTCHours(),u=E.getUTCMinutes(),v=this.startDate!==-Infinity?this.startDate.getUTCFullYear():-Infinity,A=this.startDate!==-Infinity?this.startDate.getUTCMonth():-Infinity,l=this.endDate!==Infinity?this.endDate.getUTCFullYear():Infinity,w=this.endDate!==Infinity?this.endDate.getUTCMonth():Infinity,n=(new f(this.date.getUTCFullYear(),this.date.getUTCMonth(),this.date.getUTCDate())).valueOf(),D=new Date();this.picker.find(".datetimepicker-days thead th:eq(1)").text(d[this.language].months[F]+" "+q);if(this.formatViewType=="time"){var B=z%12?z%12:12;var h=(B<10?"0":"")+B;var m=(u<10?"0":"")+u;var H=d[this.language].meridiem[z<12?0:1];this.picker.find(".datetimepicker-hours thead th:eq(1)").text(h+":"+m+" "+(H?H.toUpperCase():""));this.picker.find(".datetimepicker-minutes thead th:eq(1)").text(h+":"+m+" "+(H?H.toUpperCase():""))}else{this.picker.find(".datetimepicker-hours thead th:eq(1)").text(j+" "+d[this.language].months[F]+" "+q);this.picker.find(".datetimepicker-minutes thead th:eq(1)").text(j+" "+d[this.language].months[F]+" "+q)}this.picker.find("tfoot th.today").text(d[this.language].today).toggle(this.todayBtn!==false);this.updateNavArrows();this.fillMonths();var I=f(q,F-1,28,0,0,0,0),y=b.getDaysInMonth(I.getUTCFullYear(),I.getUTCMonth());I.setUTCDate(y);I.setUTCDate(y-(I.getUTCDay()-this.weekStart+7)%7);var g=new Date(I);g.setUTCDate(g.getUTCDate()+42);g=g.valueOf();var o=[];var r;while(I.valueOf()<g){if(I.getUTCDay()==this.weekStart){o.push("<tr>")}r="";if(I.getUTCFullYear()<q||(I.getUTCFullYear()==q&&I.getUTCMonth()<F)){r+=" old"}else{if(I.getUTCFullYear()>q||(I.getUTCFullYear()==q&&I.getUTCMonth()>F)){r+=" new"}}if(this.todayHighlight&&I.getUTCFullYear()==D.getFullYear()&&I.getUTCMonth()==D.getMonth()&&I.getUTCDate()==D.getDate()){r+=" today"}if(I.valueOf()==n){r+=" active"}if((I.valueOf()+86400000)<=this.startDate||I.valueOf()>this.endDate||c.inArray(I.getUTCDay(),this.daysOfWeekDisabled)!==-1){r+=" disabled"}o.push('<td class="day'+r+'">'+I.getUTCDate()+"</td>");if(I.getUTCDay()==this.weekEnd){o.push("</tr>")}I.setUTCDate(I.getUTCDate()+1)}this.picker.find(".datetimepicker-days tbody").empty().append(o.join(""));o=[];var s="",C="",p="";for(var x=0;x<24;x++){var t=f(q,F,j,x);r="";if((t.valueOf()+3600000)<=this.startDate||t.valueOf()>this.endDate){r+=" disabled"}else{if(z==x){r+=" active"}}if(this.showMeridian&&d[this.language].meridiem.length==2){C=(x<12?d[this.language].meridiem[0]:d[this.language].meridiem[1]);if(C!=p){if(p!=""){o.push("</fieldset>")}o.push('<fieldset class="hour"><legend>'+C.toUpperCase()+"</legend>")}p=C;s=(x%12?x%12:12);o.push('<span class="hour'+r+" hour_"+(x<12?"am":"pm")+'">'+s+"</span>");if(x==23){o.push("</fieldset>")}}else{s=x+":00";o.push('<span class="hour'+r+'">'+s+"</span>")}}this.picker.find(".datetimepicker-hours td").html(o.join(""));o=[];s="",C="",p="";for(var x=0;x<60;x+=this.minuteStep){var t=f(q,F,j,z,x,0);r="";if(t.valueOf()<this.startDate||t.valueOf()>this.endDate){r+=" disabled"}else{if(Math.floor(u/this.minuteStep)==Math.floor(x/this.minuteStep)){r+=" active"}}if(this.showMeridian&&d[this.language].meridiem.length==2){C=(z<12?d[this.language].meridiem[0]:d[this.language].meridiem[1]);if(C!=p){if(p!=""){o.push("</fieldset>")}o.push('<fieldset class="minute"><legend>'+C.toUpperCase()+"</legend>")}p=C;s=(z%12?z%12:12);o.push('<span class="minute'+r+'">'+s+":"+(x<10?"0"+x:x)+"</span>");if(x==59){o.push("</fieldset>")}}else{s=x+":00";o.push('<span class="minute'+r+'">'+z+":"+(x<10?"0"+x:x)+"</span>")}}this.picker.find(".datetimepicker-minutes td").html(o.join(""));var J=this.date.getUTCFullYear();var k=this.picker.find(".datetimepicker-months").find("th:eq(1)").text(q).end().find("span").removeClass("active");if(J==q){k.eq(this.date.getUTCMonth()).addClass("active")}if(q<v||q>l){k.addClass("disabled")}if(q==v){k.slice(0,A).addClass("disabled")}if(q==l){k.slice(w+1).addClass("disabled")}o="";q=parseInt(q/10,10)*10;var G=this.picker.find(".datetimepicker-years").find("th:eq(1)").text(q+"-"+(q+9)).end().find("td");q-=1;for(var x=-1;x<11;x++){o+='<span class="year'+(x==-1||x==10?" old":"")+(J==q?" active":"")+(q<v||q>l?" disabled":"")+'">'+q+"</span>";q+=1}G.html(o);this.place()},updateNavArrows:function(){var k=new Date(this.viewDate),i=k.getUTCFullYear(),j=k.getUTCMonth(),h=k.getUTCDate(),g=k.getUTCHours();switch(this.viewMode){case 0:if(this.startDate!==-Infinity&&i<=this.startDate.getUTCFullYear()&&j<=this.startDate.getUTCMonth()&&h<=this.startDate.getUTCDate()&&g<=this.startDate.getUTCHours()){this.picker.find(".prev").css({visibility:"hidden"})}else{this.picker.find(".prev").css({visibility:"visible"})}if(this.endDate!==Infinity&&i>=this.endDate.getUTCFullYear()&&j>=this.endDate.getUTCMonth()&&h>=this.endDate.getUTCDate()&&g>=this.endDate.getUTCHours()){this.picker.find(".next").css({visibility:"hidden"})}else{this.picker.find(".next").css({visibility:"visible"})}break;case 1:if(this.startDate!==-Infinity&&i<=this.startDate.getUTCFullYear()&&j<=this.startDate.getUTCMonth()&&h<=this.startDate.getUTCDate()){this.picker.find(".prev").css({visibility:"hidden"})}else{this.picker.find(".prev").css({visibility:"visible"})}if(this.endDate!==Infinity&&i>=this.endDate.getUTCFullYear()&&j>=this.endDate.getUTCMonth()&&h>=this.endDate.getUTCDate()){this.picker.find(".next").css({visibility:"hidden"})}else{this.picker.find(".next").css({visibility:"visible"})}break;case 2:if(this.startDate!==-Infinity&&i<=this.startDate.getUTCFullYear()&&j<=this.startDate.getUTCMonth()){this.picker.find(".prev").css({visibility:"hidden"})}else{this.picker.find(".prev").css({visibility:"visible"})}if(this.endDate!==Infinity&&i>=this.endDate.getUTCFullYear()&&j>=this.endDate.getUTCMonth()){this.picker.find(".next").css({visibility:"hidden"})}else{this.picker.find(".next").css({visibility:"visible"})}break;case 3:case 4:if(this.startDate!==-Infinity&&i<=this.startDate.getUTCFullYear()){this.picker.find(".prev").css({visibility:"hidden"})}else{this.picker.find(".prev").css({visibility:"visible"})}if(this.endDate!==Infinity&&i>=this.endDate.getUTCFullYear()){this.picker.find(".next").css({visibility:"hidden"})}else{this.picker.find(".next").css({visibility:"visible"})}break}},mousewheel:function(h){h.preventDefault();h.stopPropagation();if(this.wheelPause){return}this.wheelPause=true;var g=h.originalEvent;var j=g.wheelDelta;var i=j>0?1:(j===0)?0:-1;if(this.wheelViewModeNavigationInverseDirection){i=-i}this.showMode(i);setTimeout(c.proxy(function(){this.wheelPause=false},this),this.wheelViewModeNavigationDelay)},click:function(k){k.stopPropagation();k.preventDefault();var l=c(k.target).closest("span, td, th, legend");if(l.length==1){if(l.is(".disabled")){this.element.trigger({type:"outOfRange",date:this.viewDate,startDate:this.startDate,endDate:this.endDate});return}switch(l[0].nodeName.toLowerCase()){case"th":switch(l[0].className){case"switch":this.showMode(1);break;case"prev":case"next":var g=b.modes[this.viewMode].navStep*(l[0].className=="prev"?-1:1);switch(this.viewMode){case 0:this.viewDate=this.moveHour(this.viewDate,g);break;case 1:this.viewDate=this.moveDate(this.viewDate,g);break;case 2:this.viewDate=this.moveMonth(this.viewDate,g);break;case 3:case 4:this.viewDate=this.moveYear(this.viewDate,g);break}this.fill();break;case"today":var h=new Date();h=f(h.getFullYear(),h.getMonth(),h.getDate(),h.getHours(),h.getMinutes(),h.getSeconds(),0);if(h<this.startDate){h=this.startDate}else{if(h>this.endDate){h=this.endDate}}this.viewMode=this.startViewMode;this.showMode(0);this._setDate(h);this.fill();if(this.autoclose){this.hide()}break}break;case"span":if(!l.is(".disabled")){var n=this.viewDate.getUTCFullYear(),m=this.viewDate.getUTCMonth(),o=this.viewDate.getUTCDate(),p=this.viewDate.getUTCHours(),i=this.viewDate.getUTCMinutes(),q=this.viewDate.getUTCSeconds();if(l.is(".month")){this.viewDate.setUTCDate(1);m=l.parent().find("span").index(l);o=this.viewDate.getUTCDate();this.viewDate.setUTCMonth(m);this.element.trigger({type:"changeMonth",date:this.viewDate});if(this.viewSelect>=3){this._setDate(f(n,m,o,p,i,q,0))}}else{if(l.is(".year")){this.viewDate.setUTCDate(1);n=parseInt(l.text(),10)||0;this.viewDate.setUTCFullYear(n);this.element.trigger({type:"changeYear",date:this.viewDate});if(this.viewSelect>=4){this._setDate(f(n,m,o,p,i,q,0))}}else{if(l.is(".hour")){p=parseInt(l.text(),10)||0;if(l.hasClass("hour_am")||l.hasClass("hour_pm")){if(p==12&&l.hasClass("hour_am")){p=0}else{if(p!=12&&l.hasClass("hour_pm")){p+=12}}}this.viewDate.setUTCHours(p);this.element.trigger({type:"changeHour",date:this.viewDate});if(this.viewSelect>=1){this._setDate(f(n,m,o,p,i,q,0))}}else{if(l.is(".minute")){i=parseInt(l.text().substr(l.text().indexOf(":")+1),10)||0;this.viewDate.setUTCMinutes(i);this.element.trigger({type:"changeMinute",date:this.viewDate});if(this.viewSelect>=0){this._setDate(f(n,m,o,p,i,q,0))}}}}}if(this.viewMode!=0){var j=this.viewMode;this.showMode(-1);this.fill();if(j==this.viewMode&&this.autoclose){this.hide()}}else{this.fill();if(this.autoclose){this.hide()}}}break;case"td":if(l.is(".day")&&!l.is(".disabled")){var o=parseInt(l.text(),10)||1;var n=this.viewDate.getUTCFullYear(),m=this.viewDate.getUTCMonth(),p=this.viewDate.getUTCHours(),i=this.viewDate.getUTCMinutes(),q=this.viewDate.getUTCSeconds();if(l.is(".old")){if(m===0){m=11;n-=1}else{m-=1}}else{if(l.is(".new")){if(m==11){m=0;n+=1}else{m+=1}}}this.viewDate.setUTCFullYear(n);this.viewDate.setUTCMonth(m,o);this.element.trigger({type:"changeDay",date:this.viewDate});if(this.viewSelect>=2){this._setDate(f(n,m,o,p,i,q,0))}}var j=this.viewMode;this.showMode(-1);this.fill();if(j==this.viewMode&&this.autoclose){this.hide()}break}}},_setDate:function(g,i){if(!i||i=="date"){this.date=g}if(!i||i=="view"){this.viewDate=g}this.fill();this.setValue();var h;if(this.isInput){h=this.element}else{if(this.component){h=this.element.find("input")}}if(h){h.change();if(this.autoclose&&(!i||i=="date")){}}this.element.trigger({type:"changeDate",date:this.date})},moveMinute:function(h,g){if(!g){return h}var i=new Date(h.valueOf());i.setUTCMinutes(i.getUTCMinutes()+(g*this.minuteStep));return i},moveHour:function(h,g){if(!g){return h}var i=new Date(h.valueOf());i.setUTCHours(i.getUTCHours()+g);return i},moveDate:function(h,g){if(!g){return h}var i=new Date(h.valueOf());i.setUTCDate(i.getUTCDate()+g);return i},moveMonth:function(g,h){if(!h){return g}var l=new Date(g.valueOf()),p=l.getUTCDate(),m=l.getUTCMonth(),k=Math.abs(h),o,n;h=h>0?1:-1;if(k==1){n=h==-1?function(){return l.getUTCMonth()==m}:function(){return l.getUTCMonth()!=o};o=m+h;l.setUTCMonth(o);if(o<0||o>11){o=(o+12)%12}}else{for(var j=0;j<k;j++){l=this.moveMonth(l,h)}o=l.getUTCMonth();l.setUTCDate(p);n=function(){return o!=l.getUTCMonth()}}while(n()){l.setUTCDate(--p);l.setUTCMonth(o)}return l},moveYear:function(h,g){return this.moveMonth(h,g*12)},dateWithinRange:function(g){return g>=this.startDate&&g<=this.endDate},keydown:function(k){if(this.picker.is(":not(:visible)")){if(k.keyCode==27){this.show()}return}var m=false,h,n,l,o,g;switch(k.keyCode){case 27:this.hide();k.preventDefault();break;case 37:case 39:if(!this.keyboardNavigation){break}h=k.keyCode==37?-1:1;viewMode=this.viewMode;if(k.ctrlKey){viewMode+=2}else{if(k.shiftKey){viewMode+=1}}if(viewMode==4){o=this.moveYear(this.date,h);g=this.moveYear(this.viewDate,h)}else{if(viewMode==3){o=this.moveMonth(this.date,h);g=this.moveMonth(this.viewDate,h)}else{if(viewMode==2){o=this.moveDate(this.date,h);g=this.moveDate(this.viewDate,h)}else{if(viewMode==1){o=this.moveHour(this.date,h);g=this.moveHour(this.viewDate,h)}else{if(viewMode==0){o=this.moveMinute(this.date,h);g=this.moveMinute(this.viewDate,h)}}}}}if(this.dateWithinRange(o)){this.date=o;this.viewDate=g;this.setValue();this.update();k.preventDefault();m=true}break;case 38:case 40:if(!this.keyboardNavigation){break}h=k.keyCode==38?-1:1;viewMode=this.viewMode;if(k.ctrlKey){viewMode+=2}else{if(k.shiftKey){viewMode+=1}}if(viewMode==4){o=this.moveYear(this.date,h);g=this.moveYear(this.viewDate,h)}else{if(viewMode==3){o=this.moveMonth(this.date,h);g=this.moveMonth(this.viewDate,h)}else{if(viewMode==2){o=this.moveDate(this.date,h*7);g=this.moveDate(this.viewDate,h*7)}else{if(viewMode==1){if(this.showMeridian){o=this.moveHour(this.date,h*6);g=this.moveHour(this.viewDate,h*6)}else{o=this.moveHour(this.date,h*4);g=this.moveHour(this.viewDate,h*4)}}else{if(viewMode==0){o=this.moveMinute(this.date,h*4);g=this.moveMinute(this.viewDate,h*4)}}}}}if(this.dateWithinRange(o)){this.date=o;this.viewDate=g;this.setValue();this.update();k.preventDefault();m=true}break;case 13:if(this.viewMode!=0){var j=this.viewMode;this.showMode(-1);this.fill();if(j==this.viewMode&&this.autoclose){this.hide()}}else{this.fill();if(this.autoclose){this.hide()}}k.preventDefault();break;case 9:this.hide();break}if(m){var i;if(this.isInput){i=this.element}else{if(this.component){i=this.element.find("input")}}if(i){i.change()}this.element.trigger({type:"changeDate",date:this.date})}},showMode:function(g){if(g){var h=Math.max(0,Math.min(b.modes.length-1,this.viewMode+g));if(h>=this.minView&&h<=this.maxView){this.element.trigger({type:"changeMode",date:this.viewDate,oldViewMode:this.viewMode,newViewMode:h});this.viewMode=h}}this.picker.find(">div").hide().filter(".datetimepicker-"+b.modes[this.viewMode].clsName).css("display","block");this.updateNavArrows()},reset:function(g){this._setDate(null,"date")}};c.fn.datetimepicker=function(i){var g=Array.apply(null,arguments);g.shift();var h;this.each(function(){var l=c(this),k=l.data("datetimepicker"),j=typeof i=="object"&&i;if(!k){l.data("datetimepicker",(k=new e(this,c.extend({},c.fn.datetimepicker.defaults,j))))}if(typeof i=="string"&&typeof k[i]=="function"){h=k[i].apply(k,g);if(h!==undefined){return false}}});if(h!==undefined){return h}else{return this}};c.fn.datetimepicker.defaults={};c.fn.datetimepicker.Constructor=e;var d=c.fn.datetimepicker.dates={en:{days:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],daysShort:["Sun","Mon","Tue","Wed","Thu","Fri","Sat","Sun"],daysMin:["Su","Mo","Tu","We","Th","Fr","Sa","Su"],months:["January","February","March","April","May","June","July","August","September","October","November","December"],monthsShort:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],meridiem:["am","pm"],suffix:["st","nd","rd","th"],today:"Today"}};var b={modes:[{clsName:"minutes",navFnc:"Hours",navStep:1},{clsName:"hours",navFnc:"Date",navStep:1},{clsName:"days",navFnc:"Month",navStep:1},{clsName:"months",navFnc:"FullYear",navStep:1},{clsName:"years",navFnc:"FullYear",navStep:10}],isLeapYear:function(g){return(((g%4===0)&&(g%100!==0))||(g%400===0))},getDaysInMonth:function(g,h){return[31,(b.isLeapYear(g)?29:28),31,30,31,30,31,31,30,31,30,31][h]},getDefaultFormat:function(g,h){if(g=="standard"){if(h=="input"){return"yyyy-mm-dd hh:ii"}else{return"yyyy-mm-dd hh:ii:ss"}}else{if(g=="php"){if(h=="input"){return"Y-m-d H:i"}else{return"Y-m-d H:i:s"}}else{throw new Error("Invalid format type.")}}},validParts:function(g){if(g=="standard"){return/hh?|HH?|p|P|ii?|ss?|dd?|DD?|mm?|MM?|yy(?:yy)?/g}else{if(g=="php"){return/[dDjlNwzFmMnStyYaABgGhHis]/g}else{throw new Error("Invalid format type.")}}},nonpunctuation:/[^ -\/:-@\[-`{-~\t\n\rTZ]+/g,parseFormat:function(j,h){var g=j.replace(this.validParts(h),"\0").split("\0"),i=j.match(this.validParts(h));if(!g||!g.length||!i||i.length==0){throw new Error("Invalid date format.")}return{separators:g,parts:i}},parseDate:function(l,u,o,r){if(l instanceof Date){var w=new Date(l.valueOf()-l.getTimezoneOffset()*60000);w.setMilliseconds(0);return w}if(/^\d{4}\-\d{1,2}\-\d{1,2}$/.test(l)){u=this.parseFormat("yyyy-mm-dd",r)}if(/^\d{4}\-\d{1,2}\-\d{1,2}[T ]\d{1,2}\:\d{1,2}$/.test(l)){u=this.parseFormat("yyyy-mm-dd hh:ii",r)}if(/^\d{4}\-\d{1,2}\-\d{1,2}[T ]\d{1,2}\:\d{1,2}\:\d{1,2}[Z]{0,1}$/.test(l)){u=this.parseFormat("yyyy-mm-dd hh:ii:ss",r)}if(/^[-+]\d+[dmwy]([\s,]+[-+]\d+[dmwy])*$/.test(l)){var x=/([-+]\d+)([dmwy])/,m=l.match(/([-+]\d+)([dmwy])/g),g,k;l=new Date();for(var n=0;n<m.length;n++){g=x.exec(m[n]);k=parseInt(g[1]);switch(g[2]){case"d":l.setUTCDate(l.getUTCDate()+k);break;case"m":l=e.prototype.moveMonth.call(e.prototype,l,k);break;case"w":l.setUTCDate(l.getUTCDate()+k*7);break;case"y":l=e.prototype.moveYear.call(e.prototype,l,k);break}}return f(l.getUTCFullYear(),l.getUTCMonth(),l.getUTCDate(),l.getUTCHours(),l.getUTCMinutes(),l.getUTCSeconds(),0)}var m=l&&l.match(this.nonpunctuation)||[],l=new Date(0,0,0,0,0,0,0),q={},t=["hh","h","ii","i","ss","s","yyyy","yy","M","MM","m","mm","D","DD","d","dd","H","HH","p","P"],v={hh:function(s,i){return s.setUTCHours(i)},h:function(s,i){return s.setUTCHours(i)},HH:function(s,i){return s.setUTCHours(i==12?0:i)},H:function(s,i){return s.setUTCHours(i==12?0:i)},ii:function(s,i){return s.setUTCMinutes(i)},i:function(s,i){return s.setUTCMinutes(i)},ss:function(s,i){return s.setUTCSeconds(i)},s:function(s,i){return s.setUTCSeconds(i)},yyyy:function(s,i){return s.setUTCFullYear(i)},yy:function(s,i){return s.setUTCFullYear(2000+i)},m:function(s,i){i-=1;while(i<0){i+=12}i%=12;s.setUTCMonth(i);while(s.getUTCMonth()!=i){if(isNaN(s.getUTCMonth())){return s}else{s.setUTCDate(s.getUTCDate()-1)}}return s},d:function(s,i){return s.setUTCDate(i)},p:function(s,i){return s.setUTCHours(i==1?s.getUTCHours()+12:s.getUTCHours())}},j,p,g;v.M=v.MM=v.mm=v.m;v.dd=v.d;v.P=v.p;l=f(l.getFullYear(),l.getMonth(),l.getDate(),l.getHours(),l.getMinutes(),l.getSeconds());if(m.length==u.parts.length){for(var n=0,h=u.parts.length;n<h;n++){j=parseInt(m[n],10);g=u.parts[n];if(isNaN(j)){switch(g){case"MM":p=c(d[o].months).filter(function(){var i=this.slice(0,m[n].length),s=m[n].slice(0,i.length);return i==s});j=c.inArray(p[0],d[o].months)+1;break;case"M":p=c(d[o].monthsShort).filter(function(){var i=this.slice(0,m[n].length),s=m[n].slice(0,i.length);return i.toLowerCase()==s.toLowerCase()});j=c.inArray(p[0],d[o].monthsShort)+1;break;case"p":case"P":j=c.inArray(m[n].toLowerCase(),d[o].meridiem);break}}q[g]=j}for(var n=0,y;n<t.length;n++){y=t[n];if(y in q&&!isNaN(q[y])){v[y](l,q[y])}}}return l},formatDate:function(g,m,o,k){if(g==null){return""}var n;if(k=="standard"){n={yy:g.getUTCFullYear().toString().substring(2),yyyy:g.getUTCFullYear(),m:g.getUTCMonth()+1,M:d[o].monthsShort[g.getUTCMonth()],MM:d[o].months[g.getUTCMonth()],d:g.getUTCDate(),D:d[o].daysShort[g.getUTCDay()],DD:d[o].days[g.getUTCDay()],p:(d[o].meridiem.length==2?d[o].meridiem[g.getUTCHours()<12?0:1]:""),h:g.getUTCHours(),i:g.getUTCMinutes(),s:g.getUTCSeconds()};if(d[o].meridiem.length==2){n.H=(n.h%12==0?12:n.h%12)}else{n.H=n.h}n.HH=(n.H<10?"0":"")+n.H;n.P=n.p.toUpperCase();n.hh=(n.h<10?"0":"")+n.h;n.ii=(n.i<10?"0":"")+n.i;n.ss=(n.s<10?"0":"")+n.s;n.dd=(n.d<10?"0":"")+n.d;n.mm=(n.m<10?"0":"")+n.m}else{if(k=="php"){n={y:g.getUTCFullYear().toString().substring(2),Y:g.getUTCFullYear(),F:d[o].months[g.getUTCMonth()],M:d[o].monthsShort[g.getUTCMonth()],n:g.getUTCMonth()+1,t:b.getDaysInMonth(g.getUTCFullYear(),g.getUTCMonth()),j:g.getUTCDate(),l:d[o].days[g.getUTCDay()],D:d[o].daysShort[g.getUTCDay()],w:g.getUTCDay(),N:(g.getUTCDay()==0?7:g.getUTCDay()),S:(g.getUTCDate()%10<=d[o].suffix.length?d[o].suffix[g.getUTCDate()%10-1]:""),a:(d[o].meridiem.length==2?d[o].meridiem[g.getUTCHours()<12?0:1]:""),g:(g.getUTCHours()%12==0?12:g.getUTCHours()%12),G:g.getUTCHours(),i:g.getUTCMinutes(),s:g.getUTCSeconds()};n.m=(n.n<10?"0":"")+n.n;n.d=(n.j<10?"0":"")+n.j;n.A=n.a.toString().toUpperCase();n.h=(n.g<10?"0":"")+n.g;n.H=(n.G<10?"0":"")+n.G;n.i=(n.i<10?"0":"")+n.i;n.s=(n.s<10?"0":"")+n.s}else{throw new Error("Invalid format type.")}}var g=[],l=c.extend([],m.separators);for(var j=0,h=m.parts.length;j<h;j++){if(l.length){g.push(l.shift())}g.push(n[m.parts[j]])}if(l.length){g.push(l.shift())}return g.join("")},convertViewMode:function(g){switch(g){case 4:case"decade":g=4;break;case 3:case"year":g=3;break;case 2:case"month":g=2;break;case 1:case"day":g=1;break;case 0:case"hour":g=0;break}return g},headTemplate:'<thead><tr><th class="prev"><i class="icon-arrow-left"/></th><th colspan="5" class="switch"></th><th class="next"><i class="icon-arrow-right"/></th></tr></thead>',headTemplateV3:'<thead><tr><th class="prev"><span class="glyphicon glyphicon-arrow-left"></span> </th><th colspan="5" class="switch"></th><th class="next"><span class="glyphicon glyphicon-arrow-right"></span> </th></tr></thead>',contTemplate:'<tbody><tr><td colspan="7"></td></tr></tbody>',footTemplate:'<tfoot><tr><th colspan="7" class="today"></th></tr></tfoot>'};b.template='<div class="datetimepicker"><div class="datetimepicker-minutes"><table class=" table-condensed">'+b.headTemplate+b.contTemplate+b.footTemplate+'</table></div><div class="datetimepicker-hours"><table class=" table-condensed">'+b.headTemplate+b.contTemplate+b.footTemplate+'</table></div><div class="datetimepicker-days"><table class=" table-condensed">'+b.headTemplate+"<tbody></tbody>"+b.footTemplate+'</table></div><div class="datetimepicker-months"><table class="table-condensed">'+b.headTemplate+b.contTemplate+b.footTemplate+'</table></div><div class="datetimepicker-years"><table class="table-condensed">'+b.headTemplate+b.contTemplate+b.footTemplate+"</table></div></div>";b.templateV3='<div class="datetimepicker"><div class="datetimepicker-minutes"><table class=" table-condensed">'+b.headTemplateV3+b.contTemplate+b.footTemplate+'</table></div><div class="datetimepicker-hours"><table class=" table-condensed">'+b.headTemplateV3+b.contTemplate+b.footTemplate+'</table></div><div class="datetimepicker-days"><table class=" table-condensed">'+b.headTemplateV3+"<tbody></tbody>"+b.footTemplate+'</table></div><div class="datetimepicker-months"><table class="table-condensed">'+b.headTemplateV3+b.contTemplate+b.footTemplate+'</table></div><div class="datetimepicker-years"><table class="table-condensed">'+b.headTemplateV3+b.contTemplate+b.footTemplate+"</table></div></div>";c.fn.datetimepicker.DPGlobal=b;c.fn.datetimepicker.noConflict=function(){c.fn.datetimepicker=old;return this};c(document).on("focus.datetimepicker.data-api click.datetimepicker.data-api",'[data-provide="datetimepicker"]',function(h){var g=c(this);if(g.data("datetimepicker")){return}h.preventDefault();g.datetimepicker("show")});c(function(){c('[data-provide="datetimepicker-inline"]').datetimepicker()})}(window.jQuery);
-<<<<<<< HEAD
 /**
- * jQuery Geocoding and Places Autocomplete Plugin - V 1.6.4
+ * jQuery Geocoding and Places Autocomplete Plugin - V 1.6.5
  *
  * @author Martin Kleppe <kleppe@ubilabs.net>, 2014
  * @author Ubilabs http://ubilabs.net, 2014
@@ -14104,6 +14114,9 @@ if (typeof jQuery === 'undefined') {
   // * `markerOptions.disabled` - Do not show marker. Default: `false`. Set to true to disable marker.
   // * `maxZoom` - The maximum zoom level too zoom in after a geocoding response. Default: `16`
   // * `types` - An array containing one or more of the supported types for the places request. Default: `['geocode']` See the full list [here](http://code.google.com/apis/maps/documentation/javascript/places.html#place_search_requests).
+  // * `blur` - Trigger geocode when input loses focus.
+  // * `geocodeAfterResult` - If blur is set to true, choose whether to geocode if user has explicitly selected a result before blur.
+  // * `restoreValueAfterBlur` - Restores the input's value upon blurring. Default is `false` which ignores the setting.
 
   var defaults = {
     bounds: true,
@@ -14126,7 +14139,9 @@ if (typeof jQuery === 'undefined') {
 
     maxZoom: 16,
     types: ['geocode'],
-    blur: false
+    blur: false,
+    geocodeAfterResult: false,
+    restoreValueAfterBlur: false
   };
 
   // See: [Geocoding Types](https://developers.google.com/maps/documentation/geocoding/#Types)
@@ -14220,6 +14235,9 @@ if (typeof jQuery === 'undefined') {
     // to fall back when the autocompleter does not return a value.
     initGeocoder: function(){
 
+      // Indicates is user did select a result from the dropdown.
+      var selected = false;
+
       var options = {
         types: this.options.types,
         bounds: this.options.bounds === true ? null : this.options.bounds,
@@ -14250,21 +14268,43 @@ if (typeof jQuery === 'undefined') {
       );
 
       // Prevent parent form from being submitted if user hit enter.
-      this.$input.keypress(function(event){
+      this.$input.on('keypress.' + this._name, function(event){
         if (event.keyCode === 13){ return false; }
       });
 
+      // Assume that if user types anything after having selected a result,
+      // the selected location is not valid any more.
+      if (this.options.geocodeAfterResult === true){
+        this.$input.bind('keypress.' + this._name, $.proxy(function(){
+          if (event.keyCode != 9 && this.selected === true){
+              this.selected = false;
+          }
+        }, this));
+      }
+
       // Listen for "geocode" events and trigger find action.
-      this.$input.bind("geocode", $.proxy(function(){
+      this.$input.bind('geocode.' + this._name, $.proxy(function(){
         this.find();
       }, this));
 
-      // Trigger find action when input element is blured out.
-      // (Usefull for typing partial location and tabing to the next field
+      // Saves the previous input value
+      this.$input.bind('geocode:result.' + this._name, $.proxy(function(){
+        this.lastInputVal = this.$input.val();
+      }, this));
+
+      // Trigger find action when input element is blurred out and user has
+      // not explicitly selected a result.
+      // (Useful for typing partial location and tabbing to the next field
       // or clicking somewhere else.)
       if (this.options.blur === true){
-        this.$input.blur($.proxy(function(){
-          this.find();
+        this.$input.on('blur.' + this._name, $.proxy(function(){
+          if (this.options.geocodeAfterResult === true && this.selected === true) { return; }
+
+          if (this.options.restoreValueAfterBlur === true && this.selected === true) {
+            setTimeout($.proxy(this.restoreLastValue, this), 0);
+          } else {
+            this.find();
+          }
         }, this));
       }
     },
@@ -14323,6 +14363,20 @@ if (typeof jQuery === 'undefined') {
       }
     },
 
+    destroy: function(){
+      if (this.map) {
+        google.maps.event.clearInstanceListeners(this.map);
+        google.maps.event.clearInstanceListeners(this.marker);
+      }
+
+      this.autocomplete.unbindAll();
+      google.maps.event.clearInstanceListeners(this.autocomplete);
+      google.maps.event.clearInstanceListeners(this.input);
+      this.$input.removeData();
+      this.$input.off(this._name);
+      this.$input.unbind('.' + this._name);
+    },
+
     // Look up a given address. If no `address` was specified it uses
     // the current value of the input.
     find: function(address){
@@ -14361,8 +14415,8 @@ if (typeof jQuery === 'undefined') {
       }
 
       // Get the first suggestion's text.
-      var $span1 = $(".pac-container .pac-item" + selected + ":first span:nth-child(2)").text();
-      var $span2 = $(".pac-container .pac-item" + selected + ":first span:nth-child(3)").text();
+      var $span1 = $(".pac-container:last .pac-item" + selected + ":first span:nth-child(2)").text();
+      var $span2 = $(".pac-container:last .pac-item" + selected + ":first span:nth-child(3)").text();
 
       // Adds the additional information, if available.
       var firstResult = $span1;
@@ -14373,6 +14427,11 @@ if (typeof jQuery === 'undefined') {
       this.$input.val(firstResult);
 
       return firstResult;
+    },
+
+    // Restores the input value using the previous value if it exists
+    restoreLastValue: function() {
+      if (this.lastInputVal){ this.$input.val(this.lastInputVal); }
     },
 
     // Handles the geocode response. If more than one results was found
@@ -14402,7 +14461,6 @@ if (typeof jQuery === 'undefined') {
     // If the geometry has a viewport, the map zooms out to fit the bounds.
     // Additionally it updates the marker position.
     center: function(geometry){
-
       if (geometry.viewport){
         this.map.fitBounds(geometry.viewport);
         if (this.map.getZoom() > this.options.maxZoom){
@@ -14419,7 +14477,7 @@ if (typeof jQuery === 'undefined') {
       }
     },
 
-    // Update the elements based on a single places or geoocoding response
+    // Update the elements based on a single places or geocoding response
     // and trigger the "geocode:result" event on the input.
     update: function(result){
 
@@ -14521,8 +14579,9 @@ if (typeof jQuery === 'undefined') {
     // If the place has no geometry it passes it to the geocoder.
     placeChanged: function(){
       var place = this.autocomplete.getPlace();
+      this.selected = true;
 
-      if (!place || !place.geometry){
+      if (!place.geometry){
         if (this.options.autoselect) {
           // Automatically selects the highlighted item or the first item from the
           // suggestions list.
@@ -15200,972 +15259,6 @@ if (typeof jQuery === 'undefined') {
           this.setCropBoxData(cropBoxData);
         }, this), 200);
       }
-=======
-/*!
- * Cropper v0.7.8
- * https://github.com/fengyuanchen/cropper
- *
- * Copyright 2014-2015 Fengyuan Chen
- * Released under the MIT license
- */
-
-(function (factory) {
-  if (typeof define === "function" && define.amd) {
-    // AMD. Register as anonymous module.
-    define(["jquery"], factory);
-  } else if (typeof exports === "object") {
-    // Node / CommonJS
-    factory(require("jquery"));
-  } else {
-    // Browser globals.
-    factory(jQuery);
-  }
-})(function ($) {
-
-  "use strict";
-
-  var $window = $(window),
-      $document = $(document),
-      location = window.location,
-
-      // Constants
-      TRUE = true,
-      FALSE = false,
-      NULL = null,
-      NAN = NaN,
-      INFINITY = Infinity,
-      STRING_UNDEFINED = "undefined",
-      STRING_DIRECTIVE = "directive",
-      CROPPER_NAMESPACE = ".cropper",
-
-      // RegExps
-      REGEXP_DIRECTIVES = /^(e|n|w|s|ne|nw|sw|se|all|crop|move|zoom)$/,
-      REGEXP_OPTIONS = /^(x|y|width|height)$/,
-      REGEXP_PROPERTIES = /^(naturalWidth|naturalHeight|width|height|aspectRatio|ratio|rotate)$/,
-
-      // Classes
-      CLASS_MODAL = "cropper-modal",
-      CLASS_HIDDEN = "cropper-hidden",
-      CLASS_INVISIBLE = "cropper-invisible",
-      CLASS_MOVE = "cropper-move",
-      CLASS_CROP = "cropper-crop",
-      CLASS_DISABLED = "cropper-disabled",
-
-      // Events
-      EVENT_MOUSE_DOWN = "mousedown touchstart",
-      EVENT_MOUSE_MOVE = "mousemove touchmove",
-      EVENT_MOUSE_UP = "mouseup mouseleave touchend touchleave touchcancel",
-      EVENT_WHEEL = "wheel mousewheel DOMMouseScroll",
-      EVENT_RESIZE = "resize" + CROPPER_NAMESPACE, // Bind to window with namespace
-      EVENT_DBLCLICK = "dblclick",
-      EVENT_BUILD = "build" + CROPPER_NAMESPACE,
-      EVENT_BUILT = "built" + CROPPER_NAMESPACE,
-      EVENT_DRAG_START = "dragstart" + CROPPER_NAMESPACE,
-      EVENT_DRAG_MOVE = "dragmove" + CROPPER_NAMESPACE,
-      EVENT_DRAG_END = "dragend" + CROPPER_NAMESPACE,
-
-      // Functions
-      isNumber = function (n) {
-        return typeof n === "number";
-      },
-
-      toArray = function (obj, offset) {
-        var args = [];
-
-        if (isNumber(offset)) { // It's necessary for IE8
-          args.push(offset);
-        }
-
-        return args.slice.apply(obj, args);
-      },
-
-      // Custom proxy to avoid jQuery's guid
-      proxy = function (fn, context) {
-        var args = toArray(arguments, 2);
-
-        return function () {
-          return fn.apply(context, args.concat(toArray(arguments)));
-        };
-      },
-
-      addTimestamp = function (url) {
-        var timestamp = "timestamp=" + (new Date()).getTime();
-
-        return (url + (url.indexOf("?") === -1 ? "?" : "&") + timestamp);
-      },
-
-      // Constructor
-      Cropper = function (element, options) {
-        this.element = element;
-        this.$element = $(element);
-        this.defaults = $.extend({}, Cropper.DEFAULTS, $.isPlainObject(options) ? options : {});
-        this.$original = NULL;
-        this.ready = FALSE;
-        this.built = FALSE;
-        this.cropped = FALSE;
-        this.rotated = FALSE;
-        this.disabled = FALSE;
-        this.replaced = FALSE;
-        this.init();
-      },
-
-      // Others
-      sqrt = Math.sqrt,
-      min = Math.min,
-      max = Math.max,
-      abs = Math.abs,
-      sin = Math.sin,
-      cos = Math.cos,
-      num = parseFloat;
-
-  Cropper.prototype = {
-    constructor: Cropper,
-
-    support: {
-      canvas: $.isFunction($("<canvas>")[0].getContext)
-    },
-
-    init: function () {
-      var defaults = this.defaults;
-
-      $.each(defaults, function (i, n) {
-        switch (i) {
-          case "aspectRatio":
-            defaults[i] = abs(num(n)) || NAN; // 0 -> NaN
-            break;
-
-          case "autoCropArea":
-            defaults[i] = abs(num(n)) || 0.8; // 0 | NaN -> 0.8
-            break;
-
-          case "minWidth":
-          case "minHeight":
-            defaults[i] = abs(num(n)) || 0; // NaN -> 0
-            break;
-
-          case "maxWidth":
-          case "maxHeight":
-            defaults[i] = abs(num(n)) || INFINITY; // 0 | NaN -> Infinity
-            break;
-
-          // No default
-        }
-      });
-
-      // Set default image data
-      this.image = {
-        rotate: 0
-      };
-
-      this.load();
-    },
-
-    load: function () {
-      var _this = this,
-          $this = this.$element,
-          element = this.element,
-          image = this.image,
-          crossOrigin = "",
-          $clone,
-          url;
-
-      if ($this.is("img")) {
-        url = $this.prop("src");
-      } else if ($this.is("canvas") && this.support.canvas) {
-        url = element.toDataURL();
-      }
-
-      if (!url) {
-        return;
-      }
-
-      // Reset image rotate degree
-      if (this.replaced) {
-        image.rotate = 0;
-      }
-
-      if (this.defaults.checkImageOrigin && this.isCrossOriginURL(url)) {
-        crossOrigin = " crossOrigin";
-        url = addTimestamp(url); // Bust cache (#119, #148)
-      }
-
-      this.$clone = ($clone = $("<img" + crossOrigin + ' src="' + url + '">'));
-
-      $clone.one("load", function () {
-        image.naturalWidth = this.naturalWidth || $clone.width();
-        image.naturalHeight = this.naturalHeight || $clone.height();
-        image.aspectRatio = image.naturalWidth / image.naturalHeight;
-
-        _this.url = url;
-        _this.ready = TRUE;
-        _this.build();
-      });
-
-      // Hide and prepend the clone iamge to the document body (Don't append to).
-      $clone.addClass(CLASS_INVISIBLE).prependTo("body");
-    },
-
-    isCrossOriginURL: function (url) {
-      var parts = url.match(/^(https?:)\/\/([^\:\/\?#]+):?(\d*)/i);
-
-      if ((parts && (parts[1] !== location.protocol || parts[2] !== location.hostname || parts[3] !== location.port))) {
-        return TRUE;
-      }
-
-      return FALSE;
-    },
-
-    build: function () {
-      var $this = this.$element,
-          defaults = this.defaults,
-          buildEvent,
-          $cropper;
-
-      if (!this.ready) {
-        return;
-      }
-
-      if (this.built) {
-        this.unbuild();
-      }
-
-      $this.one(EVENT_BUILD, defaults.build); // Only trigger once
-      buildEvent = $.Event(EVENT_BUILD);
-      $this.trigger(buildEvent);
-
-      if (buildEvent.isDefaultPrevented()) {
-        return;
-      }
-
-      // Create cropper elements
-      this.$cropper = ($cropper = $(Cropper.TEMPLATE));
-
-      // Hide the original image
-      $this.addClass(CLASS_HIDDEN);
-
-      // Show and prepend the clone iamge to the cropper
-      this.$clone.removeClass(CLASS_INVISIBLE).prependTo($cropper);
-
-      // Save original image for rotation
-      if (!this.rotated) {
-        this.$original = this.$clone.clone();
-
-        // Append the image to document to avoid "NS_ERROR_NOT_AVAILABLE" error on Firefox when call the "drawImage" method.
-        this.$original.addClass(CLASS_HIDDEN).prependTo(this.$cropper);
-
-        this.originalImage = $.extend({}, this.image);
-      }
-
-      this.$container = $this.parent();
-      this.$container.append($cropper);
-
-      this.$canvas = $cropper.find(".cropper-canvas");
-      this.$dragger = $cropper.find(".cropper-dragger");
-      this.$viewer = $cropper.find(".cropper-viewer");
-
-      defaults.autoCrop ? (this.cropped = TRUE) : this.$dragger.addClass(CLASS_HIDDEN);
-      defaults.modal && this.$canvas.addClass(CLASS_MODAL);
-      !defaults.dashed && this.$dragger.find(".cropper-dashed").addClass(CLASS_HIDDEN);
-      !defaults.movable && this.$dragger.find(".cropper-face").data(STRING_DIRECTIVE, "move");
-      !defaults.resizable && this.$dragger.find(".cropper-line, .cropper-point").addClass(CLASS_HIDDEN);
-
-      this.addListeners();
-      this.initPreview();
-
-      this.built = TRUE; // Set `true` before update
-      defaults.dragCrop && this.setDragMode("crop"); // Set after built
-      this.update();
-      this.replaced = FALSE; // Reset to `false` after update
-
-      $this.one(EVENT_BUILT, defaults.built); // Only trigger once
-      $this.trigger(EVENT_BUILT);
-    },
-
-    unbuild: function () {
-      if (!this.built) {
-        return;
-      }
-
-      this.built = FALSE;
-      this.removeListeners();
-
-      this.$preview.empty();
-      this.$preview = NULL;
-
-      this.$dragger = NULL;
-      this.$canvas = NULL;
-      this.$container = NULL;
-
-      this.$cropper.remove();
-      this.$cropper = NULL;
-    },
-
-    update: function (data) {
-      this.initContainer();
-      this.initCropper();
-      this.initImage();
-      this.initDragger();
-
-      if (data) {
-        this.setData(data, TRUE);
-        this.setDragMode("crop");
-      } else {
-        this.setData(this.defaults.data);
-      }
-    },
-
-    resize: function () {
-      clearTimeout(this.resizing);
-      this.resizing = setTimeout($.proxy(this.update, this, this.getData()), 200);
-    },
-
-    preview: function () {
-      var image = this.image,
-          dragger = this.dragger,
-          width = image.width,
-          height = image.height,
-          left = dragger.left - image.left,
-          top = dragger.top - image.top;
-
-      this.$viewer.find("img").css({
-        width: width,
-        height: height,
-        marginLeft: -left,
-        marginTop: -top
-      });
-
-      this.$preview.each(function () {
-        var $this = $(this),
-            ratio = $this.width() / dragger.width;
-
-        $this.find("img").css({
-          width: width * ratio,
-          height: height * ratio,
-          marginLeft: -left * ratio,
-          marginTop: -top * ratio
-        });
-      });
-    },
-
-    addListeners: function () {
-      var defaults = this.defaults;
-
-      this.$element.on(EVENT_DRAG_START, defaults.dragstart).on(EVENT_DRAG_MOVE, defaults.dragmove).on(EVENT_DRAG_END, defaults.dragend);
-      this.$cropper.on(EVENT_MOUSE_DOWN, $.proxy(this.dragstart, this)).on(EVENT_DBLCLICK, $.proxy(this.dblclick, this));
-
-      if (defaults.zoomable) {
-        this.$cropper.on(EVENT_WHEEL, $.proxy(this.wheel, this));
-      }
-
-      if (defaults.multiple) {
-        this.$cropper.on(EVENT_MOUSE_MOVE, $.proxy(this.dragmove, this)).on(EVENT_MOUSE_UP, $.proxy(this.dragend, this));
-      } else {
-        $document.on(EVENT_MOUSE_MOVE, (this._dragmove = proxy(this.dragmove, this))).on(EVENT_MOUSE_UP, (this._dragend = proxy(this.dragend, this)));
-      }
-
-      $window.on(EVENT_RESIZE, (this._resize = proxy(this.resize, this)));
-    },
-
-    removeListeners: function () {
-      var defaults = this.defaults;
-
-      this.$element.off(EVENT_DRAG_START, defaults.dragstart).off(EVENT_DRAG_MOVE, defaults.dragmove).off(EVENT_DRAG_END, defaults.dragend);
-      this.$cropper.off(EVENT_MOUSE_DOWN, this.dragstart).off(EVENT_DBLCLICK, this.dblclick);
-
-      if (defaults.zoomable) {
-        this.$cropper.off(EVENT_WHEEL, this.wheel);
-      }
-
-      if (defaults.multiple) {
-        this.$cropper.off(EVENT_MOUSE_MOVE, this.dragmove).off(EVENT_MOUSE_UP, this.dragend);
-      } else {
-        $document.off(EVENT_MOUSE_MOVE, this._dragmove).off(EVENT_MOUSE_UP, this._dragend);
-      }
-
-      $window.off(EVENT_RESIZE, this._resize);
-    },
-
-    initPreview: function () {
-      var img = '<img src="' + this.url + '">';
-
-      this.$preview = $(this.defaults.preview);
-      this.$viewer.html(img);
-      this.$preview.html(img).find("img").css("cssText", "min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;");
-    },
-
-    initContainer: function () {
-      var $container = this.$container,
-          defaults = this.defaults;
-
-      this.container = {
-        width: max($container.width(), defaults.minContainerWidth),
-        height: max($container.height(), defaults.minContainerHeight)
-      };
-    },
-
-    initCropper: function () {
-      var container = this.container,
-          image = this.image,
-          cropper;
-
-      if (((image.naturalWidth * container.height / image.naturalHeight) - container.width) >= 0) {
-        cropper = {
-          width: container.width,
-          height: container.width / image.aspectRatio,
-          left: 0
-        };
-
-        cropper.top = (container.height - cropper.height) / 2;
-      } else {
-        cropper = {
-          width: container.height * image.aspectRatio,
-          height: container.height,
-          top: 0
-        };
-
-        cropper.left = (container.width - cropper.width) / 2;
-      }
-
-      this.$cropper.css({
-        width: cropper.width,
-        height: cropper.height,
-        left: cropper.left,
-        top: cropper.top
-      });
-
-      this.cropper = cropper;
-    },
-
-    initImage: function () {
-      var image = this.image,
-          cropper = this.cropper,
-          defaultImage = {
-            _width: cropper.width,
-            _height: cropper.height,
-            width: cropper.width,
-            height: cropper.height,
-            left: 0,
-            top: 0,
-            ratio: cropper.width / image.naturalWidth
-          };
-
-      this.defaultImage = $.extend({}, image, defaultImage);
-
-      if (image._width !== cropper.width || image._height !== cropper.height) {
-        $.extend(image, defaultImage);
-      } else {
-        image = $.extend({}, defaultImage, image);
-
-        // Reset image ratio
-        if (this.replaced) {
-          image.ratio = defaultImage.ratio;
-        }
-      }
-
-      this.image = image;
-      this.renderImage();
-    },
-
-    renderImage: function (mode) {
-      var image = this.image;
-
-      if (mode === "zoom") {
-        image.left -= (image.width - image.oldWidth) / 2;
-        image.top -= (image.height - image.oldHeight) / 2;
-      }
-
-      image.left = min(max(image.left, image._width - image.width), 0);
-      image.top = min(max(image.top, image._height - image.height), 0);
-
-      this.$clone.css({
-        width: image.width,
-        height: image.height,
-        marginLeft: image.left,
-        marginTop: image.top
-      });
-
-      if (mode) {
-        this.defaults.done(this.getData());
-        this.preview();
-      }
-    },
-
-    initDragger: function () {
-      var defaults = this.defaults,
-          cropper = this.cropper,
-          // If not set, use the original aspect ratio of the image.
-          aspectRatio = defaults.aspectRatio || this.image.aspectRatio,
-          ratio = this.image.ratio,
-          autoCropDragger,
-          dragger;
-
-      if (((cropper.height * aspectRatio) - cropper.width) >= 0) {
-        dragger = {
-          height: cropper.width / aspectRatio,
-          width: cropper.width,
-          left: 0,
-          top: (cropper.height - (cropper.width / aspectRatio)) / 2,
-          maxWidth: cropper.width,
-          maxHeight: cropper.width / aspectRatio
-        };
-      } else {
-        dragger = {
-          height: cropper.height,
-          width: cropper.height * aspectRatio,
-          left: (cropper.width - (cropper.height * aspectRatio)) / 2,
-          top: 0,
-          maxWidth: cropper.height * aspectRatio,
-          maxHeight: cropper.height
-        };
-      }
-
-      dragger.minWidth = 0;
-      dragger.minHeight = 0;
-
-      if (defaults.aspectRatio) {
-        if (isFinite(defaults.maxWidth)) {
-          dragger.maxWidth = min(dragger.maxWidth, defaults.maxWidth * ratio);
-          dragger.maxHeight = dragger.maxWidth / aspectRatio;
-        } else if (isFinite(defaults.maxHeight)) {
-          dragger.maxHeight = min(dragger.maxHeight, defaults.maxHeight * ratio);
-          dragger.maxWidth = dragger.maxHeight * aspectRatio;
-        }
-
-        if (defaults.minWidth > 0) {
-          dragger.minWidth = max(0, defaults.minWidth * ratio);
-          dragger.minHeight = dragger.minWidth / aspectRatio;
-        } else if (defaults.minHeight > 0) {
-          dragger.minHeight = max(0, defaults.minHeight * ratio);
-          dragger.minWidth = dragger.minHeight * aspectRatio;
-        }
-      } else {
-        dragger.maxWidth = min(dragger.maxWidth, defaults.maxWidth * ratio);
-        dragger.maxHeight = min(dragger.maxHeight, defaults.maxHeight * ratio);
-        dragger.minWidth = max(0, defaults.minWidth * ratio);
-        dragger.minHeight = max(0, defaults.minHeight * ratio);
-      }
-
-      // minWidth can't be greater than maxWidth, and minHeight too.
-      dragger.minWidth = min(dragger.maxWidth, dragger.minWidth);
-      dragger.minHeight = min(dragger.maxHeight, dragger.minHeight);
-
-      // Center the dragger by default
-      autoCropDragger = $.extend({}, dragger);
-
-      // The width of auto crop area must large than minWidth, and the height too. (#164)
-      autoCropDragger.width = max(dragger.minWidth, dragger.width * defaults.autoCropArea);
-      autoCropDragger.height = max(dragger.minHeight, dragger.height * defaults.autoCropArea);
-      autoCropDragger.left = (cropper.width - autoCropDragger.width) / 2;
-      autoCropDragger.top = (cropper.height - autoCropDragger.height) / 2;
-
-      autoCropDragger.oldLeft = dragger.oldLeft = dragger.left;
-      autoCropDragger.oldTop = dragger.oldTop = dragger.top;
-
-      this.autoCropDragger = autoCropDragger;
-      this.defaultDragger = $.extend({}, dragger);
-      this.dragger = dragger;
-    },
-
-    renderDragger: function () {
-      var dragger = this.dragger,
-          cropper = this.cropper;
-
-      if (dragger.width > dragger.maxWidth) {
-        dragger.width = dragger.maxWidth;
-        dragger.left = dragger.oldLeft;
-      } else if (dragger.width < dragger.minWidth) {
-        dragger.width = dragger.minWidth;
-        dragger.left = dragger.oldLeft;
-      }
-
-      if (dragger.height > dragger.maxHeight) {
-        dragger.height = dragger.maxHeight;
-        dragger.top = dragger.oldTop;
-      } else if (dragger.height < dragger.minHeight) {
-        dragger.height = dragger.minHeight;
-        dragger.top = dragger.oldTop;
-      }
-
-      dragger.left = min(max(dragger.left, 0), cropper.width - dragger.width);
-      dragger.top = min(max(dragger.top, 0), cropper.height - dragger.height);
-      dragger.oldLeft = dragger.left;
-      dragger.oldTop = dragger.top;
-
-      // Re-render the dragger
-      this.dragger = dragger;
-
-      if (!this.disabled) {
-        this.defaults.done(this.getData());
-      }
-
-      this.$dragger.css({
-        width: dragger.width,
-        height: dragger.height,
-        left: dragger.left,
-        top: dragger.top
-      });
-
-      this.preview();
-    },
-
-    reset: function (deep) {
-      if (!this.cropped || this.disabled) {
-        return;
-      }
-
-      if (deep) {
-        this.defaults.data = {};
-      }
-
-      this.image = $.extend({}, this.defaultImage);
-      this.renderImage();
-      this.dragger = $.extend({}, this.defaultDragger);
-      this.setData(this.defaults.data);
-    },
-
-    clear: function () {
-      if (!this.cropped || this.disabled) {
-        return;
-      }
-
-      this.cropped = FALSE;
-
-      this.setData({
-        x: 0,
-        y: 0,
-        width: 0,
-        height: 0
-      });
-
-      this.$canvas.removeClass(CLASS_MODAL);
-      this.$dragger.addClass(CLASS_HIDDEN);
-    },
-
-    destroy: function () {
-      var $this = this.$element;
-
-      if (!this.ready) {
-        this.$clone.off("load").remove();
-      }
-
-      this.unbuild();
-      $this.removeClass(CLASS_HIDDEN).removeData("cropper");
-
-      if (this.rotated) {
-        $this.attr("src", this.$original.attr("src"));
-      }
-    },
-
-    replace: function (url, /*INTERNAL*/ rotated) {
-      var _this = this,
-          $this = this.$element,
-          element = this.element,
-          context;
-
-      if (!this.disabled && url && url !== this.url && url !== $this.attr("src")) {
-        if (!rotated) {
-          this.rotated = FALSE;
-          this.replaced = TRUE;
-        }
-
-        if ($this.is("img")) {
-          $this.attr("src", url);
-          this.load();
-        } else if ($this.is("canvas") && this.support.canvas) {
-          context = element.getContext("2d");
-
-          $('<img src="' + url + '">').one("load", function () {
-            element.width = this.width;
-            element.height = this.height;
-            context.clearRect(0, 0, element.width, element.height);
-            context.drawImage(this, 0, 0);
-            _this.load();
-          });
-        }
-      }
-    },
-
-    setData: function (data, /*INTERNAL*/ once) {
-      var cropper = this.cropper,
-          dragger = this.dragger,
-          image = this.image,
-          aspectRatio = this.defaults.aspectRatio;
-
-      if (!this.built || this.disabled || typeof data === STRING_UNDEFINED) {
-        return;
-      }
-
-      if (data === NULL || $.isEmptyObject(data)) {
-        dragger = $.extend({}, this.autoCropDragger);
-      }
-
-      if ($.isPlainObject(data) && !$.isEmptyObject(data)) {
-
-        if (!once) {
-          this.defaults.data = data;
-        }
-
-        data = this.transformData(data);
-
-        if (isNumber(data.x) && data.x <= cropper.width - image.left) {
-          dragger.left = data.x + image.left;
-        }
-
-        if (isNumber(data.y) && data.y <= cropper.height - image.top) {
-          dragger.top = data.y + image.top;
-        }
-
-        if (aspectRatio) {
-          if (isNumber(data.width) && data.width <= dragger.maxWidth && data.width >= dragger.minWidth) {
-            dragger.width = data.width;
-            dragger.height = dragger.width / aspectRatio;
-          } else if (isNumber(data.height) && data.height <= dragger.maxHeight && data.height >= dragger.minHeight) {
-            dragger.height = data.height;
-            dragger.width = dragger.height * aspectRatio;
-          }
-        } else {
-          if (isNumber(data.width) && data.width <= dragger.maxWidth && data.width >= dragger.minWidth) {
-            dragger.width = data.width;
-          }
-
-          if (isNumber(data.height) && data.height <= dragger.maxHeight && data.height >= dragger.minHeight) {
-            dragger.height = data.height;
-          }
-        }
-      }
-
-      this.dragger = dragger;
-      this.renderDragger();
-    },
-
-    getData: function (rounded) {
-      var dragger = this.dragger,
-          image = this.image,
-          data = {};
-
-      if (this.built) {
-        data = {
-          x: dragger.left - image.left,
-          y: dragger.top - image.top,
-          width: dragger.width,
-          height: dragger.height
-        };
-
-        data = this.transformData(data, TRUE, rounded);
-      }
-
-      return data;
-    },
-
-    transformData: function (data, reversed, rounded) {
-      var ratio = this.image.ratio,
-          result = {};
-
-      $.each(data, function (i, n) {
-        n = num(n);
-
-        if (REGEXP_OPTIONS.test(i) && !isNaN(n)) {
-          result[i] = reversed ? (rounded ? Math.round(n / ratio) : n / ratio) : n * ratio;
-        }
-      });
-
-      return result;
-    },
-
-    setAspectRatio: function (aspectRatio) {
-      var freeRatio = aspectRatio === "auto";
-
-      if (this.disabled) {
-        return;
-      }
-
-      aspectRatio = num(aspectRatio);
-
-      if (freeRatio || (!isNaN(aspectRatio) && aspectRatio > 0)) {
-        this.defaults.aspectRatio = freeRatio ? NAN : aspectRatio;
-
-        if (this.built) {
-          this.initDragger();
-          this.renderDragger();
-          this.setData(this.defaults.data); // Reset to initial state
-        }
-      }
-    },
-
-    getImageData: function () {
-      var data = {};
-
-      if (this.ready) {
-        $.each(this.image, function (name, value) {
-          if (REGEXP_PROPERTIES.test(name)) {
-            data[name] = value;
-          }
-        });
-      }
-
-      return data;
-    },
-
-    getDataURL: function (options, type, quality) {
-      var canvas = $("<canvas>")[0],
-          data = this.getData(),
-          dataURL = "",
-          context;
-
-      if (!$.isPlainObject(options)) {
-        quality = type;
-        type = options;
-        options = {};
-      }
-
-      options = $.extend({
-        width: data.width,
-        height: data.height
-      }, options);
-
-      if (this.cropped && this.support.canvas) {
-        canvas.width = options.width;
-        canvas.height = options.height;
-        context = canvas.getContext("2d");
-
-        if (type === "image/jpeg") {
-          context.fillStyle = "#fff";
-          context.fillRect(0, 0, options.width, options.height);
-        }
-
-        context.drawImage(this.$clone[0], data.x, data.y, data.width, data.height, 0, 0, options.width, options.height);
-        dataURL = canvas.toDataURL(type, quality);
-      }
-
-      return dataURL;
-    },
-
-    setDragMode: function (mode) {
-      var $canvas = this.$canvas,
-          defaults = this.defaults,
-          cropable = FALSE,
-          movable = FALSE;
-
-      if (!this.built || this.disabled) {
-        return;
-      }
-
-      switch (mode) {
-        case "crop":
-          if (defaults.dragCrop) {
-            cropable = TRUE;
-            $canvas.data(STRING_DIRECTIVE, mode);
-          }
-
-          break;
-
-        case "move":
-          movable = TRUE;
-          $canvas.data(STRING_DIRECTIVE, mode);
-
-          break;
-
-        default:
-          $canvas.removeData(STRING_DIRECTIVE);
-      }
-
-      $canvas.toggleClass(CLASS_CROP, cropable).toggleClass(CLASS_MOVE, movable);
-    },
-
-    enable: function () {
-      if (this.built) {
-        this.disabled = FALSE;
-        this.$cropper.removeClass(CLASS_DISABLED);
-      }
-    },
-
-    disable: function () {
-      if (this.built) {
-        this.disabled = TRUE;
-        this.$cropper.addClass(CLASS_DISABLED);
-      }
-    },
-
-    rotate: function (degree) {
-      var image = this.image;
-
-      degree = num(degree) || 0;
-
-      if (!this.built || degree === 0 || this.disabled || !this.defaults.rotatable || !this.support.canvas) {
-        return;
-      }
-
-      this.rotated = TRUE;
-      degree = (image.rotate = (image.rotate + degree) % 360);
-
-       // replace with "true" to prevent to override the original image
-      this.replace(this.getRotatedDataURL(degree), true);
-    },
-
-    getRotatedDataURL: function (degree) {
-      var canvas = $("<canvas>")[0],
-          context = canvas.getContext("2d"),
-          arc = degree * Math.PI / 180,
-          deg = abs(degree) % 180,
-          acuteAngle = deg > 90 ? (180 - deg) : deg,
-          acuteAngleArc = acuteAngle * Math.PI / 180,
-          originalImage = this.originalImage,
-          naturalWidth = originalImage.naturalWidth,
-          naturalHeight = originalImage.naturalHeight,
-          width = abs(naturalWidth * cos(acuteAngleArc) + naturalHeight * sin(acuteAngleArc)),
-          height = abs(naturalWidth * sin(acuteAngleArc) + naturalHeight * cos(acuteAngleArc));
-
-      canvas.width = width;
-      canvas.height = height;
-      context.save();
-      context.translate(width / 2, height / 2);
-      context.rotate(arc);
-      context.drawImage(this.$original[0], -naturalWidth / 2, -naturalHeight / 2, naturalWidth, naturalHeight);
-      context.restore();
-
-      return canvas.toDataURL();
-    },
-
-    zoom: function (delta) {
-      var image = this.image,
-          width,
-          height,
-          range;
-
-      delta = num(delta);
-
-      if (!this.built || !delta || this.disabled || !this.defaults.zoomable) {
-        return;
-      }
-
-      width = image.width * (1 + delta);
-      height = image.height * (1 + delta);
-      range = width / image._width;
-
-      if (range > 10) {
-        return;
-      }
-
-      if (range < 1) {
-        width = image._width;
-        height = image._height;
-      }
-
-      if (range <= 1) {
-        this.setDragMode("crop");
-      } else {
-        this.setDragMode("move");
-      }
-
-      image.oldWidth = image.width;
-      image.oldHeight = image.height;
-
-      image.width = width;
-      image.height = height;
-      image.ratio = image.width / image.naturalWidth;
-
-      this.renderImage("zoom");
->>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
     },
 
     dblclick: function () {
@@ -16174,15 +15267,9 @@ if (typeof jQuery === 'undefined') {
       }
 
       if (this.$canvas.hasClass(CLASS_CROP)) {
-<<<<<<< HEAD
         this.setDragMode('move');
       } else {
         this.setDragMode('crop');
-=======
-        this.setDragMode("move");
-      } else {
-        this.setDragMode("crop");
->>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
       }
     },
 
@@ -16208,13 +15295,9 @@ if (typeof jQuery === 'undefined') {
     },
 
     dragstart: function (event) {
-<<<<<<< HEAD
       var options = this.options,
           originalEvent = event.originalEvent,
           touches = originalEvent && originalEvent.touches,
-=======
-      var touches = event.originalEvent.touches,
->>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
           e = event,
           directive,
           dragStartEvent,
@@ -16228,19 +15311,11 @@ if (typeof jQuery === 'undefined') {
         touchesLength = touches.length;
 
         if (touchesLength > 1) {
-<<<<<<< HEAD
           if (options.zoomable && options.touchDragZoom && touchesLength === 2) {
             e = touches[1];
             this.startX2 = e.pageX;
             this.startY2 = e.pageY;
             directive = 'zoom';
-=======
-          if (this.defaults.zoomable && touchesLength === 2) {
-            e = touches[1];
-            this.startX2 = e.pageX;
-            this.startY2 = e.pageY;
-            directive = "zoom";
->>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
           } else {
             return;
           }
@@ -16262,34 +15337,21 @@ if (typeof jQuery === 'undefined') {
         }
 
         this.directive = directive;
-<<<<<<< HEAD
         this.cropping = false;
         this.startX = e.pageX;
         this.startY = e.pageY;
 
         if (directive === 'crop') {
           this.cropping = true;
-=======
-        this.cropping = FALSE;
-        this.startX = e.pageX;
-        this.startY = e.pageY;
-
-        if (directive === "crop") {
-          this.cropping = TRUE;
->>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
           this.$canvas.addClass(CLASS_MODAL);
         }
       }
     },
 
     dragmove: function (event) {
-<<<<<<< HEAD
       var options = this.options,
           originalEvent = event.originalEvent,
           touches = originalEvent && originalEvent.touches,
-=======
-      var touches = event.originalEvent.touches,
->>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
           e = event,
           dragMoveEvent,
           touchesLength;
@@ -16302,11 +15364,7 @@ if (typeof jQuery === 'undefined') {
         touchesLength = touches.length;
 
         if (touchesLength > 1) {
-<<<<<<< HEAD
           if (options.zoomable && options.touchDragZoom && touchesLength === 2) {
-=======
-          if (this.defaults.zoomable && touchesLength === 2) {
->>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
             e = touches[1];
             this.endX2 = e.pageX;
             this.endY2 = e.pageY;
@@ -16324,7 +15382,6 @@ if (typeof jQuery === 'undefined') {
         dragMoveEvent = $.Event(EVENT_DRAG_MOVE);
         this.$element.trigger(dragMoveEvent);
 
-<<<<<<< HEAD
         if (dragMoveEvent.isDefaultPrevented()) {
           return;
         }
@@ -17209,451 +16266,20 @@ if (typeof jQuery === 'undefined') {
 
   Cropper.setDefaults = function (options) {
     $.extend(Cropper.DEFAULTS, options);
-=======
-        if (dragMoveEvent.isDefaultPrevented()) {
-          return;
-        }
-
-        this.endX = e.pageX;
-        this.endY = e.pageY;
-
-        this.dragging();
-      }
-    },
-
-    dragend: function (event) {
-      var dragEndEvent;
-
-      if (this.disabled) {
-        return;
-      }
-
-      if (this.directive) {
-        event.preventDefault();
-
-        dragEndEvent = $.Event(EVENT_DRAG_END);
-        this.$element.trigger(dragEndEvent);
-
-        if (dragEndEvent.isDefaultPrevented()) {
-          return;
-        }
-
-        if (this.cropping) {
-          this.cropping = FALSE;
-          this.$canvas.toggleClass(CLASS_MODAL, this.cropped && this.defaults.modal);
-        }
-
-        this.directive = "";
-      }
-    },
-
-    dragging: function () {
-      var directive = this.directive,
-          image = this.image,
-          cropper = this.cropper,
-          maxWidth = cropper.width,
-          maxHeight = cropper.height,
-          dragger = this.dragger,
-          width = dragger.width,
-          height = dragger.height,
-          left = dragger.left,
-          top = dragger.top,
-          right = left + width,
-          bottom = top + height,
-          renderable = TRUE,
-          aspectRatio = this.defaults.aspectRatio,
-          range = {
-            x: this.endX - this.startX,
-            y: this.endY - this.startY
-          },
-          offset;
-
-      if (aspectRatio) {
-        range.X = range.y * aspectRatio;
-        range.Y = range.x / aspectRatio;
-      }
-
-      switch (directive) {
-        // Move dragger
-        case "all":
-          left += range.x;
-          top += range.y;
-
-          break;
-
-        // Resize dragger
-        case "e":
-          if (range.x >= 0 && (right >= maxWidth || aspectRatio && (top <= 0 || bottom >= maxHeight))) {
-            renderable = FALSE;
-            break;
-          }
-
-          width += range.x;
-
-          if (aspectRatio) {
-            height = width / aspectRatio;
-            top -= range.Y / 2;
-          }
-
-          if (width < 0) {
-            directive = "w";
-            width = 0;
-          }
-
-          break;
-
-        case "n":
-          if (range.y <= 0 && (top <= 0 || aspectRatio && (left <= 0 || right >= maxWidth))) {
-            renderable = FALSE;
-            break;
-          }
-
-          height -= range.y;
-          top += range.y;
-
-          if (aspectRatio) {
-            width = height * aspectRatio;
-            left += range.X / 2;
-          }
-
-          if (height < 0) {
-            directive = "s";
-            height = 0;
-          }
-
-          break;
-
-        case "w":
-          if (range.x <= 0 && (left <= 0 || aspectRatio && (top <= 0 || bottom >= maxHeight))) {
-            renderable = FALSE;
-            break;
-          }
-
-          width -= range.x;
-          left += range.x;
-
-          if (aspectRatio) {
-            height = width / aspectRatio;
-            top += range.Y / 2;
-          }
-
-          if (width < 0) {
-            directive = "e";
-            width = 0;
-          }
-
-          break;
-
-        case "s":
-          if (range.y >= 0 && (bottom >= maxHeight || aspectRatio && (left <= 0 || right >= maxWidth))) {
-            renderable = FALSE;
-            break;
-          }
-
-          height += range.y;
-
-          if (aspectRatio) {
-            width = height * aspectRatio;
-            left -= range.X / 2;
-          }
-
-          if (height < 0) {
-            directive = "n";
-            height = 0;
-          }
-
-          break;
-
-        case "ne":
-          if (aspectRatio) {
-            if (range.y <= 0 && (top <= 0 || right >= maxWidth)) {
-              renderable = FALSE;
-              break;
-            }
-
-            height -= range.y;
-            top += range.y;
-            width = height * aspectRatio;
-          } else {
-            if (range.x >= 0) {
-              if (right < maxWidth) {
-                width += range.x;
-              } else if (range.y <= 0 && top <= 0) {
-                renderable = FALSE;
-              }
-            } else {
-              width += range.x;
-            }
-
-            if (range.y <= 0) {
-              if (top > 0) {
-                height -= range.y;
-                top += range.y;
-              }
-            } else {
-              height -= range.y;
-              top += range.y;
-            }
-          }
-
-          if (width < 0 && height < 0) {
-            directive = "sw";
-            height = 0;
-            width = 0;
-          } else if (width < 0) {
-            directive = "nw";
-            width = 0;
-          } else if (height < 0) {
-            directive = "se";
-            height = 0;
-          }
-
-          break;
-
-        case "nw":
-          if (aspectRatio) {
-            if (range.y <= 0 && (top <= 0 || left <= 0)) {
-              renderable = FALSE;
-              break;
-            }
-
-            height -= range.y;
-            top += range.y;
-            width = height * aspectRatio;
-            left += range.X;
-          } else {
-            if (range.x <= 0) {
-              if (left > 0) {
-                width -= range.x;
-                left += range.x;
-              } else if (range.y <= 0 && top <= 0) {
-                renderable = FALSE;
-              }
-            } else {
-              width -= range.x;
-              left += range.x;
-            }
-
-            if (range.y <= 0) {
-              if (top > 0) {
-                height -= range.y;
-                top += range.y;
-              }
-            } else {
-              height -= range.y;
-              top += range.y;
-            }
-          }
-
-          if (width < 0 && height < 0) {
-            directive = "se";
-            height = 0;
-            width = 0;
-          } else if (width < 0) {
-            directive = "ne";
-            width = 0;
-          } else if (height < 0) {
-            directive = "sw";
-            height = 0;
-          }
-
-          break;
-
-        case "sw":
-          if (aspectRatio) {
-            if (range.x <= 0 && (left <= 0 || bottom >= maxHeight)) {
-              renderable = FALSE;
-              break;
-            }
-
-            width -= range.x;
-            left += range.x;
-            height = width / aspectRatio;
-          } else {
-            if (range.x <= 0) {
-              if (left > 0) {
-                width -= range.x;
-                left += range.x;
-              } else if (range.y >= 0 && bottom >= maxHeight) {
-                renderable = FALSE;
-              }
-            } else {
-              width -= range.x;
-              left += range.x;
-            }
-
-            if (range.y >= 0) {
-              if (bottom < maxHeight) {
-                height += range.y;
-              }
-            } else {
-              height += range.y;
-            }
-          }
-
-          if (width < 0 && height < 0) {
-            directive = "ne";
-            height = 0;
-            width = 0;
-          } else if (width < 0) {
-            directive = "se";
-            width = 0;
-          } else if (height < 0) {
-            directive = "nw";
-            height = 0;
-          }
-
-          break;
-
-        case "se":
-          if (aspectRatio) {
-            if (range.x >= 0 && (right >= maxWidth || bottom >= maxHeight)) {
-              renderable = FALSE;
-              break;
-            }
-
-            width += range.x;
-            height = width / aspectRatio;
-          } else {
-            if (range.x >= 0) {
-              if (right < maxWidth) {
-                width += range.x;
-              } else if (range.y >= 0 && bottom >= maxHeight) {
-                renderable = FALSE;
-              }
-            } else {
-              width += range.x;
-            }
-
-            if (range.y >= 0) {
-              if (bottom < maxHeight) {
-                height += range.y;
-              }
-            } else {
-              height += range.y;
-            }
-          }
-
-          if (width < 0 && height < 0) {
-            directive = "nw";
-            height = 0;
-            width = 0;
-          } else if (width < 0) {
-            directive = "sw";
-            width = 0;
-          } else if (height < 0) {
-            directive = "ne";
-            height = 0;
-          }
-
-          break;
-
-        // Move image
-        case "move":
-          image.left += range.x;
-          image.top += range.y;
-          this.renderImage("move");
-          renderable = FALSE;
-          break;
-
-        // Scale image
-        case "zoom":
-          this.zoom(function (x, y, x1, y1, x2, y2) {
-            return (sqrt(x2 * x2 + y2 * y2) - sqrt(x1 * x1 + y1 * y1)) / sqrt(x * x + y * y);
-          }(
-            image.width,
-            image.height,
-            abs(this.startX - this.startX2),
-            abs(this.startY - this.startY2),
-            abs(this.endX - this.endX2),
-            abs(this.endY - this.endY2)
-          ));
-
-          this.endX2 = this.startX2;
-          this.endY2 = this.startY2;
-          renderable = FALSE;
-          break;
-
-        // Crop image
-        case "crop":
-          if (range.x && range.y) {
-            offset = this.$cropper.offset();
-            left = this.startX - offset.left;
-            top = this.startY - offset.top;
-            width = dragger.minWidth;
-            height = dragger.minHeight;
-
-            if (range.x > 0) {
-              if (range.y > 0) {
-                directive = "se";
-              } else {
-                directive = "ne";
-                top -= height;
-              }
-            } else {
-              if (range.y > 0) {
-                directive = "sw";
-                left -= width;
-              } else {
-                directive = "nw";
-                left -= width;
-                top -= height;
-              }
-            }
-
-            // Show the dragger if is hidden
-            if (!this.cropped) {
-              this.cropped = TRUE;
-              this.$dragger.removeClass(CLASS_HIDDEN);
-            }
-          }
-
-          break;
-
-        // No default
-      }
-
-      if (renderable) {
-        dragger.width = width;
-        dragger.height = height;
-        dragger.left = left;
-        dragger.top = top;
-        this.directive = directive;
-
-        this.renderDragger();
-      }
-
-      // Override
-      this.startX = this.endX;
-      this.startY = this.endY;
-    }
->>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
   };
 
   // Use the string compressor: Strmin (https://github.com/fengyuanchen/strmin)
   Cropper.TEMPLATE = (function (source, words) {
-<<<<<<< HEAD
     words = words.split(',');
     return source.replace(/\d+/g, function (i) {
       return words[i];
     });
   })('<0 6="5-container"><0 6="5-canvas"></0><0 6="5-cropbox"><1 6="5-viewer"></1><1 6="5-8 8-h"></1><1 6="5-8 8-v"></1><1 6="5-face" 3-2="all"></1><1 6="5-7 7-e" 3-2="e"></1><1 6="5-7 7-n" 3-2="n"></1><1 6="5-7 7-w" 3-2="w"></1><1 6="5-7 7-s" 3-2="s"></1><1 6="5-4 4-e" 3-2="e"></1><1 6="5-4 4-n" 3-2="n"></1><1 6="5-4 4-w" 3-2="w"></1><1 6="5-4 4-s" 3-2="s"></1><1 6="5-4 4-ne" 3-2="ne"></1><1 6="5-4 4-nw" 3-2="nw"></1><1 6="5-4 4-sw" 3-2="sw"></1><1 6="5-4 4-se" 3-2="se"></1></0></0>','div,span,directive,data,point,cropper,class,line,dashed');
-=======
-    words = words.split(",");
-    return source.replace(/\d+/g, function (i) {
-      return words[i];
-    });
-  })('<0 6="5-container"><0 6="5-canvas"></0><0 6="5-dragger"><1 6="5-viewer"></1><1 6="5-8 8-h"></1><1 6="5-8 8-v"></1><1 6="5-face" 3-2="all"></1><1 6="5-7 7-e" 3-2="e"></1><1 6="5-7 7-n" 3-2="n"></1><1 6="5-7 7-w" 3-2="w"></1><1 6="5-7 7-s" 3-2="s"></1><1 6="5-4 4-e" 3-2="e"></1><1 6="5-4 4-n" 3-2="n"></1><1 6="5-4 4-w" 3-2="w"></1><1 6="5-4 4-s" 3-2="s"></1><1 6="5-4 4-ne" 3-2="ne"></1><1 6="5-4 4-nw" 3-2="nw"></1><1 6="5-4 4-sw" 3-2="sw"></1><1 6="5-4 4-se" 3-2="se"></1></0></0>', "div,span,directive,data,point,cropper,class,line,dashed");
->>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 
   /* Template source:
   <div class="cropper-container">
     <div class="cropper-canvas"></div>
-<<<<<<< HEAD
     <div class="cropper-cropbox">
-=======
-    <div class="cropper-dragger">
->>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
       <span class="cropper-viewer"></span>
       <span class="cropper-dashed dashed-h"></span>
       <span class="cropper-dashed dashed-v"></span>
@@ -17674,54 +16300,6 @@ if (typeof jQuery === 'undefined') {
   </div>
   */
 
-<<<<<<< HEAD
-=======
-  Cropper.DEFAULTS = {
-    // Basic
-    aspectRatio: "auto",
-    autoCropArea: 0.8, // 80%
-    data: {
-      // x: 0,
-      // y: 0,
-      // width: 300,
-      // height: 150
-    },
-    done: $.noop,
-    preview: "",
-
-    // Toggles
-    multiple: FALSE,
-    autoCrop: TRUE,
-    dragCrop: TRUE,
-    dashed: TRUE,
-    modal: TRUE,
-    movable: TRUE,
-    resizable: TRUE,
-    zoomable: TRUE,
-    rotatable: TRUE,
-    checkImageOrigin: TRUE,
-
-    // Dimensions
-    minWidth: 0,
-    minHeight: 0,
-    maxWidth: INFINITY,
-    maxHeight: INFINITY,
-    minContainerWidth: 300,
-    minContainerHeight: 150,
-
-    // Events
-    build: NULL,
-    built: NULL,
-    dragstart: NULL,
-    dragmove: NULL,
-    dragend: NULL
-  };
-
-  Cropper.setDefaults = function (options) {
-    $.extend(Cropper.DEFAULTS, options);
-  };
-
->>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
   // Save the other cropper
   Cropper.other = $.fn.cropper;
 
@@ -17732,7 +16310,6 @@ if (typeof jQuery === 'undefined') {
 
     this.each(function () {
       var $this = $(this),
-<<<<<<< HEAD
           data = $this.data('cropper'),
           fn;
 
@@ -17741,25 +16318,11 @@ if (typeof jQuery === 'undefined') {
       }
 
       if (typeof options === 'string' && $.isFunction((fn = data[options]))) {
-=======
-          data = $this.data("cropper"),
-          fn;
-
-      if (!data) {
-        $this.data("cropper", (data = new Cropper(this, options)));
-      }
-
-      if (typeof options === "string" && $.isFunction((fn = data[options]))) {
->>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
         result = fn.apply(data, args);
       }
     });
 
-<<<<<<< HEAD
     return !isUndefined(result) ? result : this;
-=======
-    return (typeof result !== STRING_UNDEFINED ? result : this);
->>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
   };
 
   $.fn.cropper.Constructor = Cropper;
@@ -17770,130 +16333,5 @@ if (typeof jQuery === 'undefined') {
     $.fn.cropper = Cropper.other;
     return this;
   };
-<<<<<<< HEAD
 
 });
-=======
-});
-
-/*
- * metismenu - v1.1.3
- * Easy menu jQuery plugin for Twitter Bootstrap 3
- * https://github.com/onokumus/metisMenu
- *
- * Made by Osman Nuri Okumus
- * Under MIT License
- */
-;(function($, window, document, undefined) {
-
-    var pluginName = "metisMenu",
-        defaults = {
-            toggle: true,
-            doubleTapToGo: false
-        };
-
-    function Plugin(element, options) {
-        this.element = $(element);
-        this.settings = $.extend({}, defaults, options);
-        this._defaults = defaults;
-        this._name = pluginName;
-        this.init();
-    }
-
-    Plugin.prototype = {
-        init: function() {
-
-            var $this = this.element,
-                $toggle = this.settings.toggle,
-                obj = this;
-
-            if (this.isIE() <= 9) {
-                $this.find("li.active").has("ul").children("ul").collapse("show");
-                $this.find("li").not(".active").has("ul").children("ul").collapse("hide");
-            } else {
-                $this.find("li.active").has("ul").children("ul").addClass("collapse in");
-                $this.find("li").not(".active").has("ul").children("ul").addClass("collapse");
-            }
-
-            //add the "doubleTapToGo" class to active items if needed
-            if (obj.settings.doubleTapToGo) {
-                $this.find("li.active").has("ul").children("a").addClass("doubleTapToGo");
-            }
-
-            $this.find("li").has("ul").children("a").on("click" + "." + pluginName, function(e) {
-                e.preventDefault();
-
-                //Do we need to enable the double tap
-                if (obj.settings.doubleTapToGo) {
-
-                    //if we hit a second time on the link and the href is valid, navigate to that url
-                    if (obj.doubleTapToGo($(this)) && $(this).attr("href") !== "#" && $(this).attr("href") !== "") {
-                        e.stopPropagation();
-                        document.location = $(this).attr("href");
-                        return;
-                    }
-                }
-
-                $(this).parent("li").toggleClass("active").children("ul").collapse("toggle");
-
-                if ($toggle) {
-                    $(this).parent("li").siblings().removeClass("active").children("ul.in").collapse("hide");
-                }
-
-            });
-        },
-
-        isIE: function() { //https://gist.github.com/padolsey/527683
-            var undef,
-                v = 3,
-                div = document.createElement("div"),
-                all = div.getElementsByTagName("i");
-
-            while (
-                div.innerHTML = "<!--[if gt IE " + (++v) + "]><i></i><![endif]-->",
-                all[0]
-            ) {
-                return v > 4 ? v : undef;
-            }
-        },
-
-        //Enable the link on the second click.
-        doubleTapToGo: function(elem) {
-            var $this = this.element;
-
-            //if the class "doubleTapToGo" exists, remove it and return
-            if (elem.hasClass("doubleTapToGo")) {
-                elem.removeClass("doubleTapToGo");
-                return true;
-            }
-
-            //does not exists, add a new class and return false
-            if (elem.parent().children("ul").length) {
-                 //first remove all other class
-                $this.find(".doubleTapToGo").removeClass("doubleTapToGo");
-                //add the class on the current element
-                elem.addClass("doubleTapToGo");
-                return false;
-            }
-        },
-
-        remove: function() {
-            this.element.off("." + pluginName);
-            this.element.removeData(pluginName);
-        }
-
-    };
-
-    $.fn[pluginName] = function(options) {
-        this.each(function () {
-            var el = $(this);
-            if (el.data(pluginName)) {
-                el.data(pluginName).remove();
-            }
-            el.data(pluginName, new Plugin(this, options));
-        });
-        return this;
-    };
-
-})(jQuery, window, document);
->>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
