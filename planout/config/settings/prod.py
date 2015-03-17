@@ -5,15 +5,22 @@ from __future__ import absolute_import
 from .base import *
 
 import os
+<<<<<<< HEAD
 DEBUG = os.environ.get('WEB_ENV_DEBUG', False)
 DEBUG = False
+=======
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 
 
 ########## HOST CONFIGURATION
 # https://docs.djangoproject.com/en/1.5/releases/1.5/#allowed-hosts-required-in-production
+<<<<<<< HEAD
 # ALLOWED_HOSTS = [PROJECT_DOMAIN, '*', '127.0.0.1']
 ALLOWED_HOSTS = ['*']
 
+=======
+ALLOWED_HOSTS = [PROJECT_DOMAIN, '.herokuapp.com', 'localhost', '127.0.0.1']
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 ########## END HOST CONFIGURATION
 
 
@@ -50,7 +57,12 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
 ########## DATABASE CONFIGURATION
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
+<<<<<<< HEAD
 
+=======
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config()
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 ########## END DATABASE CONFIGURATION
 
 
@@ -110,6 +122,7 @@ LOGGING['loggers'].update(LOGGERS)
 ########## END SECURITY CONFIGURATION
 
 
+<<<<<<< HEAD
 ########## LOCAL STATIC / MEDIA
 
 DEFAULT_STATIC_ROOT = normpath(join(PROJECT_ROOT, 'public'))
@@ -121,6 +134,8 @@ MEDIA_ROOT = os.getenv('MEDIA_ROOT_URL', DEFAULT_MEDIA_ROOT)
 ########## END LOCAL STATIC
 
 
+=======
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 ########## CACHE/QUEUE CONFIGURATION
 # https://docs.djangoproject.com/en/dev/ref/settings/#caches
 RQ_QUEUES = {}
@@ -190,7 +205,11 @@ if 'AWS_ACCESS_KEY_ID' in os.environ:
     from storages.backends.s3boto import S3BotoStorage
 
     class S3PipelineCachedStorage(PipelineMixin, CachedFilesMixin, S3BotoStorage):
+<<<<<<< HEAD
         pass5432
+=======
+        pass
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 
     StaticRootS3BotoStorage = lambda: S3PipelineCachedStorage(bucket=AWS_STATIC_STORAGE_BUCKET_NAME)
     STATICFILES_STORAGE = 'config.settings.prod.StaticRootS3BotoStorage'
@@ -200,6 +219,7 @@ if 'AWS_ACCESS_KEY_ID' in os.environ:
     DEFAULT_FILE_STORAGE = 'config.settings.prod.MediaRootS3BotoStorage'
     MEDIA_URL = S3_MEDIA_URL
 ########## END AMAZON S3 CONFIGURATION
+<<<<<<< HEAD
 
 ########## ALL-AUTH CONFIGURATION
 ACCOUNT_FORMS = {'login': 'accounts.forms.UserLoginForm', 'signup': 'accounts.forms.UserSignupForm'}
@@ -222,3 +242,5 @@ DATABASES['default'] = dj_database_url.config()
 
 ########## END DB CONFIGURATION
 
+=======
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e

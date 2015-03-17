@@ -8,8 +8,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 from os.path import abspath, basename, dirname, join, normpath
 from sys import path
 
@@ -32,7 +35,11 @@ path.insert(0, normpath(APPS_PATH) )
 PROJECT_NAME = basename(PROJECT_ROOT).capitalize()
 
 # Project domain:
+<<<<<<< HEAD
 PROJECT_DOMAIN = "bottofy.com" #'%s.com' % PROJECT_NAME.lower()
+=======
+PROJECT_DOMAIN = '%s.com' % PROJECT_NAME.lower()
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 
 # Add our project to our pythonpath, this way we don't need to type our project
 # name in our dotted import paths:
@@ -441,6 +448,7 @@ DEFAULT_CURRENCY = 'VND'
 ########## Google API
 GOOGLE_API_KEY = 'AIzaSyCnSdrpDVths5FyWPoe7S7NxjGdczIhQ2A'
 ########## END Google API
+<<<<<<< HEAD
 # CACHES = {
 #     'redis': {
 #         'BACKEND': 'redis_cache.cache.RedisCache',
@@ -463,3 +471,5 @@ GOOGLE_API_KEY = 'AIzaSyCnSdrpDVths5FyWPoe7S7NxjGdczIhQ2A'
 # CACHES['default'] = CACHE_ENGINES[os.getenv('CACHE', 'dummy')]
 
 # SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+=======
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e

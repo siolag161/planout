@@ -6,21 +6,44 @@ from .base import *
 
 import os
 
+<<<<<<< HEAD
 ########## DEBUG CONFIGURATION
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = False
 PIPELINE_ENABLED = False
 #DEBUG = False
 ALLOWED_HOSTS = ['*']
+=======
+
+########## DEBUG CONFIGURATION
+# https://docs.djangoproject.com/en/dev/ref/settings/#debug
+DEBUG = True
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
 TEMPLATE_DEBUG = DEBUG
 ########## END DEBUG CONFIGURATION
 
+<<<<<<< HEAD
 import dj_database_url
 DATABASES = {}
 DATABASES['default'] = dj_database_url.config()
 
+=======
+
+########## DATABASE CONFIGURATION 
+# https://docs.djangoproject.com/en/dev/ref/settings/#databases
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',	
+        'NAME': '%s-dev' % PROJECT_NAME.lower(),
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 ########## END DATABASE CONFIGURATION
 
 
@@ -114,7 +137,11 @@ INTERNAL_IPS = ('127.0.0.1',)
 
 ########## CITIES DB
 # https://github.com/teddziuba/django-sslserver#getting-started
+<<<<<<< HEAD
 CITIES_INCLUDE_COUNTRIES = ['VN', ] 
+=======
+CITIES_INCLUDE_COUNTRIES = ['VN', ]
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 ########## END CITIES DB
 
 

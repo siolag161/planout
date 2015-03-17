@@ -11,6 +11,7 @@
 
 <div class="container-fluidx">
     
+<<<<<<< HEAD
   <!-- <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li class="active">
@@ -53,11 +54,56 @@
 		    <span>Submit</span>
 		  </div>
 
+=======
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="active">
+	<a href="#avatar-edit-form"" role="tab" data-toggle="tab">
+          <i class="fa fa-user"></i> Change avatar
+        </a>
+      </li>
+
+      <li class="">
+          <a href="#profile-edit-form" role="tab" data-toggle="tab">
+              <icon class="fa fa-home"></icon> Edit Basic Information
+          </a>
+      </li>
+    </ul>
+    
+    <!-- Tab panes -->
+    <div class="tab-content">
+
+      <div class="tab-pane fade active in" id="avatar-edit-form">
+	<div class="panel panel-default avatar-update-wrapper">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Change your avatar</h3>
+	  </div> 
+	  <div class="panel-body">
+	    <div class="container-fluid">
+	      <div class="row">
+		<div class = "col-sm-3">
+		  <div class="image-container avatar-preview-wrapper">
+		    <a href="#" class="avatar-preview">
+		      <img class="img-responsive" src="https://a2.muscache.com/ic/users/27306913/profile_pic/1425289372/original.jpg">
+		    </a>
+		  </div>
+		</div>
+		<div class = "col-sm-8">
+		  <div class="avatar-form-wrapper">
+		  {% crispy avatar_update_form %}
+
+		    <div class="btn btn-default btn-upload-file">
+		      <span>Submit</span>
+		    </div>
+
+		  </div>
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 		</div>
 	      </div>
 	    </div>
 	  </div>
 	</div>
+<<<<<<< HEAD
       </div>
 
     </div>
@@ -75,6 +121,21 @@
 
 
 </div>
+=======
+
+    </div>
+    
+      <div class="tab-pane fade" id="profile-edit-form">
+	<div class="profile-edit-form-wrapper col-sm-8">
+	  <form class="form-horizontal" method="post" action="{% url 'profiles:edit_profile_uuid' request.user.uuid %} ">                
+	    {% crispy form %}
+          </form>
+	</div>
+      </div>
+</div>
+
+
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 
 
 {% endblock content %}

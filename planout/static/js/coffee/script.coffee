@@ -6,9 +6,16 @@ if typeof jQuery == 'undefined'
   $(".input-group.date").datetimepicker
     format: 'dd/mm/yyyy hh:ii'
     autoclose: true
+<<<<<<< HEAD
     pickerPosition: 'top-left'
     startDate: '+0d'
     showMeridian: true
+=======
+    pickerPosition: 'bottom-left'
+    startDate: '+0d'
+    showMeridian: true
+    
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 ) jQuery
 
 $(document).ready ->

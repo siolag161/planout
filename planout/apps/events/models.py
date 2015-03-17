@@ -26,7 +26,10 @@ from .querysets import (PassThroughOccurrenceManager, OccurrenceQuerySet,
 user_model_label = getattr(settings, "AUTH_USER_MODEL", "auth.User")
 
 #=========================================================================
+<<<<<<< HEAD
 
+=======
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 @python_2_unicode_compatible
 class EventProduct(models.Model):
     """

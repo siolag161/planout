@@ -1,0 +1,15 @@
+{
+  "name": "kikoha",
+  "version": "0.0.1",
+  "dependencies": {
+    "bootstrap": "~3.3.0",
+    "jquery": "~1.11.1",
+    "underscore": "~1.7.0",
+    "jasmine-ajax": "2.0.1",
+    "jasmine-jquery": "1.7.0",
+    "font-awesome": "~4.2.0",
+    "smalot-bootstrap-datetimepicker": "~2.3.0"
+
+  },
+  "private": true
+}

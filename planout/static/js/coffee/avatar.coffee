@@ -5,7 +5,10 @@ if typeof jQuery == 'undefined'
 # ---
 #
 #
+<<<<<<< HEAD
 $upload_button = $('#submit-upload-avatar')
+=======
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 
 readURL = (input) ->
   if input.files and input.files[0]
@@ -16,6 +19,7 @@ readURL = (input) ->
       
     reader.readAsDataURL input.files[0]
     return
+<<<<<<< HEAD
     
 CropAvatar = ($element) ->
   @$container = $element
@@ -217,8 +221,18 @@ CropAvatar.prototype =
   $(document).ready ->
     $upload_button.attr 'disabled', 'disabled'
     return
+=======
+
+(($) ->
+  $("#avatarInput").change ->
+    readURL this
+  
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 ) jQuery
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e

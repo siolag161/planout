@@ -19,6 +19,18 @@ $text-color: #7f8c8d;
 /** end color palette **/
 
 /*******************/
+<<<<<<< HEAD
+=======
+@mixin gray-line($bg-color) {
+  background: url('/jolly/static/img/gray_line.jpg') center repeat-x;
+  span {
+    background-color: $bg-color;
+    display: inline-block;
+    padding: 5px 15px;
+    font-weight: bold;
+  }
+}
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 
 @mixin btn($bg-color, $color) {
   @extend .btn;  
@@ -57,9 +69,16 @@ $text-color: #7f8c8d;
 
 $google-pink: #DD4B39;
 /* end color palette */
+<<<<<<< HEAD
 /* .gray-line {
    @include gray-line($white)
    } */
+=======
+
+.gray-line {
+  @include gray-line($white)
+}
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 
 .white {
   color: $white;
@@ -112,7 +131,10 @@ $google-pink: #DD4B39;
   }
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
 /***********************************************************/
 
 .clearfix:after {
@@ -1046,7 +1068,11 @@ a:focus {
     margin: 0 auto;
   }
   a.close {
+<<<<<<< HEAD
     background: transparent url('/static/img/fancy_close.png') no-repeat;
+=======
+    background: transparent url('/static/img/fancybox.png') -40px 0px no-repeat;
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
     position: absolute;
     top: -15px;
     right: -15px;
@@ -1351,6 +1377,7 @@ input[type="checkbox"] {
    #div_id_end_time {
    float: right;
    } */
+<<<<<<< HEAD
 
 
 .hidden {
@@ -1371,3 +1398,5 @@ input[type="checkbox"] {
 .row.fluid {
   margin: 0;
 }
+=======
+>>>>>>> 678fbc60f0063e903f814ee87edee882027f0f1e
