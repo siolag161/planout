@@ -8,7 +8,7 @@
     dependencies:  
       'bootstrap': 'jquery'
       'underscore': 'jquery'
-      'smalot-bootstrap-datetimepicker': 'bootstrap'
+      'bootstrap-datepicker': 'bootstrap'
     exclude: [
       'jasmine'
       'jasmine-ajax'

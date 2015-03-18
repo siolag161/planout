@@ -1,80 +1,49 @@
-{% extends "accounts/profile_base.html" %}
-{% load static %}
-{% load crispy_forms_tags %}
-
+{%extends "base.html" %}
+{%load static %}
 {% load profile_tags %}
-{% load crispy_forms_tags %}
-
-{% block content-header %}{% endblock content-header %}
-
-{% block content %}
-
-<div class="container-fluidx">
-    
-  <!-- <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li class="active">
-      <a href="#avatar-edit-form"" role="tab" data-toggle="tab">
-        <i class="fa fa-user"></i> Change avatar
-      </a>
-    </li>
-
-    <li class="">
-      <a href="#profile-edit-form" role="tab" data-toggle="tab">
-        <icon class="fa fa-home"></icon> Edit Basic Information
-      </a>
-    </li>
-  </ul>
-  
-  <!-- Tab panes -->
-  <div class="tab-content">
-
-    <div class="tab-pane fade active in" id="avatar-edit-form">
-      <div class="panel panel-default avatar-update-wrapper">
-	<div class="panel-heading">
-	  <h3 class="panel-title">Change your avatar</h3>
-	</div> 
-	<div class="panel-body">
-	  <div class="container-fluid">
-	    <div class="row">
-	      <div class = "col-sm-3">
-		<div class="image-container avatar-preview-wrapper">
-		  <a href="#" class="avatar-preview">
-		    <img class="img-responsive" src="{{request.user.avatar_url}}">
-		  </a>
-		</div>
-	      </div>
-	      <div class = "col-sm-8">
-		<div class="avatar-form-wrapper">
-		  
-		  {% crispy avatar_update_form %}
-
-		  <div class="btn btn-default btn-upload-file" id="submit-upload-avatar"">
-		    <span>Submit</span>
-		  </div>
-
-		</div>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-      </div>
-
-    </div>
-    
-    <div class="tab-pane fade" id="profile-edit-form">
-      <div class="profile-edit-form-wrapper col-sm-8">
-	<form class="form-horizontal" method="post" action="{% url 'profiles:edit_profile_uuid' request.user.uuid %} ">                
-	  {% crispy form %}
-        </form>
-      </div>
-    </div>
-
-  </div> 
 
 
 
+{% block sidebar %}
+<!-- Sidebar user panel -->
+<div class="user-panel">
+  <div class="pull-left image">
+    <img src="{{request.user.avatar_url}}"" class="img-circle" alt="User Image" />
+  </div>
+  <div class="pull-left info">
+    <p class="username">pdt</p>
+  </div>
 </div>
 
+<!-- sidebar menu: : style can be found in sidebar.less -->
+<ul class="sidebar-menu">
+  <li class="header">MAIN NAVIGATION</li>
+  <li><a href="#"><i class="fa fa-book"></i> Dashboard</a></li>
 
+  <li class="treeview">
+    <a href="#">
+      <i class="fa fa-user"></i>
+      <span>Profile</span>
+    </a>
+    <ul class="treeview-menu">
+      <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Edit Profile</a></li>
+      <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Reviews</a></li>
+      <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Preferences</a></li>
+    </ul>
+  </li> <!-- end account -->
+  <li class="treeview">
+    <a href="#">
+      <i class="fa fa-pie-chart"></i>
+      <span>Settings</span>
+      <i class="fa fa-angle-left pull-right"></i>
+    </a>
+    <ul class="treeview-menu">
+      <li><a href="#"><i class="fa fa-circle-o"></i>Stuff</a></li>
+    </ul>
+  </li>  <!-- end settings -->
+  <li><a href="#"><i class="fa fa-book"></i> Documentation</a></li>
+</ul>
+{% endblock sidebar %}
+
+{% block content %}
 {% endblock content %}

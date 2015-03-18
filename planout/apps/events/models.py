@@ -85,7 +85,7 @@ class Event(core_models.PostedModel, core_models.TimeFramedModel, core_models.Ba
     #============================================
     age_range = AgeRangeField(blank=True, null=True) #models.CharField(max_length=6, verbose_name=_("Event age range"))
     
-    location = models.ForeignKey(core_models.Location, related_name = "events", blank=True, null=True)
+    location = models.CharField( max_length=20,null=True, blank=True,)  #models.ForeignKey(core_models.Location, related_name = "events", blank=True, null=True)
     is_online = models.BooleanField(default=False, verbose_name=_("It's an online event"),)
 
     @property

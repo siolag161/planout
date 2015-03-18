@@ -6,13 +6,32 @@
     throw new Error('avatar js requires jQuery');
   }
 
+  (function($) {
+    $(".input-group.date").datepicker({
+      format: 'dd/mm/yyyy',
+      autoclose: true,
+      pickerPosition: 'auto',
+      startDate: '+0d',
+      showMeridian: true
+    });
+    return $(".input-group.time").clockpicker({
+      "default": 'now',
+      autoclose: true,
+      minutestep: 5,
+      twelvehour: true
+    });
+  })(jQuery);
+
   EventPush = function($element) {
     this.$container = $element;
     this.$locationPreview = $('#location-map-preview');
     this.$formSubmit = $('#event-form-submit');
     this.$locationInput = $('#id_location');
     this.$event_form = this.$container.find('form');
-    this.$event_toggle_elems = this.$event_form.find(".toggle-field");
+    this.$location_fields = this.$event_form.find("input[type=text].superlocation");
+    this.$hid_toggle_fields = this.$event_form.find(".toggle-field.hid");
+    this.$resetBtn = this.$container.find('.location-reset');
+    this.$mapCanvasWrapper = this.$container.find('#google_map_canvas_wrapper');
     this.$map = void 0;
     this.init();
   };
@@ -32,10 +51,23 @@
           country: 'vn'
         }
       }).on('geocode:result', $.proxy(this.locationChange, this));
+      this.$resetBtn.on('click', $.proxy(this.resetLocation, this));
     },
-    submit: function() {},
+    resetLocationData: function() {
+      this.$location_fields.val("");
+    },
+    hideLocationFields: function() {
+      this.$hid_toggle_fields.hide("fast");
+      this.$mapCanvasWrapper.addClass('hidden');
+    },
+    resetLocation: function() {
+      this.hideLocationFields();
+      this.resetLocationData();
+    },
+    submit: function(event) {},
     locationChange: function(event, result) {
-      this.$event_toggle_elems.removeClass('hidden');
+      this.$hid_toggle_fields.show("fast");
+      this.$mapCanvasWrapper.removeClass('hidden');
       if (!this.$map) {
         this.$map = this.$locationInput.geocomplete("map");
       }

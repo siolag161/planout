@@ -1304,4 +1304,12 @@ input[type="checkbox"] {
 /* line 1371, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
 .row.fluid {
   margin: 0; }
+
+/* line 1375, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
+.showed {
+  display: block !important; }
+
+/* line 1379, /home/pdt/jolly/project/planout/planout/static/css/scss/style.scss */
+.hid {
+  display: none; }
 /*# sourceMappingURL=style.css.map */

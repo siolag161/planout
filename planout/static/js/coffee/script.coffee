@@ -2,14 +2,6 @@
 if typeof jQuery == 'undefined'
   throw new Error('avatar js requires jQuery')
   
-(($) ->
-  $(".input-group.date").datetimepicker
-    format: 'dd/mm/yyyy hh:ii'
-    autoclose: true
-    pickerPosition: 'bottom-left'
-    startDate: '+0d'
-    showMeridian: true    
-) jQuery
 
 $(document).ready ->
   $('ul.nav li.dropdown').hover (->

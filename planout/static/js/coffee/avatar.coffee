@@ -218,3 +218,7 @@ CropAvatar.prototype =
     $upload_button.attr 'disabled', 'disabled'
     return
 ) jQuery
+
+
+
+

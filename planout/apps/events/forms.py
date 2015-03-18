@@ -16,19 +16,27 @@ from datetime import datetime, timedelta
 from functools import partial
 
 
-from core.widgets import DateTimeWidget
+from core.widgets.datetime_widgets import SplitDateTimeWidget
 
 
 #=======================================================================
 class EventCreateForm(forms.ModelForm):
 	
-    name = forms.CharField(	    
-    )
+    name = forms.CharField()
 
-    start_time = forms.DateTimeField( required=True,
-    				      widget=DateTimeWidget(options={'format': 'dd/mm/yyyy hh:ii'} ))
-    end_time = forms.DateTimeField( required=True,
-    				    widget=DateTimeWidget(options={'format': 'dd/mm/yyyy hh:ii'} ))
+    # start_time = forms.DateTimeField( required=True,
+    # 				      widget=DateTimeWidget())
+    # end_time = forms.DateTimeField( required=True,
+    # 				    widget=DateTimeWidget() )
+
+    start_time = forms.SplitDateTimeField( input_date_formats=['%d/%m/%Y'],
+					   input_time_formats=['%I:%M%p'],
+					   required=True,
+					   widget=SplitDateTimeWidget())
+    end_time = forms.SplitDateTimeField( input_date_formats=['%d/%m/%Y'],
+					   input_time_formats=['%I:%M%p'],
+					   required=True,
+					   widget=SplitDateTimeWidget())
 
     location = forms.CharField(required=True)
 
@@ -53,7 +61,6 @@ class EventCreateForm(forms.ModelForm):
     logo = forms.ImageField(required=False, )    
 
     description = forms.CharField(required=False, widget=forms.Textarea())
-    
     is_online = forms.BooleanField(required=False, )
     category = forms.ChoiceField(choices = Event.EVENT_CATEGORY, initial = Event.EVENT_CATEGORY.performance, )
 
@@ -69,14 +76,6 @@ class EventCreateForm(forms.ModelForm):
 	fields = ['name', 'start_time', 'end_time', 'location',  'logo', 'description',
 		   'is_online', 'topic', 'category',]
 
-    class Meta:
-	model = Event
-	fields = ['name', 'start_time', 'end_time', 'logo', 'description',
-		  'url', 'is_online', 'topic', 'category', 'location', ]
-    
-    def __init__(self, *args, **kwargs):
-        super(EventCreateForm, self).__init__(*args, **kwargs)
-	self.helper = self._form_helper()
 
     def get_success_url(self):
         return  "/"
@@ -84,22 +83,26 @@ class EventCreateForm(forms.ModelForm):
     def _form_helper(self):
 	helper = FormHelper()
 	helper.form_show_labels = True
-
 	
         helper.layout = Layout(
 	    Field('name', css_class=''),
-	    Field('start_time', css_class=''),
-	    Field('end_time', css_class=''),
+	    Div(
+		Div( Field('start_time'), css_class = 'start-time-wrapper col-xs-6',
+			 
+		),
+		Div( Field('end_time'), css_class = 'end-time-wrapper col-xs-6', ),		
+		css_class = 'row fluid',	    		
+	    ),
 	    Field('location', css_class='superlocation'),
 	    Div(
 		Div(
-		    Div( Field('location_place_name',  data_geo='name'), css_class="toggle-field hidden"),
-		    Div( Field('location_address' , data_geo='street_number'), css_class="toggle-field hidden"),	
-		    Div( Field('location_district', data_geo='sublocality'), css_class="toggle-field hidden"),	
-		    Div( Field('location_city',  data_geo='locality'), css_class="toggle-field hidden"),
-		    # Div( Field('location_province' , data_geo='administrative_area_level_2'),
-		    # 	 css_class="toggle-field hidden"),
-		    
+		    Div( Field('location_place_name',  data_geo='name'), css_class="toggle-field hid"),
+		    Div( Field('location_address' , data_geo='street_number'), css_class="toggle-field hid"),	
+		    Div( Field('location_district', data_geo='sublocality'), css_class="toggle-field hid"),	
+		    Div( Field('location_city',  data_geo='locality'), css_class="toggle-field hid"),
+		    Div( HTML('<a href="#" class="location-reset pull-right">Reset location</a>'), css_class="toggle-field hid"),
+
+
 		    css_class = 'superlocation col-xs-6',	    
 		),
 		Div(
@@ -118,8 +121,8 @@ class EventCreateForm(forms.ModelForm):
 		Field('location_url',  data_geo='url', type="hidden"), 
 		Field('location_website', data_geo='website', type="hidden"),
 		Field('location_formatted_address', data_geo='formatted_address', type="hidden"),
-		Field('location_latitude',  data_geo='lat', type="hidden", css_class="toggle-field hidden"),
-		Field('location_longitude', data_geo='lng', type="hidden", css_class="toggle-field hidden"),
+		Field('location_latitude',  data_geo='lat', type="hidden", css_class="toggle-field hid"),
+		Field('location_longitude', data_geo='lng', type="hidden", css_class="toggle-field hid"),
 		Field('description', rows="3", css_class='input-xlarge'),
 		css_class = 'superlocation',	    
 	    ),	
@@ -136,12 +139,36 @@ class EventCreateForm(forms.ModelForm):
 	    # # 	css_class="submit_group"
 	    #  )
 	 )
-	# helper.add_input(Submit('submit', 'Submit'))
 	helper.add_input(Submit('submit', 'Submit'))
-        # helper.layout = Layout(
-	#     Div(FormActions(
-        #         Submit('submit', 'Sign Me Up', css_class = 'btn btn-pink full-width')
-        #     ), css_class='input-group center-block'),
-        # )
 	return helper
+
+
+#=======================================================================
+# class EventForm(forms.ModelForm):
+
+#     def __init__(self, *args, **kwargs):
+#         super(EventForm, self).__init__(*args, **kwargs)
+	
+# 	helper = FormHelper()
+# 	#helper.form_show_labels = False
+#         # helper.layout = Layout(
+# 	#     AppendedText('email', '<i class="glyphicon glyphicon-user"></i>'),
+# 	#     AppendedText('password1', '<i class="glyphicon glyphicon-lock"></i>',
+#         #                   placeholder='Password', autocomplete='off',
+#         #                   widget=forms.PasswordInput, css_class="form-control"),
+# 	#     AppendedText('password2', '<i class="glyphicon glyphicon-lock"></i>',
+# 	# 		 placeholder='Confirm Password', autocomplete='off',
+# 	# 		 widget=forms.PasswordInput, css_class="form-control"),
+#         #     Div(FormActions(
+#         #         Submit('submit', 'Sign Me Up', css_class = 'btn btn-pink full-width')
+#         #     ), css_class='input-group center-block'),
+#         # )
+#         # self.helper = helper
+    
+#     class Meta:
+#         # Set this form to use the User model.
+#         model = Event
+#         # Constrain the Form to just these fields.
+#         fields = ( "name", "start_time", "end_time", "location", "logo",
+# 		   "description", "url", "is_online", "topic", "category")
 

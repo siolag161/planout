@@ -10,7 +10,8 @@
     "font-awesome": "~4.2.0",
     "cropper": "~0.8.0",
     "geocomplete": "~1.6.4",
-    "smalot-bootstrap-datetimepicker": "~2.3.0"
+    "bootstrap-datepicker": "~1.4.0",
+    "clockpicker": "https://github.com/JordyMoos/clockpicker/archive/master.zip"
   },
   "private": true
 }
