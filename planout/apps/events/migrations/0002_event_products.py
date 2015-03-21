@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('products', '0002_auto_20150227_1414'),
+        ('products', '0001_initial'),
         ('events', '0001_initial'),
     ]
 

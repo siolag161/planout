@@ -19,6 +19,8 @@ urlpatterns = [
 
     url(r'^events/', include('events.urls', namespace='events')),
 
+    url(r'^tinymce/', include('tinymce.urls')),
+
 
     # Root-level redirects for common browser requests
     url(r'^favicon\.ico$', RedirectView.as_view(url=settings.STATIC_URL + 'img/compressed/favicon.ico'), name='favicon.ico'),

@@ -11,6 +11,7 @@ from core.fields import Choices
 from django.contrib.gis.db import models as gismodels
 
 from accounts.models import BasicUser, ProfessionalProfile
+from tinymce.models import HTMLField
 
 from core.fields import BaseImageField
 import core.models as core_models
@@ -20,8 +21,6 @@ from .conf import settings as config
 from .fields import AgeRangeField
 from .querysets import (PassThroughOccurrenceManager, OccurrenceQuerySet,
 			PassThroughEventManager, EventQuerySet)
-
-
 
 user_model_label = getattr(settings, "AUTH_USER_MODEL", "auth.User")
 
@@ -48,18 +47,18 @@ class EventProduct(models.Model):
 	
 #===============================================================================    
 class Event(core_models.PostedModel, core_models.TimeFramedModel, core_models.BaseType):
-    '''
-    Event itself
-    '''
+    # '''
+    # Event itself
+    # '''
     #======
     EVENT_STATUS = Choices(('cancelled', _('cancelled')), ('postponed', _('postponed')),
-			   ('rescheduled', _('rescheduled')), ('scheduled', _('scheduled')), )
+    			   ('rescheduled', _('rescheduled')), ('scheduled', _('scheduled')), )
     #======
-    EVENT_CATEGORY = Choices(('performance', _('concert or performance')), ('conference', _('conference')),
-			     ('gala', _('diner or gala')), ('competition', _('game or competition')), )
-    #======
-    EVENT_TOPIC = Choices(('business', _('business and professional')), ('charity', _('charity and cause')),
-			   ('culture', _('community and culture')), ('family', _('family and education')), )
+    # EVENT_CATEGORY = Choices(('performance', _('concert or performance')), ('conference', _('conference')),
+    # 			     ('gala', _('diner or gala')), ('competition', _('game or competition')), )
+    # #======
+    # EVENT_TOPIC = Choices(('business', _('business and professional')), ('charity', _('charity and cause')),
+    # 			   ('culture', _('community and culture')), ('family', _('family and education')), )
     #======
     status = models.CharField(choices=EVENT_STATUS,
 			      default=EVENT_STATUS.scheduled, max_length=20, verbose_name=_("Event Status"))
@@ -69,23 +68,24 @@ class Event(core_models.PostedModel, core_models.TimeFramedModel, core_models.Ba
 
     # poster = 
 
-    topic =  models.CharField( choices=EVENT_TOPIC, max_length=20,
-			       verbose_name=_("Event Topic"), null=True, blank=True,)
-    #======
-    category = models.CharField( choices=EVENT_CATEGORY, max_length=20,
-				    verbose_name=_("Event Category"), null=True, blank=True, )
+    # topic =  models.CharField( choices=EVENT_TOPIC, max_length=20,
+    # 			       verbose_name=_("Event Topic"), null=True, blank=True,)
+    # #======
+    # category = models.CharField( choices=EVENT_CATEGORY, max_length=20,
+    # 				    verbose_name=_("Event Category"), null=True, blank=True, )
 
 
     products = models.ManyToManyField(
-	'products.Product', through=EventProduct,
+    	'products.Product', through=EventProduct,
         verbose_name=_("Products"))
     
     logo =  BaseImageField(blank=True, max_length=1024) #AvatarField(max_length=1024, blank=True)
     
     #============================================
-    age_range = AgeRangeField(blank=True, null=True) #models.CharField(max_length=6, verbose_name=_("Event age range"))
+    #age_range = AgeRangeField(blank=True, null=True) #models.CharField(max_length=6, verbose_name=_("Event age range"))
     
-    location = models.CharField( max_length=20,null=True, blank=True,)  #models.ForeignKey(core_models.Location, related_name = "events", blank=True, null=True)
+    location = models.ForeignKey(core_models.Location, related_name = "events", null=True )
+    avenue_name = models.CharField( max_length=40, verbose_name=_("Avenue's name"))
     is_online = models.BooleanField(default=False, verbose_name=_("It's an online event"),)
 
     @property
@@ -174,10 +174,7 @@ class Occurrence(core_models.TimeFramedModel, models.Model):
     '''
     event = models.ForeignKey(Event, verbose_name=_('event'), editable=False, related_name='occurrences')
 
-    # start_time = models.DateTimeField(_('start time'))
-    # end_time = models.DateTimeField(_('end time'))
-    # location = Location
-    # notes = GenericRelation(Note, verbose_name=_('notes'))
+
     objects = PassThroughOccurrenceManager.for_queryset_class(OccurrenceQuerySet)()
     #===========================================================================
     class Meta:

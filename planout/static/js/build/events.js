@@ -1,26 +1,47 @@
 (function() {
   'use strict';
-  var EventPush;
+  var EventPush, SplitDateTime;
 
   if (typeof jQuery === 'undefined') {
     throw new Error('avatar js requires jQuery');
   }
 
-  (function($) {
-    $(".input-group.date").datepicker({
-      format: 'dd/mm/yyyy',
-      autoclose: true,
-      pickerPosition: 'auto',
-      startDate: '+0d',
-      showMeridian: true
-    });
-    return $(".input-group.time").clockpicker({
-      "default": 'now',
-      autoclose: true,
-      minutestep: 5,
-      twelvehour: true
-    });
-  })(jQuery);
+  SplitDateTime = (function() {
+    function SplitDateTime($element) {
+      this.$container = $element;
+      this.$dateInput = this.$container.find('.input-group.date');
+      this.$timeInput = this.$container.find('.input-group.time');
+      this.dateOpts = {
+        format: 'dd/mm/yyyy',
+        autoclose: true
+      };
+      this.timeOpts = {
+        "default": 'now',
+        autoclose: true,
+        minutestep: 5,
+        twelvehour: true
+      };
+      this.init();
+    }
+
+    SplitDateTime.prototype.init = function() {
+      return this.addListener();
+    };
+
+    SplitDateTime.prototype.addListener = function() {
+      this.datePicker = this.$dateInput.datepicker(this.dateOpts).on('changeDate', $.proxy(this.dateChange, this));
+      return this.timePicker = this.$timeInput.clockpicker(this.timeOpts);
+    };
+
+    SplitDateTime.prototype.dateChange = function(e) {
+      console.log("dateChanged");
+      e.preventDefault();
+      this.$timeInput.clockpicker().clockpicker('show');
+    };
+
+    return SplitDateTime;
+
+  })();
 
   EventPush = function($element) {
     this.$container = $element;
@@ -28,9 +49,21 @@
     this.$formSubmit = $('#event-form-submit');
     this.$locationInput = $('#id_location');
     this.$event_form = this.$container.find('form');
-    this.$location_fields = this.$event_form.find("input[type=text].superlocation");
+    this.$startSplit = new SplitDateTime(this.$container.find('#div_id_start_time'));
+    this.$endSplit = new SplitDateTime(this.$container.find('#div_id_end_time'));
+    'timing setup';
+    this.$timeOpts = {
+      "default": 'now',
+      autoclose: true,
+      minutestep: 5,
+      twelvehour: true
+    };
+    'location setup';
+    this.$location_fields = this.$event_form.find(".superlocation input");
+    this.$superloc_input = this.$event_form.find("#div_id_location");
+    this.$superloc_field = this.$event_form.find("#id_location");
     this.$hid_toggle_fields = this.$event_form.find(".toggle-field.hid");
-    this.$resetBtn = this.$container.find('.location-reset');
+    this.$locResetButton = this.$container.find('.location-reset');
     this.$mapCanvasWrapper = this.$container.find('#google_map_canvas_wrapper');
     this.$map = void 0;
     this.init();
@@ -51,21 +84,25 @@
           country: 'vn'
         }
       }).on('geocode:result', $.proxy(this.locationChange, this));
-      this.$resetBtn.on('click', $.proxy(this.resetLocation, this));
+      this.$locResetButton.on('click', $.proxy(this.resetLocation, this));
     },
     resetLocationData: function() {
       this.$location_fields.val("");
+      this.$superloc_field.val("");
     },
     hideLocationFields: function() {
+      this.$superloc_input.show("fast");
       this.$hid_toggle_fields.hide("fast");
       this.$mapCanvasWrapper.addClass('hidden');
     },
-    resetLocation: function() {
+    resetLocation: function(e) {
       this.hideLocationFields();
+      e.preventDefault();
       this.resetLocationData();
     },
     submit: function(event) {},
     locationChange: function(event, result) {
+      this.$superloc_input.hide("fast");
       this.$hid_toggle_fields.show("fast");
       this.$mapCanvasWrapper.removeClass('hidden');
       if (!this.$map) {

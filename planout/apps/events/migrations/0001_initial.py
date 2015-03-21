@@ -11,8 +11,9 @@ from django.conf import settings
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accounts', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('core', '0006_location_coordinates'),
+        ('accounts', '0007_auto_20150301_1830'),
     ]
 
     operations = [
@@ -29,10 +30,9 @@ class Migration(migrations.Migration):
                 ('description', models.TextField(help_text='Please enter the description', null=True, verbose_name='description', blank=True)),
                 ('url', models.URLField(null=True, verbose_name='website', blank=True)),
                 ('status', models.CharField(default=b'scheduled', max_length=20, verbose_name='Event Status', choices=[(b'cancelled', 'cancelled'), (b'postponed', 'postponed'), (b'rescheduled', 'rescheduled'), (b'scheduled', 'scheduled')])),
-                ('topic', models.CharField(blank=True, max_length=20, null=True, verbose_name='Event Topic', choices=[(b'business', 'business and professional'), (b'charity', 'charity and cause'), (b'culture', 'community and culture'), (b'family', 'family and education')])),
-                ('category', models.CharField(blank=True, max_length=20, null=True, verbose_name='Event Category', choices=[(b'performance', 'concert or performance'), (b'conference', 'conference'), (b'gala', 'diner or gala'), (b'competition', 'game or competition')])),
                 ('logo', core.fields.BaseImageField(storage=django.core.files.storage.FileSystemStorage(), max_length=1024, upload_to=core.fields.image_file_path, blank=True)),
                 ('is_online', models.BooleanField(default=False, verbose_name="It's an online event")),
+                ('location', models.ForeignKey(related_name='events', blank=True, to='core.Location', null=True)),
                 ('organizer', models.ForeignKey(related_name='organized_events', verbose_name='Organizer', to='accounts.ProfessionalProfile')),
                 ('poster', models.ForeignKey(related_name='posted_events', editable=False, to=settings.AUTH_USER_MODEL, verbose_name='Poster')),
             ],

@@ -69,6 +69,7 @@ DJANGO_APPS = (
     'django.contrib.humanize',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    'django.contrib.gis',
 )
 
 THIRD_PARTY_APPS = (
@@ -85,8 +86,9 @@ THIRD_PARTY_APPS = (
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.twitter',
 
-    'pipeline',
     'leaflet',
+    'pipeline',
+    'tinymce',
 )
 
 PROJECT_APPS = (
@@ -95,9 +97,7 @@ PROJECT_APPS = (
     # 'avatar',  # for user avatars    
     'accounts',
     'products', # for market-place ecommerce stuff
-
     'events',
-
     'tickets',    
     'stocks', # for market-place ecommerce stuff
 )
@@ -461,3 +461,13 @@ GOOGLE_API_KEY = 'AIzaSyCnSdrpDVths5FyWPoe7S7NxjGdczIhQ2A'
 # CACHES['default'] = CACHE_ENGINES[os.getenv('CACHE', 'dummy')]
 
 # SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': "advanced",
+    # 'theme_advanced_buttons1' : "bold,italic,underline,separator,bullist,numlist,separator,link,unlink, separator,insertdate,inserttime,preview,zoom,separator,forecolor,backcolor",
+    # 'theme_advanced_buttons2' : "bullist,numlist,separator,outdent,indent,separator,undo,redo,separator",
+    # 'theme_advanced_buttons3' : "hr,removeformat,visualaid,separator,sub,sup,separator,charmap",
+
+    'theme_advanced_buttons1' : "bold,italic,underline,strikethrough,separator,justifyleft,justifycenter,justifyright,justifyfullseparatorcut,copy,paste,pastetext,pasteword,separator,search,replace,separator,bullist,numlist,separator,undo,redo",
+    'theme_advanced_buttons2' : "link,unlink,anchor,image,cleanup,code,separator,forecolor,backcolor,separator,hr,removeformat,visualaid,separator,charmap,media,separator,ltr,rtl,separator,fullscreen",
+    'plugins' : "fullscreen",
+}

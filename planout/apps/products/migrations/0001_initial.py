@@ -11,6 +11,7 @@ import django.core.validators
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('events', '__first__'),
         ('contenttypes', '0001_initial'),
     ]
 
@@ -38,6 +39,19 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'verbose_name': 'Attribute option group',
                 'verbose_name_plural': 'Attribute option groups',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='EventProduct',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('event', models.ForeignKey(verbose_name='Event', to='events.Event')),
+            ],
+            options={
+                'ordering': ['product', 'event'],
+                'verbose_name': 'Product Event',
+                'verbose_name_plural': 'Product Events',
             },
             bases=(models.Model,),
         ),
@@ -144,6 +158,16 @@ class Migration(migrations.Migration):
             name='product_class',
             field=models.ForeignKey(related_name='products', on_delete=django.db.models.deletion.PROTECT, verbose_name='Product type', to='products.ProductClass', help_text='Choose what type of product this is', null=True),
             preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='eventproduct',
+            name='product',
+            field=models.ForeignKey(verbose_name='Product', to='products.Product'),
+            preserve_default=True,
+        ),
+        migrations.AlterUniqueTogether(
+            name='eventproduct',
+            unique_together=set([('event', 'product')]),
         ),
         migrations.AddField(
             model_name='attributeoption',

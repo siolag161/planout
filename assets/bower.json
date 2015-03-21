@@ -11,7 +11,7 @@
     "cropper": "~0.8.0",
     "geocomplete": "~1.6.4",
     "bootstrap-datepicker": "~1.4.0",
-    "clockpicker": "https://github.com/JordyMoos/clockpicker/archive/master.zip"
+    "clockpicker": "~0.0.7"
   },
   "private": true
 }

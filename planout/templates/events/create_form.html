@@ -1,3 +1,4 @@
+
 {%extends "base.html" %}
 {%load static %}
 {% load crispy_forms_tags %}
@@ -13,6 +14,8 @@
 </div>
 {% endblock content %}
 {% block extra_js %} 
-{{ form.media }}
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+{{ form.media }}
 {% endblock extra_js %}

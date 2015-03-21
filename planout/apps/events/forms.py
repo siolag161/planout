@@ -15,7 +15,7 @@ from django.utils.timezone import now
 from datetime import datetime, timedelta
 from functools import partial
 
-
+from tinymce.widgets import TinyMCE
 from core.widgets.datetime_widgets import SplitDateTimeWidget
 
 
@@ -24,10 +24,6 @@ class EventCreateForm(forms.ModelForm):
 	
     name = forms.CharField()
 
-    # start_time = forms.DateTimeField( required=True,
-    # 				      widget=DateTimeWidget())
-    # end_time = forms.DateTimeField( required=True,
-    # 				    widget=DateTimeWidget() )
 
     start_time = forms.SplitDateTimeField( input_date_formats=['%d/%m/%Y'],
 					   input_time_formats=['%I:%M%p'],
@@ -40,41 +36,40 @@ class EventCreateForm(forms.ModelForm):
 
     location = forms.CharField(required=True)
 
-    location_place_name = forms.Field(required=False)
-    location_address = forms.CharField(required=False)
-    location_district = forms.CharField(required=False)
-    
-    location_city = forms.CharField(required=False)
-    
-    location_state = forms.Field(required=False)
-    location_province = forms.Field(required=False)
-    
-    location_country = forms.CharField(required=False)
-    
-    location_longitude = forms.Field(required=False)
-    location_latitude = forms.Field(required=False)
-    location_place_id = forms.Field(required=False)
-    location_url = forms.Field(required=False)
-    location_website = forms.CharField(required=False)
-    location_formatted_address = forms.Field(required=False)
+    avenue_name = forms.Field(required=False)
+
+    place_name = forms.Field(required=False)
+    route = forms.CharField(required=False)
+    street_number = forms.CharField(required=False)
+
+    district = forms.CharField(required=False)
+
+    city = forms.CharField(required=False)    
+    # province = forms.Field(required=False)
+    state = forms.Field(required=False)    
+    country_code = forms.CharField(required=False)
+
+    longitude = forms.Field(required=False)
+    latitude = forms.Field(required=False)
+    place_id = forms.Field(required=False)
+    website_url = forms.Field(required=False)
+    formatted_address = forms.Field(required=False)
 
     logo = forms.ImageField(required=False, )    
 
-    description = forms.CharField(required=False, widget=forms.Textarea())
+    description = forms.CharField(required=False,
+				  widget=TinyMCE(attrs={ 'rows': 30, 'cols': 167}))
+    
     is_online = forms.BooleanField(required=False, )
-    category = forms.ChoiceField(choices = Event.EVENT_CATEGORY, initial = Event.EVENT_CATEGORY.performance, )
-
-    topic = forms.ChoiceField(choices = Event.EVENT_TOPIC, initial = Event.EVENT_TOPIC.business, )
         
     def __init__(self, *args, **kwargs):
         super(EventCreateForm, self).__init__(*args, **kwargs)
-
 	self.helper = self._form_helper()
     
     class Meta:
 	model = Event
-	fields = ['name', 'start_time', 'end_time', 'location',  'logo', 'description',
-		   'is_online', 'topic', 'category',]
+	fields = ['name', 'start_time', 'end_time', 'logo', 'description', "avenue_name",
+		   'is_online',]
 
 
     def get_success_url(self):
@@ -82,27 +77,31 @@ class EventCreateForm(forms.ModelForm):
 
     def _form_helper(self):
 	helper = FormHelper()
-	helper.form_show_labels = True
+	helper.form_show_labels = True    
 	
         helper.layout = Layout(
 	    Field('name', css_class=''),
 	    Div(
-		Div( Field('start_time'), css_class = 'start-time-wrapper col-xs-6',
-			 
-		),
-		Div( Field('end_time'), css_class = 'end-time-wrapper col-xs-6', ),		
+		Div( Field('start_time'), css_class = 'start-time-wrapper col-xs-6',),
+		Div( Field('end_time'),    css_class = 'end-time-wrapper col-xs-6', ),		
 		css_class = 'row fluid',	    		
 	    ),
 	    Field('location', css_class='superlocation'),
-	    Div(
-		Div(
-		    Div( Field('location_place_name',  data_geo='name'), css_class="toggle-field hid"),
-		    Div( Field('location_address' , data_geo='street_number'), css_class="toggle-field hid"),	
-		    Div( Field('location_district', data_geo='sublocality'), css_class="toggle-field hid"),	
-		    Div( Field('location_city',  data_geo='locality'), css_class="toggle-field hid"),
+	    Div( 
+		Div(		    
+		    Div( Field('avenue_name',  data_geo='name'), css_class="toggle-field hid"),
+
+		    Div(			
+			Div( Field('street_number' , data_geo='street_number'), css_class="toggle-field hid col-xs-6"),
+			Div( Field('route' , data_geo='route'), css_class="toggle-field hid col-xs-6"),
+			css_class = 'row fluid',	    		
+
+		    ),
+		    Div( Field('district', data_geo='locality'), css_class="toggle-field hid"),	
+		    Div( Field('city',  data_geo='administrative_area_level_1'), css_class="toggle-field hid"),
+		    # Div( Field('province', data_geo='state'), css_class="toggle-field hid"),
+
 		    Div( HTML('<a href="#" class="location-reset pull-right">Reset location</a>'), css_class="toggle-field hid"),
-
-
 		    css_class = 'superlocation col-xs-6',	    
 		),
 		Div(
@@ -115,60 +114,21 @@ class EventCreateForm(forms.ModelForm):
 		),
 		css_class = 'row fluid',	    		
 	    ),
-	    Div(		
-	    Field('location_country',  data_geo='country', type="hidden"),		
-		Field('location_place_id', data_geo='place_id', type="hidden"),
-		Field('location_url',  data_geo='url', type="hidden"), 
-		Field('location_website', data_geo='website', type="hidden"),
-		Field('location_formatted_address', data_geo='formatted_address', type="hidden"),
-		Field('location_latitude',  data_geo='lat', type="hidden", css_class="toggle-field hid"),
-		Field('location_longitude', data_geo='lng', type="hidden", css_class="toggle-field hid"),
-		Field('description', rows="3", css_class='input-xlarge'),
+	    Div(
+		Field('state' , data_geo='state', type="hidden"),
+		Field('place_name',  data_geo='name', type="hidden"),
+		Field('country_code',  data_geo='country_short', type="hidden",),
+		Field('place_id', data_geo='place_id', type="hidden",),
+		Field('website_url',  data_geo='website', type="hidden",), 
+		Field('formatted_address', data_geo='vicinity', type="hidden",),
+		Field('latitude',  data_geo='lat', type="hidden",),
+		Field('longitude', data_geo='lng', type="hidden",),
 		css_class = 'superlocation',	    
 	    ),	
+	    Field('description', rows="3", css_class='input-xlarge'),
 
 	    Field('logo', css_class=''),
-	    # # Field('url', css_class=''),
 	    Field('is_online', css_class=''),
-	    # Field('topic', css_class=''),
-	    # Field('category', css_class=''),
-
-	    #  FormActions(
-	    #  	Submit('save_changes', 'Save changes', css_class="btn-primary"),
-	    # # 	Submit('cancel', 'Cancel', css_class=""),
-	    # # 	css_class="submit_group"
-	    #  )
 	 )
 	helper.add_input(Submit('submit', 'Submit'))
 	return helper
-
-
-#=======================================================================
-# class EventForm(forms.ModelForm):
-
-#     def __init__(self, *args, **kwargs):
-#         super(EventForm, self).__init__(*args, **kwargs)
-	
-# 	helper = FormHelper()
-# 	#helper.form_show_labels = False
-#         # helper.layout = Layout(
-# 	#     AppendedText('email', '<i class="glyphicon glyphicon-user"></i>'),
-# 	#     AppendedText('password1', '<i class="glyphicon glyphicon-lock"></i>',
-#         #                   placeholder='Password', autocomplete='off',
-#         #                   widget=forms.PasswordInput, css_class="form-control"),
-# 	#     AppendedText('password2', '<i class="glyphicon glyphicon-lock"></i>',
-# 	# 		 placeholder='Confirm Password', autocomplete='off',
-# 	# 		 widget=forms.PasswordInput, css_class="form-control"),
-#         #     Div(FormActions(
-#         #         Submit('submit', 'Sign Me Up', css_class = 'btn btn-pink full-width')
-#         #     ), css_class='input-group center-block'),
-#         # )
-#         # self.helper = helper
-    
-#     class Meta:
-#         # Set this form to use the User model.
-#         model = Event
-#         # Constrain the Form to just these fields.
-#         fields = ( "name", "start_time", "end_time", "location", "logo",
-# 		   "description", "url", "is_online", "topic", "category")
-

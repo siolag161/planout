@@ -16,8 +16,11 @@ from core.views import AjaxableFormViewMixin
 
 from .adapter import EventAdapter
 from .models import Event, ProfessionalProfile
+from core.models import Location
+
 from .forms import EventCreateForm
 
+#from .
 
 # Create your views here.
 
@@ -33,32 +36,48 @@ import logging
 logger = logging.getLogger('werkzeug')
 
 
+#=======================================================================
+#  
+#  EVENT CREATION
+# 
+#=======================================================================
+def _extract_location(form):
+    loc = Location()
+    logger.critical(form.cleaned_data)
 
-class EventCreateView(LoginRequiredMixin, EventFormView, AjaxableFormViewMixin, FormView):
+    for field in Location._meta.fields:
+	fn = field.name	
+	if fn in form.cleaned_data: # if the form has the same att
+	     setattr(loc, fn, form.cleaned_data.get(fn))
+    loc.set_coords( form.cleaned_data['longitude'], form.cleaned_data['latitude'])
+    loc.save()
     
+    return loc
+
+#========================================================================
+class EventCreateView(LoginRequiredMixin, EventFormView, AjaxableFormViewMixin, FormView):    
     template_name = 'events/create_form.html'
     form_class = EventCreateForm
-    #success_url = reverse_lazy("core:home")
-
+    
     def get_success_url(self):
 	return reverse_lazy("core:home")
+
+    # add clean place_name
 	
     def form_valid(self, form):
 	from django.core.exceptions import ObjectDoesNotExist
-
 	"""
-	1. add organization (via loggin-user)
-	2. add the age-range
-	3. process the leaflet
+	1. add organizer (via loggin-user)
+	2. add location (if not existing)
 	"""
-	self.object = form.save(commit=False)
+	self.event = form.save(commit=False)
+	self.event.location = _extract_location(form) # location set
 	logger.warning("form_valid-event: should update the form to take into acc the organization id - then if not existing - create one. also the darm location & the heck fucking crop stuff")
 	logger.critical(len(form.files))
 
 	logo_file = None
 	if form.files and forms.files[0]:
-	    logo_file = form.files["logo"]
-	
+	    logo_file = form.files["logo"]	
 	
 	if self.request.user.is_authenticated():
 	    user = self.request.user
@@ -67,15 +86,13 @@ class EventCreateView(LoginRequiredMixin, EventFormView, AjaxableFormViewMixin, 
 		profile = ProfessionalProfile.objects.create(owner = user, name=user.full_name, url="http://example.com", email=user.email)
 	    else:
 		logger.warning("should choose the default profile, not the first one")
-	    self.object.organizer = profile
+	    self.event.organizer = profile
 	    try:
-		#logger.info("----------------- bun c")
-		poster = self.object.poster
+		poster = self.event.poster
 	    except ObjectDoesNotExist:
-		self.object.poster = user
-	    # if not self.object.location:
-	    # 	self.object.location = GEOSGeometry('POINT(-120.18444970926208 50.65664762026928)', srid=4326)
-	    self.object.save()
+		self.event.poster = user
+		
+	    self.event.save()
 	return super(EventCreateView,self).form_valid(form)
 
     ###

@@ -2,20 +2,19 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-import events.fields
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('events', '0003_event_location'),
+        ('events', '0003_auto_20150318_2229'),
     ]
 
     operations = [
         migrations.AddField(
             model_name='event',
-            name='age_range',
-            field=events.fields.AgeRangeField(default=b'0-130', null=True, verbose_name='Age range', blank=True),
-            preserve_default=True,
+            name='avenue_name',
+            field=models.CharField(default='', max_length=40, verbose_name="Avenue's name"),
+            preserve_default=False,
         ),
     ]

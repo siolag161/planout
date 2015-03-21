@@ -7,14 +7,14 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('events', '0005_auto_20150227_1645'),
+        ('core', '0007_auto_20150319_1214'),
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='event',
-            name='location',
-            field=models.CharField(max_length=20, null=True, blank=True),
+        migrations.AddField(
+            model_name='location',
+            name='description',
+            field=models.TextField(null=True, blank=True),
             preserve_default=True,
         ),
     ]
